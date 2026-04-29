@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Pausas Activas · Personal de Campo</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #141414;
+  --surface:  #1E1E1E;
+  --card:     #252525;
+  --border:   #333333;
+  --amber:    #F5A623;
+  --amber-d:  #C47D0E;
+  --amber-l:  #FFD080;
+  --red:      #E53935;
+  --green:    #43A047;
+  --green-l:  #76C47A;
+  --blue:     #2196F3;
+  --text:     #F0EDE8;
+  --text-dim: #8A857C;
+  --text-mid: #C4BFB8;
+  --white:    #FAFAFA;
+  --stripe: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 8px,
+    rgba(245,166,35,0.04) 8px,
+    rgba(245,166,35,0.04) 16px
+  );
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── SCREENS ─── */
+.screen { display: none; min-height: 100vh; flex-direction: column; }
+.screen.active { display: flex; }
+
+/* ══════════════════════════════
+   HEADER STRIP
+══════════════════════════════ */
+.top-strip {
+  background: var(--amber);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 20px;
+  gap: 10px;
+}
+.top-strip .company {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #1A1000;
+}
+.top-strip .hse-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #1A1000;
+  opacity: 0.7;
+}
+
+/* ══════════════════════════════
+   SCREEN: HOME
+══════════════════════════════ */
+#screen-home {
+  background: var(--bg);
+}
+
+.home-hero {
+  background: var(--surface);
+  background-image: var(--stripe);
+  padding: 32px 24px 28px;
+  border-bottom: 3px solid var(--amber);
+  animation: fadeDown 0.5s ease both;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--amber);
+  color: #1A1000;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 2px;
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+
+.home-hero h1 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.home-hero h1 span { color: var(--amber); }
+
+.home-hero p {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  line-height: 1.6;
+  max-width: 380px;
+  font-weight: 300;
+}
+
+/* Hydration alert */
+.hydration-bar {
+  margin: 0 24px;
+  background: rgba(33,150,243,0.12);
+  border: 1px solid rgba(33,150,243,0.3);
+  border-left: 4px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  animation: fadeDown 0.5s 0.1s ease both;
+}
+.hydration-bar .h-icon { font-size: 1.4rem; flex-shrink: 0; }
+.hydration-bar p { font-size: 0.82rem; color: #90CAF9; line-height: 1.4; }
+.hydration-bar strong { color: #BBDEFB; }
+
+/* Mode cards */
+.mode-section {
+  padding: 24px 24px 0;
+  animation: fadeDown 0.5s 0.15s ease both;
+}
+.mode-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.mode-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.mode-card {
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 20px 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.mode-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  transition: height 0.2s;
+}
+.mode-card.preop::after { background: var(--green); }
+.mode-card.pausa::after { background: var(--amber); }
+.mode-card:active { transform: scale(0.97); }
+.mode-card:hover { border-color: #555; transform: translateY(-2px); }
+.mode-card.preop:hover { border-color: var(--green); box-shadow: 0 8px 24px rgba(67,160,71,0.2); }
+.mode-card.pausa:hover { border-color: var(--amber); box-shadow: 0 8px 24px rgba(245,166,35,0.2); }
+
+.mode-icon { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+.mode-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  color: var(--white);
+}
+.mode-card.preop .mode-title { color: var(--green-l); }
+.mode-card.pausa .mode-title { color: var(--amber-l); }
+.mode-desc { font-size: 0.75rem; color: var(--text-dim); line-height: 1.4; }
+.mode-duration {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 2px 8px;
+  border-radius: 100px;
+}
+.mode-card.preop .mode-duration { background: rgba(67,160,71,0.15); color: var(--green-l); }
+.mode-card.pausa .mode-duration { background: rgba(245,166,35,0.15); color: var(--amber-l); }
+
+/* Zone buttons */
+.zone-section {
+  padding: 0 24px 24px;
+  animation: fadeDown 0.5s 0.2s ease both;
+}
+.zone-section .mode-label { margin-top: 4px; }
+
+.zone-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.zone-btn {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  text-align: left;
+}
+.zone-btn:hover { border-color: var(--amber); background: #2A2A2A; }
+.zone-btn:active { transform: scale(0.97); }
+.zone-btn-icon { font-size: 1.6rem; flex-shrink: 0; }
+.zone-btn-info .zb-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: var(--white);
+  text-transform: uppercase;
+}
+.zone-btn-info .zb-sub { font-size: 0.7rem; color: var(--text-dim); margin-top: 1px; }
+
+/* Safety footer */
+.safety-footer {
+  margin: 0 24px 24px;
+  background: rgba(229,57,53,0.1);
+  border: 1px solid rgba(229,57,53,0.25);
+  border-left: 4px solid var(--red);
+  border-radius: 0 6px 6px 0;
+  padding: 10px 14px;
+  font-size: 0.78rem;
+  color: #EF9A9A;
+  line-height: 1.5;
+  animation: fadeDown 0.5s 0.3s ease both;
+}
+.safety-footer strong { color: #FFCDD2; }
+
+/* ══════════════════════════════
+   SCREEN: EXERCISE
+══════════════════════════════ */
+#screen-exercise {
+  background: var(--bg);
+}
+
+.ex-header {
+  background: var(--surface);
+  border-bottom: 2px solid var(--border);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.btn-exit {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  color: var(--text);
+  width: 44px; height: 44px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.btn-exit:hover { border-color: var(--red); color: var(--red); }
+
+.ex-header-info { flex: 1; min-width: 0; }
+.ex-mode-tag {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+.tag-preop { color: var(--green-l); }
+.tag-pausa { color: var(--amber); }
+
+.ex-prog-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ex-prog-bar {
+  flex: 1;
+  height: 5px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.ex-prog-fill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.4s ease;
+}
+.fill-preop { background: var(--green); }
+.fill-pausa { background: var(--amber); }
+
+.ex-prog-count {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* Main exercise body */
+.ex-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 20px 0;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+/* Zone chip */
+.ex-zone-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  padding: 5px 12px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+/* EPP row */
+.epp-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245,166,35,0.08);
+  border: 1px solid rgba(245,166,35,0.2);
+  border-radius: 6px;
+  padding: 8px 14px;
+  flex-wrap: wrap;
+}
+.epp-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+  flex-shrink: 0;
+}
+.epp-items {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.epp-item {
+  font-size: 0.72rem;
+  color: var(--text-mid);
+  background: rgba(255,255,255,0.05);
+  padding: 2px 8px;
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Exercise title */
+.ex-name {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+  line-height: 1.1;
+}
+
+/* Illustration + timer row */
+.ex-center {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ex-figure {
+  flex-shrink: 0;
+}
+
+/* Big timer */
+.timer-block {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.timer-display {
+  font-family: 'Oswald', sans-serif;
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -2px;
+  transition: color 0.3s;
+  color: var(--white);
+}
+.timer-display.urgent { color: var(--amber); }
+.timer-display.ending { color: var(--red); }
+
+.timer-lbl {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+.timer-bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.timer-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s linear, background 0.3s;
+  background: var(--green);
+}
+
+/* Instruction */
+.ex-instruction-box {
+  background: var(--card);
+  border-left: 4px solid var(--amber);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--text-mid);
+  font-weight: 300;
+}
+.ex-instruction-box strong { color: var(--amber-l); font-weight: 600; }
+
+/* Reps row */
+.reps-row {
+  display: flex;
+  gap: 10px;
+}
+.rep-chip {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 16px;
+  text-align: center;
+  flex: 1;
+}
+.rep-val {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--amber-l);
+  display: block;
+}
+.rep-key {
+  font-size: 0.65rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* Benefits */
+.benefits-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.benefit-tag {
+  font-size: 0.72rem;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+/* Controls */
+.ex-controls {
+  flex-shrink: 0;
+  padding: 16px 20px 20px;
+  display: flex;
+  gap: 10px;
+}
+
+.ctrl-btn {
+  border: none;
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.15s;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-pause-ctrl {
+  background: var(--card);
+  border: 2px solid var(--border);
+  color: var(--text);
+  width: 60px;
+  height: 60px;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+.btn-pause-ctrl:hover { border-color: #666; }
+.btn-pause-ctrl:active { transform: scale(0.95); }
+
+.btn-next-ctrl {
+  flex: 1;
+  height: 60px;
+  font-size: 1rem;
+  background: var(--amber);
+  color: #1A1000;
+}
+.btn-next-ctrl:hover { background: var(--amber-l); }
+.btn-next-ctrl:active { transform: scale(0.98); }
+
+.btn-skip-ctrl {
+  background: transparent;
+  border: 2px solid var(--border);
+  color: var(--text-dim);
+  width: 60px;
+  height: 60px;
+  font-size: 0.65rem;
+  flex-shrink: 0;
+  letter-spacing: 1.5px;
+}
+.btn-skip-ctrl:hover { border-color: #666; color: var(--text); }
+
+/* ══════════════════════════════
+   SCREEN: DONE
+══════════════════════════════ */
+#screen-done {
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  gap: 24px;
+  text-align: center;
+}
+
+.done-badge {
+  width: 96px; height: 96px;
+  background: var(--green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  box-shadow: 0 0 0 12px rgba(67,160,71,0.15), 0 0 0 24px rgba(67,160,71,0.07);
+}
+
+.done-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--white);
+  animation: fadeDown 0.5s 0.2s ease both;
+}
+.done-title span { color: var(--green-l); }
+
+.done-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-dim);
+  max-width: 360px;
+  line-height: 1.7;
+  font-weight: 300;
+  animation: fadeDown 0.5s 0.3s ease both;
+}
+
+.done-stats {
+  display: flex;
+  gap: 12px;
+  animation: fadeDown 0.5s 0.4s ease both;
+}
+.done-stat {
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 20px;
+  text-align: center;
+  min-width: 90px;
+}
+.done-num {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--amber);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.done-lbl { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); }
+
+.done-hydration {
+  background: rgba(33,150,243,0.1);
+  border: 1px solid rgba(33,150,243,0.3);
+  border-radius: 10px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 400px;
+  width: 100%;
+  animation: fadeDown 0.5s 0.5s ease both;
+}
+.done-hydration p { font-size: 0.85rem; color: #90CAF9; text-align: left; line-height: 1.5; }
+.done-hydration strong { color: #BBDEFB; }
+
+.btn-home {
+  background: var(--amber);
+  color: #1A1000;
+  border: none;
+  padding: 18px 40px;
+  border-radius: 10px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  animation: fadeDown 0.5s 0.55s ease both;
+}
+.btn-home:hover { background: var(--amber-l); transform: translateY(-2px); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pop-in {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+@keyframes blink-amber {
+  0%,100% { opacity: 1; } 50% { opacity: 0.4; }
+}
+.blinking { animation: blink-amber 0.8s ease-in-out infinite; }
+
+/* Overlay */
+.overlay {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  z-index: 200;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.overlay.on { opacity: 1; pointer-events: all; }
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay"></div>
+
+<!-- ══ HOME ══════════════════════════ -->
+<div class="screen active" id="screen-home">
+
+  <div class="top-strip">
+    <span class="company">SKANHAWK SAS · HSE</span>
+    <span class="hse-tag">PROGRAMA BIENESTAR LABORAL</span>
+  </div>
+
+  <div class="home-hero">
+    <div class="hero-tag">⛑ Personal de Campo · Hidrocarburos</div>
+    <h1>Pausas<br><span>Activas</span></h1>
+    <p>Calentamiento y estiramientos adaptados al trabajo físico en campo. Prevención de lesiones osteomusculares.</p>
+  </div>
+
+  <div class="hydration-bar">
+    <span class="h-icon">💧</span>
+    <p><strong>¡Hidrátate antes de iniciar!</strong> En campo se recomienda tomar mínimo 250 ml de agua cada 30 minutos.</p>
+  </div>
+
+  <div class="mode-section">
+    <div class="mode-label">▸ Selecciona el tipo de rutina</div>
+    <div class="mode-cards">
+      <div class="mode-card preop" onclick="startMode('preop')">
+        <span class="mode-icon">🌅</span>
+        <div class="mode-title">Pre-Operacional</div>
+        <p class="mode-desc">Calentamiento antes de iniciar el turno. Activa articulaciones y músculos.</p>
+        <span class="mode-duration">⏱ 8 min · 6 ejercicios</span>
+      </div>
+      <div class="mode-card pausa" onclick="startMode('pausa')">
+        <span class="mode-icon">⚙️</span>
+        <div class="mode-title">Pausa Activa</div>
+        <p class="mode-desc">Estiramiento durante el turno. Alivia fatiga y previene contracturas.</p>
+        <span class="mode-duration">⏱ 6 min · 5 ejercicios</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="zone-section">
+    <div class="mode-label">▸ O elige una zona específica</div>
+    <div class="zone-grid">
+      <div class="zone-btn" onclick="startZone('lumbar')">
+        <span class="zone-btn-icon">🦴</span>
+        <div class="zone-btn-info">
+          <div class="zb-name">Lumbar</div>
+          <div class="zb-sub">Espalda baja · 3 ejerc.</div>
+        </div>
+      </div>
+      <div class="zone-btn" onclick="startZone('hombros')">
+        <span class="zone-btn-icon">💪</span>
+        <div class="zone-btn-info">
+          <div class="zb-name">Hombros</div>
+          <div class="zb-sub">Manguito rotador · 3 ejerc.</div>
+        </div>
+      </div>
+      <div class="zone-btn" onclick="startZone('rodillas')">
+        <span class="zone-btn-icon">🦵</span>
+        <div class="zone-btn-info">
+          <div class="zb-name">Rodillas</div>
+          <div class="zb-sub">Cuádriceps / gemelos · 3 ejerc.</div>
+        </div>
+      </div>
+      <div class="zone-btn" onclick="startZone('cuello')">
+        <span class="zone-btn-icon">🔄</span>
+        <div class="zone-btn-info">
+          <div class="zb-name">Cuello</div>
+          <div class="zb-sub">Cervical / trapecio · 3 ejerc.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="safety-footer">
+    <strong>⚠ Seguridad:</strong> Realiza los ejercicios en una zona despejada, libre de riesgos. Si sientes dolor agudo, detente de inmediato. Mantén el EPP básico puesto en todo momento.
+  </div>
+
+</div>
+
+<!-- ══ EXERCISE ════════════════════════ -->
+<div class="screen" id="screen-exercise">
+  <div class="ex-header">
+    <button class="btn-exit" onclick="exitExercise()" title="Salir">✕</button>
+    <div class="ex-header-info">
+      <div class="ex-mode-tag" id="ex-mode-tag">PRE-OPERACIONAL</div>
+      <div class="ex-prog-row">
+        <div class="ex-prog-bar">
+          <div class="ex-prog-fill" id="prog-fill" style="width:0%"></div>
+        </div>
+        <div class="ex-prog-count" id="prog-count">1/6</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ex-body" id="ex-body">
+    <!-- injected -->
+  </div>
+
+  <div class="ex-controls">
+    <button class="ctrl-btn btn-skip-ctrl" onclick="skipEx()">OMIT.</button>
+    <button class="ctrl-btn btn-pause-ctrl" id="btn-pause" onclick="togglePause()">⏸</button>
+    <button class="ctrl-btn btn-next-ctrl" onclick="nextEx()">
+      SIGUIENTE →
+    </button>
+  </div>
+</div>
+
+<!-- ══ DONE ═══════════════════════════ -->
+<div class="screen" id="screen-done">
+  <div class="done-badge">✓</div>
+  <div class="done-title">¡Listo,<br><span>Campeón!</span></div>
+  <p class="done-subtitle">Rutina completada. Tu cuerpo está listo para el turno. Recuerda mantener buena postura durante toda la jornada.</p>
+  <div class="done-stats">
+    <div class="done-stat">
+      <span class="done-num" id="dn-ex">0</span>
+      <span class="done-lbl">Ejerc.</span>
+    </div>
+    <div class="done-stat">
+      <span class="done-num" id="dn-min">0</span>
+      <span class="done-lbl">Minutos</span>
+    </div>
+    <div class="done-stat">
+      <span class="done-num" id="dn-zone">—</span>
+      <span class="done-lbl">Modo</span>
+    </div>
+  </div>
+  <div class="done-hydration">
+    <span style="font-size:1.8rem;flex-shrink:0">💧</span>
+    <p><strong>¡Toma agua ahora!</strong> Aprovecha este momento para hidratarte antes de continuar con tus actividades.</p>
+  </div>
+  <button class="btn-home" onclick="goHome()">← INICIO</button>
+</div>
+
+<script>
+// ═══════════════════════════════════
+// EXERCISE DATA
+// ═══════════════════════════════════
+const DATA = {
+
+  preop: {
+    label: "PRE-OPERACIONAL",
+    tagClass: "tag-preop",
+    fillClass: "fill-preop",
+    exercises: [
+      {
+        name: "Marcha en Sitio",
+        zone: "ACTIVACIÓN GENERAL", zoneColor: "#43A047", zoneBg: "rgba(67,160,71,0.15)",
+        emoji: "🚶",
+        duration: 40,
+        reps: "30", repsLabel: "pasos",
+        instruction: "De pie, eleva las rodillas <strong>alternadamente</strong> llevándolas a la altura de la cadera. Brazos en movimiento natural. Aumenta el ritmo progresivamente. <strong>Activa la circulación.</strong>",
+        benefits: ["Activa circulación", "Calienta articulaciones", "Sube temperatura muscular"],
+        epp: ["🦺 Chaleco", "🥾 Botas puestas"]
+      },
+      {
+        name: "Rotación de Cadera",
+        zone: "CADERA · LUMBAR", zoneColor: "#F5A623", zoneBg: "rgba(245,166,35,0.15)",
+        emoji: "🔄",
+        duration: 35,
+        reps: "10", repsLabel: "círculos c/lado",
+        instruction: "Con manos en la cintura y pies separados al ancho de hombros, realiza <strong>círculos amplios con la cadera</strong>. Suaves al inicio, aumentando el rango. Esencial para preparar la zona lumbar.",
+        benefits: ["Moviliza cadera", "Prepara zona lumbar", "Lubrica discos"],
+        epp: ["🥾 Botas puestas"]
+      },
+      {
+        name: "Apertura de Hombros",
+        zone: "HOMBROS · TRAPECIO", zoneColor: "#2196F3", zoneBg: "rgba(33,150,243,0.15)",
+        emoji: "🏋️",
+        duration: 35,
+        reps: "10", repsLabel: "repeticiones",
+        instruction: "Extiende los brazos hacia los lados al nivel del hombro. Realiza <strong>círculos hacia adelante</strong> (5x) y luego <strong>hacia atrás</strong> (5x). Movimientos amplios y controlados. Prepara el manguito rotador.",
+        benefits: ["Activa manguito rotador", "Prepara trabajo overhead", "Lubrica articulación"],
+        epp: ["⛑ Casco si aplica", "🥾 Botas puestas"]
+      },
+      {
+        name: "Sentadilla Parcial",
+        zone: "RODILLAS · CUÁDRICEPS", zoneColor: "#9C27B0", zoneBg: "rgba(156,39,176,0.15)",
+        emoji: "🦵",
+        duration: 40,
+        reps: "10", repsLabel: "repeticiones",
+        instruction: "Pies separados al ancho de hombros, puntas ligeramente hacia afuera. Baja lentamente hasta que las rodillas lleguen a 90°. <strong>Rodillas no deben sobrepasar los pies.</strong> Sube controlado. Espalda recta.",
+        benefits: ["Activa cuádriceps", "Prepara rodillas", "Fortalece MMII"],
+        epp: ["🥾 Botas puestas", "🦺 Chaleco"]
+      },
+      {
+        name: "Rotación de Tronco",
+        zone: "COLUMNA · DORSAL", zoneColor: "#FF7043", zoneBg: "rgba(255,112,67,0.15)",
+        emoji: "🌀",
+        duration: 35,
+        reps: "8", repsLabel: "rotaciones c/lado",
+        instruction: "De pie, brazos extendidos al frente. Gira el <strong>tronco completo</strong> hacia la derecha lo máximo posible, regresa al centro y gira a la izquierda. <strong>Caderas fijas, solo gira el tronco.</strong> Movimiento suave.",
+        benefits: ["Moviliza columna", "Activa core", "Prepara espalda"],
+        epp: ["🥾 Botas puestas"]
+      },
+      {
+        name: "Elevación de Talones",
+        zone: "GEMELOS · CIRCULACIÓN", zoneColor: "#00BCD4", zoneBg: "rgba(0,188,212,0.15)",
+        emoji: "👟",
+        duration: 30,
+        reps: "15", repsLabel: "elevaciones",
+        instruction: "De pie, apóyate en la silla o pared si necesitas. Eleva ambos talones al máximo hasta quedar en puntillas. <strong>Sostén 2 seg</strong> en la parte alta y baja lentamente. <strong>Activa la bomba venosa</strong> para todo el turno.",
+        benefits: ["Activa gemelos", "Estimula circulación venosa", "Previene edema"],
+        epp: ["🥾 Botas puestas"]
+      }
+    ]
+  },
+
+  pausa: {
+    label: "PAUSA ACTIVA",
+    tagClass: "tag-pausa",
+    fillClass: "fill-pausa",
+    exercises: [
+      {
+        name: "Extensión Lumbar",
+        zone: "ESPALDA BAJA · LUMBAR", zoneColor: "#FF7043", zoneBg: "rgba(255,112,67,0.15)",
+        emoji: "🦴",
+        duration: 30,
+        reps: "20", repsLabel: "seg · 3 veces",
+        instruction: "De pie, coloca ambas manos en la parte baja de la espalda (sobre glúteos). Empuja las caderas hacia adelante y <strong>inclínate suavemente hacia atrás</strong>. Sostén 20 seg. Contrarresta horas de inclinación hacia adelante.",
+        benefits: ["Estira columna anterior", "Alivia presión lumbar", "Corrige postura"],
+        epp: ["⛑ Casco", "🦺 Chaleco", "🥾 Botas"]
+      },
+      {
+        name: "Estiramiento de Isquiotibiales",
+        zone: "MUSLOS POSTERIORES", zoneColor: "#9C27B0", zoneBg: "rgba(156,39,176,0.15)",
+        emoji: "🦵",
+        duration: 40,
+        reps: "25", repsLabel: "seg c/pierna",
+        instruction: "De pie, apoya el talón derecho en una superficie elevada (escalón, tubo, llanta). Mantén la pierna extendida. Inclínate <strong>suavemente hacia adelante</strong> manteniendo la espalda recta. Sientes el estiramiento en la parte trasera del muslo.",
+        benefits: ["Estira isquiotibiales", "Previene ciática", "Alivia lumbar"],
+        epp: ["🥾 Botas puestas", "⛑ Casco"]
+      },
+      {
+        name: "Péndulo de Hombro",
+        zone: "HOMBRO · MANGUITO ROTADOR", zoneColor: "#2196F3", zoneBg: "rgba(33,150,243,0.15)",
+        emoji: "💪",
+        duration: 35,
+        reps: "20", repsLabel: "seg c/brazo",
+        instruction: "Inclínate hacia adelante apoyando una mano en la rodilla o pared. Deja el otro brazo <strong>colgar completamente libre</strong>. Realiza pequeños círculos con el brazo suelto usando el impulso del cuerpo, sin activar el hombro. Alivia compresión.",
+        benefits: ["Descomprime articulación", "Alivia manguito rotador", "Reduce inflamación"],
+        epp: ["⛑ Casco", "🦺 Chaleco"]
+      },
+      {
+        name: "Estiramiento de Cuádriceps",
+        zone: "CUÁDRICEPS · RODILLA", zoneColor: "#43A047", zoneBg: "rgba(67,160,71,0.15)",
+        emoji: "🏃",
+        duration: 40,
+        reps: "25", repsLabel: "seg c/pierna",
+        instruction: "De pie junto a un apoyo (pared, vehículo). Dobla la rodilla derecha llevando el talón hacia los glúteos. Toma el tobillo con la mano derecha. <strong>Mantén las rodillas juntas y cadera recta.</strong> Sientes el estiramiento en la parte frontal del muslo.",
+        benefits: ["Estira cuádriceps", "Alivia rodilla", "Previene contractura"],
+        epp: ["🥾 Botas puestas", "⛑ Casco"]
+      },
+      {
+        name: "Flexión Lateral Cuello",
+        zone: "CERVICAL · TRAPECIO", zoneColor: "#F5A623", zoneBg: "rgba(245,166,35,0.15)",
+        emoji: "🔄",
+        duration: 35,
+        reps: "20", repsLabel: "seg c/lado",
+        instruction: "Retira el casco si el área es segura. Inclina suavemente la oreja derecha hacia el hombro derecho. No subas el hombro. <strong>Sostén 20 seg</strong> y cambia. Para el dolor de cuello por uso de casco y cargas en hombros.",
+        benefits: ["Estira trapecio", "Alivia tensión cervical", "Reduce cefalea tensional"],
+        epp: ["⛑ Retirar si área segura", "🥾 Botas puestas"]
+      }
+    ]
+  },
+
+  lumbar: {
+    label: "ZONA: LUMBAR",
+    tagClass: "tag-pausa",
+    fillClass: "fill-pausa",
+    exercises: [
+      {
+        name: "Extensión Lumbar de Pie",
+        zone: "ESPALDA BAJA", zoneColor: "#FF7043", zoneBg: "rgba(255,112,67,0.15)",
+        emoji: "🦴",
+        duration: 30,
+        reps: "3", repsLabel: "veces · 20 seg c/u",
+        instruction: "Coloca ambas manos en la parte baja de la espalda. Empuja caderas al frente e <strong>inclínate levemente hacia atrás</strong>. No fuerces. Contrarresta la flexión continua del trabajo en campo.",
+        benefits: ["Estira columna anterior", "Alivia presión lumbar", "Corrige postura"],
+        epp: ["⛑ Casco", "🦺 Chaleco", "🥾 Botas"]
+      },
+      {
+        name: "Estiramiento Isquiotibial",
+        zone: "LUMBAR · MUSLO POST.", zoneColor: "#FF7043", zoneBg: "rgba(255,112,67,0.15)",
+        emoji: "🦵",
+        duration: 40,
+        reps: "25", repsLabel: "seg c/pierna",
+        instruction: "Apoya el talón sobre una superficie estable. Mantén la pierna estirada. Con la espalda recta, <strong>inclínate suavemente hacia adelante</strong>. Sientes el estiramiento en la parte posterior del muslo. Alivia lumbar.",
+        benefits: ["Estira isquiotibiales", "Previene ciática", "Alivia tensión lumbar"],
+        epp: ["🥾 Botas", "⛑ Casco"]
+      },
+      {
+        name: "Rotación de Tronco",
+        zone: "COLUMNA LUMBAR", zoneColor: "#FF7043", zoneBg: "rgba(255,112,67,0.15)",
+        emoji: "🌀",
+        duration: 35,
+        reps: "8", repsLabel: "rotaciones c/lado",
+        instruction: "Manos en la cintura, pies firmes. Gira el tronco <strong>lentamente</strong> hacia la derecha hasta donde sea cómodo, sostén 3 seg y regresa. Repite al lado contrario. Caderas fijas. Moviliza la columna lumbar.",
+        benefits: ["Moviliza columna", "Estira músculos paravertebrales", "Libera tensión"],
+        epp: ["⛑ Casco", "🦺 Chaleco", "🥾 Botas"]
+      }
+    ]
+  },
+
+  hombros: {
+    label: "ZONA: HOMBROS",
+    tagClass: "tag-pausa",
+    fillClass: "fill-pausa",
+    exercises: [
+      {
+        name: "Péndulo de Hombro",
+        zone: "MANGUITO ROTADOR", zoneColor: "#2196F3", zoneBg: "rgba(33,150,243,0.15)",
+        emoji: "💪",
+        duration: 35,
+        reps: "20", repsLabel: "seg c/brazo",
+        instruction: "Inclínate con una mano apoyada. Deja el otro brazo <strong>completamente suelto</strong>. Haz pequeños círculos con inercia, sin activar el hombro. Descomprime y lubrica la articulación del hombro.",
+        benefits: ["Descomprime articulación", "Lubrica", "Alivia manguito rotador"],
+        epp: ["⛑ Casco", "🦺 Chaleco"]
+      },
+      {
+        name: "Cruce de Brazos",
+        zone: "DELTOIDES · POSTERIOR", zoneColor: "#2196F3", zoneBg: "rgba(33,150,243,0.15)",
+        emoji: "✖️",
+        duration: 35,
+        reps: "20", repsLabel: "seg c/brazo",
+        instruction: "Lleva el brazo derecho horizontalmente al frente, cruzando el pecho. Con la mano izquierda, <strong>presiona el codo derecho suavemente hacia ti</strong>. Sientes el estiramiento en la parte trasera del hombro. Cambia.",
+        benefits: ["Estira deltoides posterior", "Alivia tensión", "Previene lesión"],
+        epp: ["⛑ Casco", "🦺 Chaleco", "🥾 Botas"]
+      },
+      {
+        name: "Retracción Escapular",
+        zone: "ESCÁPULAS · TRAPECIO", zoneColor: "#2196F3", zoneBg: "rgba(33,150,243,0.15)",
+        emoji: "🏋️",
+        duration: 30,
+        reps: "10", repsLabel: "repeticiones",
+        instruction: "Con los brazos relajados, lleva los <strong>omóplatos hacia atrás y hacia abajo</strong> como si quisieras unirlos. Sostén 5 seg. Suelta. Mejora postura y fortalece la musculatura de la espalda alta.",
+        benefits: ["Activa trapecios", "Corrige postura", "Fortalece espalda alta"],
+        epp: ["⛑ Casco", "🦺 Chaleco", "🥾 Botas"]
+      }
+    ]
+  },
+
+  rodillas: {
+    label: "ZONA: RODILLAS",
+    tagClass: "tag-pausa",
+    fillClass: "fill-pausa",
+    exercises: [
+      {
+        name: "Estiramiento Cuádriceps",
+        zone: "CUÁDRICEPS · RODILLA", zoneColor: "#43A047", zoneBg: "rgba(67,160,71,0.15)",
+        emoji: "🦵",
+        duration: 40,
+        reps: "25", repsLabel: "seg c/pierna",
+        instruction: "Apóyate en una pared o vehículo. Dobla la rodilla llevando el talón a los glúteos. Toma el tobillo. <strong>Mantén rodillas juntas</strong> y postura erguida. Sientes estiramiento en la parte frontal del muslo. Cambia.",
+        benefits: ["Estira cuádriceps", "Alivia presión en rodilla", "Previene contractura"],
+        epp: ["🥾 Botas puestas", "⛑ Casco"]
+      },
+      {
+        name: "Elevación de Talones",
+        zone: "GEMELOS · CIRCULACIÓN", zoneColor: "#43A047", zoneBg: "rgba(67,160,71,0.15)",
+        emoji: "👟",
+        duration: 35,
+        reps: "15", repsLabel: "elevaciones lentas",
+        instruction: "De pie con apoyo si es necesario. Eleva ambos talones al máximo, <strong>sostén 3 seg</strong> en punta y baja lentamente. Activa los gemelos y estimula el retorno venoso, especialmente importante en terrenos irregulares.",
+        benefits: ["Activa gemelos", "Estimula circulación venosa", "Previene varices y edema"],
+        epp: ["🥾 Botas puestas"]
+      },
+      {
+        name: "Estiramiento Isquiotibial",
+        zone: "MUSLO POSTERIOR · RODILLA", zoneColor: "#43A047", zoneBg: "rgba(67,160,71,0.15)",
+        emoji: "🏃",
+        duration: 40,
+        reps: "25", repsLabel: "seg c/pierna",
+        instruction: "Apoya el talón sobre una superficie estable al nivel de la rodilla. Pierna estirada. Con espalda recta, <strong>flexiona el tronco hacia adelante</strong> hasta sentir el estiramiento. No rebotes. Alivia rodillas y lumbar.",
+        benefits: ["Estira isquiotibiales", "Reduce carga en rodilla", "Previene lesión"],
+        epp: ["🥾 Botas puestas", "⛑ Casco"]
+      }
+    ]
+  },
+
+  cuello: {
+    label: "ZONA: CUELLO",
+    tagClass: "tag-pausa",
+    fillClass: "fill-pausa",
+    exercises: [
+      {
+        name: "Flexión Lateral Cervical",
+        zone: "CUELLO · TRAPECIO", zoneColor: "#F5A623", zoneBg: "rgba(245,166,35,0.15)",
+        emoji: "🔄",
+        duration: 35,
+        reps: "20", repsLabel: "seg c/lado",
+        instruction: "Retira el casco si el área es segura. Inclina <strong>suavemente la oreja hacia el hombro</strong> sin subirlo. Puedes usar la mano para aumentar levemente el estiramiento. Sostén 20 seg. Cambia. Para el dolor por casco y cargas.",
+        benefits: ["Estira trapecio", "Alivia cervicales", "Reduce cefalea tensional"],
+        epp: ["⛑ Retirar si área segura", "🥾 Botas"]
+      },
+      {
+        name: "Rotación Cervical",
+        zone: "CERVICALES", zoneColor: "#F5A623", zoneBg: "rgba(245,166,35,0.15)",
+        emoji: "↔️",
+        duration: 35,
+        reps: "5", repsLabel: "rotaciones c/lado",
+        instruction: "Gira lentamente la cabeza hacia la derecha hasta donde sea cómodo. <strong>Sostén 10 seg</strong>, regresa al centro y repite al lado contrario. Sin forzar. Movimiento lento y consciente. <strong>Nunca círculos completos</strong>.",
+        benefits: ["Movilidad articular", "Circulación cervical", "Alivia rigidez"],
+        epp: ["⛑ Retirar si área segura", "🥾 Botas"]
+      },
+      {
+        name: "Retracción de Mentón",
+        zone: "CERVICAL PROFUNDO", zoneColor: "#F5A623", zoneBg: "rgba(245,166,35,0.15)",
+        emoji: "⬅️",
+        duration: 30,
+        reps: "10", repsLabel: "repeticiones · 5 seg",
+        instruction: "De pie o sentado con espalda recta. Lleva el mentón hacia atrás en línea recta (no hacia abajo), como si quisieras crear una <strong>'papada'</strong>. Sostén 5 seg. Suelta. Corrige la postura de la cabeza adelantada.",
+        benefits: ["Fortalece flexores profundos", "Corrige postura cabeza", "Previene cervicalgia"],
+        epp: ["⛑ Retirar si área segura", "🥾 Botas"]
+      }
+    ]
+  }
+
+};
+
+// ═══════════════════════════════════
+// STATE
+// ═══════════════════════════════════
+let queue = [], idx = 0, timeLeft = 0, timerInt = null, paused = false, modeKey = '', startTs = 0;
+
+// ═══════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════
+function transition(fn) {
+  const ov = document.getElementById('overlay');
+  ov.classList.add('on');
+  setTimeout(() => { fn(); ov.classList.remove('on'); }, 260);
+}
+
+function goHome() {
+  transition(() => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-home').classList.add('active');
+    window.scrollTo(0,0);
+  });
+}
+
+function showExerciseScreen() {
+  transition(() => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-exercise').classList.add('active');
+    window.scrollTo(0,0);
+  });
+}
+
+function showDoneScreen() {
+  const elapsed = Math.round((Date.now() - startTs)/1000);
+  document.getElementById('dn-ex').textContent = queue.length;
+  document.getElementById('dn-min').textContent = Math.max(1, Math.round(elapsed/60));
+  document.getElementById('dn-zone').textContent =
+    modeKey==='preop' ? 'PRE-OP' : modeKey==='pausa' ? 'PAUSA' : 'ZONA';
+  transition(() => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-done').classList.add('active');
+  });
+}
+
+// ═══════════════════════════════════
+// START MODES
+// ═══════════════════════════════════
+function startMode(key) {
+  modeKey = key;
+  queue = DATA[key].exercises;
+  idx = 0; startTs = Date.now();
+  showExerciseScreen();
+  setTimeout(() => loadEx(0), 300);
+}
+
+function startZone(key) {
+  modeKey = key;
+  queue = DATA[key].exercises;
+  idx = 0; startTs = Date.now();
+  showExerciseScreen();
+  setTimeout(() => loadEx(0), 300);
+}
+
+// ═══════════════════════════════════
+// EXERCISE ENGINE
+// ═══════════════════════════════════
+function loadEx(i) {
+  if (i >= queue.length) { showDoneScreen(); return; }
+  idx = i;
+  const ex = queue[i];
+  const total = queue.length;
+  const modeData = DATA[modeKey];
+
+  clearInterval(timerInt);
+  paused = false;
+  document.getElementById('btn-pause').textContent = '⏸';
+
+  // Header
+  const modeTag = document.getElementById('ex-mode-tag');
+  modeTag.textContent = modeData.label;
+  modeTag.className = 'ex-mode-tag ' + modeData.tagClass;
+
+  // Progress
+  document.getElementById('prog-fill').className = 'ex-prog-fill ' + modeData.fillClass;
+  document.getElementById('prog-fill').style.width = `${(i/total)*100}%`;
+  document.getElementById('prog-count').textContent = `${i+1}/${total}`;
+
+  // Body
+  document.getElementById('ex-body').innerHTML = buildExBody(ex, modeData.fillClass);
+
+  // Timer
+  timeLeft = ex.duration;
+  updateTimer(ex.duration);
+  startTimer(ex.duration);
+}
+
+function buildExBody(ex, fillClass) {
+  const benefitTags = ex.benefits.map(b => `<div class="benefit-tag">✦ ${b}</div>`).join('');
+  const eppItems = ex.epp.map(e => `<div class="epp-item">${e}</div>`).join('');
+
+  return `
+    <div class="ex-zone-chip" style="background:${ex.zoneBg};color:${ex.zoneColor};border:1px solid ${ex.zoneColor}55;">
+      ${ex.zone}
+    </div>
+
+    <div class="epp-row">
+      <span class="epp-label">EPP</span>
+      <div class="epp-items">${eppItems}</div>
+    </div>
+
+    <div class="ex-name">${ex.name}</div>
+
+    <div class="ex-center">
+      <div class="ex-figure" style="font-size:4.5rem;line-height:1;filter:drop-shadow(0 0 12px ${ex.zoneColor}88);">
+        ${ex.emoji}
+      </div>
+      <div class="timer-block">
+        <div class="timer-display" id="timer-num">${ex.duration}</div>
+        <div class="timer-lbl">SEGUNDOS</div>
+        <div class="timer-bar-wrap">
+          <div class="timer-bar-fill ${fillClass}" id="timer-bar" style="width:100%"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ex-instruction-box">${ex.instruction}</div>
+
+    <div class="reps-row">
+      <div class="rep-chip">
+        <span class="rep-val">${ex.reps}</span>
+        <span class="rep-key">${ex.repsLabel}</span>
+      </div>
+      <div class="rep-chip">
+        <span class="rep-val">${ex.duration}s</span>
+        <span class="rep-key">duración</span>
+      </div>
+    </div>
+
+    <div class="benefits-row">${benefitTags}</div>
+  `;
+}
+
+function startTimer(total) {
+  timerInt = setInterval(() => {
+    if (paused) return;
+    timeLeft--;
+    updateTimer(total);
+    if (timeLeft <= 0) { clearInterval(timerInt); setTimeout(() => nextEx(), 700); }
+  }, 1000);
+}
+
+function updateTimer(total) {
+  const num = document.getElementById('timer-num');
+  const bar = document.getElementById('timer-bar');
+  if (!num || !bar) return;
+
+  num.textContent = Math.max(0, timeLeft);
+  bar.style.width = `${(timeLeft/total)*100}%`;
+
+  num.className = 'timer-display';
+  if (timeLeft <= 5) {
+    num.classList.add('ending');
+    bar.style.background = 'var(--red)';
+  } else if (timeLeft <= 10) {
+    num.classList.add('urgent');
+    bar.style.background = 'var(--amber)';
+  }
+}
+
+function togglePause() {
+  paused = !paused;
+  document.getElementById('btn-pause').textContent = paused ? '▶' : '⏸';
+}
+
+function nextEx() {
+  clearInterval(timerInt);
+  loadEx(idx + 1);
+}
+
+function skipEx() { nextEx(); }
+
+function exitExercise() {
+  clearInterval(timerInt);
+  goHome();
+}
+</script>
+</body>
+</html>
