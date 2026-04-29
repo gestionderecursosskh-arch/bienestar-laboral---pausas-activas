@@ -1,0 +1,1408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pausas Activas · Bienestar Osteomuscular</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;0,600;1,300;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --cream: #F7F2E9;
+  --sand: #EDE0C8;
+  --bark: #C8A97A;
+  --terra: #C05A34;
+  --forest: #2B4D2A;
+  --sage: #6B9157;
+  --sage-light: #A8C48A;
+  --moss: #4A6741;
+  --deep: #1A2E19;
+  --text: #2A2018;
+  --text-soft: #7A6A52;
+  --white: #FEFCF8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ─── BACKGROUND TEXTURE ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(107,145,87,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 80% at 90% 100%, rgba(192,90,52,0.08) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── SCREENS ─── */
+.screen { display: none; position: relative; z-index: 1; min-height: 100vh; }
+.screen.active { display: flex; flex-direction: column; }
+
+/* ══════════════════════════════════════
+   SCREEN 1 · INICIO
+══════════════════════════════════════ */
+#screen-home {
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  gap: 0;
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 48px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--forest);
+  color: var(--cream);
+  padding: 6px 16px 6px 10px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.brand-mark svg { width: 18px; height: 18px; }
+
+.home-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--deep);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.home-header h1 em {
+  font-style: italic;
+  color: var(--sage);
+}
+
+.home-header p {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  max-width: 420px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Zone grid */
+.zones-label {
+  font-size: 0.7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  text-align: center;
+  margin-bottom: 20px;
+  animation: fadeUp 0.8s 0.2s ease both;
+}
+
+.zones-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 560px;
+  width: 100%;
+  animation: fadeUp 0.8s 0.3s ease both;
+  margin-bottom: 32px;
+}
+
+.zone-card {
+  background: var(--white);
+  border: 1.5px solid var(--sand);
+  border-radius: 16px;
+  padding: 18px 12px 16px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.zone-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--forest);
+  opacity: 0;
+  transition: opacity 0.25s;
+  border-radius: 14px;
+}
+
+.zone-card:hover { transform: translateY(-4px) scale(1.02); border-color: var(--sage); box-shadow: 0 12px 32px rgba(43,77,42,0.12); }
+.zone-card:hover::before { opacity: 0.04; }
+.zone-card:active { transform: scale(0.97); }
+
+.zone-icon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.zone-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--deep);
+  display: block;
+  margin-bottom: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.zone-count {
+  font-size: 0.68rem;
+  color: var(--text-soft);
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+.zone-color {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 0 0 14px 14px;
+}
+
+/* Full routine button */
+.btn-full {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--forest);
+  color: var(--cream);
+  border: none;
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  animation: fadeUp 0.8s 0.5s ease both;
+  letter-spacing: 0.5px;
+}
+
+.btn-full:hover { background: var(--moss); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(43,77,42,0.25); }
+.btn-full svg { width: 18px; height: 18px; }
+
+.home-footer {
+  margin-top: 20px;
+  font-size: 0.72rem;
+  color: var(--text-soft);
+  animation: fadeUp 0.8s 0.6s ease both;
+  letter-spacing: 0.5px;
+}
+
+/* ══════════════════════════════════════
+   SCREEN 2 · SELECCIÓN DE ZONA
+══════════════════════════════════════ */
+#screen-zone {
+  padding: 0;
+}
+
+/* ══════════════════════════════════════
+   SCREEN 3 · EJERCICIO
+══════════════════════════════════════ */
+#screen-exercise {
+  padding: 0;
+  background: var(--deep);
+  color: var(--cream);
+}
+
+#screen-exercise::before { display: none; }
+
+.exercise-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Top bar */
+.ex-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.btn-back {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--cream);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+.btn-back:hover { background: rgba(255,255,255,0.15); }
+
+.progress-bar-wrap {
+  flex: 1;
+  margin: 0 20px;
+  background: rgba(255,255,255,0.1);
+  height: 4px;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--sage-light);
+  border-radius: 2px;
+  transition: width 0.5s ease;
+}
+
+.ex-counter {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+/* Exercise main area */
+.ex-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  gap: 28px;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.zone-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(107,145,87,0.2);
+  border: 1px solid rgba(107,145,87,0.4);
+  color: var(--sage-light);
+  padding: 4px 14px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.ex-illustration {
+  width: 200px;
+  height: 200px;
+  position: relative;
+}
+
+/* SVG figure animations */
+.body-part { fill: rgba(255,255,255,0.15); transition: fill 0.5s; }
+.body-part.highlighted { fill: var(--sage-light); }
+.body-part.moving { animation: pulse-part 1.5s ease-in-out infinite; }
+
+@keyframes pulse-part {
+  0%, 100% { fill: var(--sage-light); opacity: 1; }
+  50% { fill: #C8F0A0; opacity: 0.8; }
+}
+
+.ex-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 300;
+  text-align: center;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+.ex-instruction {
+  text-align: center;
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.6);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 420px;
+}
+
+.ex-instruction strong { color: var(--sage-light); font-weight: 500; }
+
+/* Timer ring */
+.timer-ring-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.timer-ring-wrap svg {
+  transform: rotate(-90deg);
+}
+
+.ring-bg { fill: none; stroke: rgba(255,255,255,0.1); stroke-width: 6; }
+.ring-fill { fill: none; stroke: var(--sage-light); stroke-width: 6; stroke-linecap: round; transition: stroke-dashoffset 1s linear; }
+
+.timer-number {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-sec {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--cream);
+}
+
+.timer-label {
+  font-size: 0.6rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-top: 2px;
+}
+
+/* Breath wave */
+.breath-wave {
+  width: 100%;
+  max-width: 300px;
+  height: 40px;
+  overflow: hidden;
+  opacity: 0.3;
+}
+
+.breath-path {
+  stroke: var(--sage-light);
+  stroke-width: 2;
+  fill: none;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 0;
+  animation: wave-flow 3s linear infinite;
+}
+
+@keyframes wave-flow {
+  to { stroke-dashoffset: -400; }
+}
+
+/* Controls */
+.ex-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-control {
+  border: none;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-pause {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: var(--cream);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-pause:hover { background: rgba(255,255,255,0.18); }
+
+.btn-next {
+  background: var(--sage);
+  color: var(--cream);
+  padding: 14px 32px;
+  border-radius: 100px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-next:hover { background: var(--sage-light); color: var(--deep); transform: translateX(3px); }
+
+.btn-skip {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.4);
+  padding: 14px 20px;
+  border-radius: 100px;
+  font-size: 0.82rem;
+}
+.btn-skip:hover { border-color: rgba(255,255,255,0.3); color: rgba(255,255,255,0.7); }
+
+/* Benefit chips */
+.benefit-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.chip {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.55);
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 0.72rem;
+  letter-spacing: 0.5px;
+}
+
+/* ══════════════════════════════════════
+   SCREEN 4 · COMPLETADO
+══════════════════════════════════════ */
+#screen-done {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+  gap: 20px;
+}
+
+.done-ring {
+  width: 100px;
+  height: 100px;
+  background: var(--forest);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.8rem;
+  animation: pop-in 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+  box-shadow: 0 0 0 12px rgba(43,77,42,0.15), 0 0 0 24px rgba(43,77,42,0.07);
+}
+
+@keyframes pop-in {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.done-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--deep);
+  letter-spacing: -0.5px;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+
+.done-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-soft);
+  font-weight: 300;
+  max-width: 360px;
+  line-height: 1.7;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
+
+.done-stats {
+  display: flex;
+  gap: 24px;
+  animation: fadeUp 0.6s 0.5s ease both;
+}
+
+.done-stat {
+  background: var(--white);
+  border: 1.5px solid var(--sand);
+  border-radius: 16px;
+  padding: 16px 24px;
+  text-align: center;
+}
+
+.done-stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--forest);
+  display: block;
+}
+
+.done-stat-label {
+  font-size: 0.7rem;
+  color: var(--text-soft);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.btn-restart {
+  background: var(--forest);
+  color: var(--cream);
+  border: none;
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: fadeUp 0.6s 0.6s ease both;
+}
+.btn-restart:hover { background: var(--moss); transform: translateY(-2px); }
+
+/* ─── ZONE SELECTOR SCREEN ─── */
+#screen-zone {
+  background: var(--white);
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0;
+}
+
+.zone-selector-inner {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  animation: fadeUp 0.5s ease both;
+}
+
+.zone-sel-back {
+  background: transparent;
+  border: 1.5px solid var(--sand);
+  color: var(--text-soft);
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 32px;
+  transition: all 0.2s;
+}
+.zone-sel-back:hover { border-color: var(--sage); color: var(--forest); }
+
+.zone-sel-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--deep);
+  margin-bottom: 8px;
+}
+
+.zone-sel-sub {
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+
+.exercise-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ex-list-item {
+  background: var(--cream);
+  border: 1.5px solid var(--sand);
+  border-radius: 14px;
+  padding: 16px 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: all 0.2s;
+}
+
+.ex-list-item:hover {
+  border-color: var(--sage);
+  background: var(--white);
+  transform: translateX(4px);
+  box-shadow: 0 4px 16px rgba(43,77,42,0.08);
+}
+
+.ex-list-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.ex-list-info { flex: 1; }
+
+.ex-list-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--deep);
+  margin-bottom: 2px;
+}
+
+.ex-list-desc {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  font-weight: 300;
+}
+
+.ex-list-time {
+  font-size: 0.75rem;
+  color: var(--sage);
+  font-weight: 500;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.btn-start-all {
+  margin-top: 20px;
+  width: 100%;
+  background: var(--forest);
+  color: var(--cream);
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-start-all:hover { background: var(--moss); box-shadow: 0 8px 24px rgba(43,77,42,0.2); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.08); opacity: 1; }
+}
+
+.breathing-circle {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(107,145,87,0.15) 0%, transparent 70%);
+  animation: breathe 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ─── TRANSITION overlay ─── */
+.transition-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--deep);
+  z-index: 100;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.transition-overlay.visible { opacity: 1; pointer-events: all; }
+
+/* ─── AUTO NEXT overlay ─── */
+.auto-next-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--sage-light);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform linear;
+}
+</style>
+</head>
+<body>
+
+<div class="transition-overlay" id="overlay"></div>
+
+<!-- ══ SCREEN: HOME ══════════════════════ -->
+<div class="screen active" id="screen-home">
+  <div class="home-header">
+    <div class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+        <circle cx="12" cy="9" r="2.5"/>
+      </svg>
+      Bienestar Laboral · HSE
+    </div>
+    <h1>Pausas<br><em>Activas</em></h1>
+    <p>Ejercicios de estiramiento osteomuscular para prevenir lesiones y recuperar tu energía durante la jornada laboral.</p>
+  </div>
+
+  <div class="zones-label">Elige una zona a trabajar</div>
+
+  <div class="zones-grid">
+    <div class="zone-card" onclick="showZone('cervical')">
+      <span class="zone-icon">🔄</span>
+      <span class="zone-name">Cervical</span>
+      <span class="zone-count">4 ejercicios</span>
+      <div class="zone-color" style="background: #C05A34;"></div>
+    </div>
+    <div class="zone-card" onclick="showZone('hombros')">
+      <span class="zone-icon">🏋️</span>
+      <span class="zone-name">Hombros</span>
+      <span class="zone-count">4 ejercicios</span>
+      <div class="zone-color" style="background: #6B9157;"></div>
+    </div>
+    <div class="zone-card" onclick="showZone('munecas')">
+      <span class="zone-icon">✋</span>
+      <span class="zone-name">Muñecas</span>
+      <span class="zone-count">4 ejercicios</span>
+      <div class="zone-color" style="background: #C8A97A;"></div>
+    </div>
+    <div class="zone-card" onclick="showZone('espalda')">
+      <span class="zone-icon">🫀</span>
+      <span class="zone-name">Espalda</span>
+      <span class="zone-count">4 ejercicios</span>
+      <div class="zone-color" style="background: #4A6741;"></div>
+    </div>
+    <div class="zone-card" onclick="showZone('cadera')">
+      <span class="zone-icon">🦵</span>
+      <span class="zone-name">Cadera</span>
+      <span class="zone-count">3 ejercicios</span>
+      <div class="zone-color" style="background: #8B5E3C;"></div>
+    </div>
+    <div class="zone-card" onclick="showZone('ojos')">
+      <span class="zone-icon">👁️</span>
+      <span class="zone-name">Ojos</span>
+      <span class="zone-count">3 ejercicios</span>
+      <div class="zone-color" style="background: #5B8FA8;"></div>
+    </div>
+  </div>
+
+  <button class="btn-full" onclick="startFullRoutine()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <polygon points="5 3 19 12 5 21 5 3"/>
+    </svg>
+    Rutina completa · 10 min
+  </button>
+
+  <p class="home-footer">22 ejercicios · Prevención de desórdenes musculoesqueléticos</p>
+</div>
+
+<!-- ══ SCREEN: ZONE ══════════════════════ -->
+<div class="screen" id="screen-zone">
+  <div class="zone-selector-inner">
+    <button class="zone-sel-back" onclick="showScreen('home')">
+      ← Volver
+    </button>
+    <div class="zone-sel-title" id="zone-title">Zona Cervical</div>
+    <p class="zone-sel-sub" id="zone-sub">Estiramiento del cuello y región cervical</p>
+    <div class="exercise-list" id="exercise-list"></div>
+    <button class="btn-start-all" id="btn-start-zone" onclick="startZoneRoutine()">
+      ▶ Iniciar rutina de esta zona
+    </button>
+  </div>
+</div>
+
+<!-- ══ SCREEN: EXERCISE ══════════════════ -->
+<div class="screen" id="screen-exercise">
+  <div class="exercise-layout">
+    <div class="ex-topbar">
+      <button class="btn-back" onclick="exitExercise()">← Salir</button>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="ex-counter" id="ex-counter">1 / 1</div>
+    </div>
+
+    <div class="ex-main">
+      <div class="zone-badge" id="ex-zone-badge">Cervical</div>
+
+      <div class="ex-illustration" id="ex-illustration">
+        <div class="breathing-circle"></div>
+        <!-- SVG injected dynamically -->
+      </div>
+
+      <div>
+        <div class="ex-title" id="ex-title">Flexión lateral del cuello</div>
+      </div>
+
+      <div class="ex-instruction" id="ex-instruction">
+        Instrucción aquí
+      </div>
+
+      <div class="timer-ring-wrap">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="ring-bg" cx="60" cy="60" r="52"/>
+          <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52"
+            stroke-dasharray="326.7"
+            stroke-dashoffset="0"/>
+        </svg>
+        <div class="timer-number">
+          <span class="timer-sec" id="timer-sec">30</span>
+          <span class="timer-label">seg</span>
+        </div>
+      </div>
+
+      <svg class="breath-wave" viewBox="0 0 300 40" preserveAspectRatio="none">
+        <path class="breath-path" d="M0,20 Q37.5,5 75,20 Q112.5,35 150,20 Q187.5,5 225,20 Q262.5,35 300,20"/>
+      </svg>
+
+      <div class="benefit-chips" id="benefit-chips"></div>
+
+      <div class="ex-controls">
+        <button class="btn-control btn-skip" onclick="skipExercise()">Omitir</button>
+        <button class="btn-control btn-pause" id="btn-pause" onclick="togglePause()">⏸</button>
+        <button class="btn-control btn-next" onclick="nextExercise()">
+          Siguiente <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCREEN: DONE ══════════════════════ -->
+<div class="screen" id="screen-done">
+  <div class="done-ring">🌿</div>
+  <div class="done-title">¡Excelente!</div>
+  <p class="done-subtitle">Completaste tu pausa activa. Tu cuerpo te lo agradece. Recuerda hidratarte y retomar tus actividades con energía renovada.</p>
+
+  <div class="done-stats">
+    <div class="done-stat">
+      <span class="done-stat-num" id="done-exercises">0</span>
+      <span class="done-stat-label">Ejercicios</span>
+    </div>
+    <div class="done-stat">
+      <span class="done-stat-num" id="done-time">0 min</span>
+      <span class="done-stat-label">Duración</span>
+    </div>
+    <div class="done-stat">
+      <span class="done-stat-num" id="done-zones">0</span>
+      <span class="done-stat-label">Zonas</span>
+    </div>
+  </div>
+
+  <button class="btn-restart" onclick="showScreen('home')">
+    🔄 Nueva pausa activa
+  </button>
+</div>
+
+<script>
+// ═══════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════
+const ZONES = {
+  cervical: {
+    name: "Zona Cervical",
+    sub: "Cuello y región cervical · Previene contracturas y dolor de cabeza tensional",
+    color: "#C05A34",
+    exercises: [
+      {
+        name: "Flexión lateral del cuello",
+        instruction: "Inclina suavemente la cabeza hacia el hombro derecho. Mantén los hombros relajados y bajos. <strong>Sostén 20 seg</strong> y cambia de lado.",
+        duration: 40,
+        benefits: ["Estira trapecio", "Alivio tensión cervical", "Reduce cefaleas"],
+        svg: "cervical-lateral",
+        emoji: "↔️"
+      },
+      {
+        name: "Rotación cervical",
+        instruction: "Gira lentamente la cabeza hacia la derecha hasta donde sea cómodo. <strong>Mantén 10 seg</strong>, regresa al centro y repite al lado contrario. Haz 3 repeticiones.",
+        duration: 35,
+        benefits: ["Movilidad articular", "Circulación cervical", "Libera tensión"],
+        svg: "cervical-rotation",
+        emoji: "🔄"
+      },
+      {
+        name: "Flexión anterior",
+        instruction: "Lleva suavemente el mentón hacia el pecho. Siente el estiramiento en la parte posterior del cuello. <strong>Sostén 15 seg</strong>. No fuerces el movimiento.",
+        duration: 30,
+        benefits: ["Estira cervicales", "Alivia contractura", "Mejora postura"],
+        svg: "cervical-forward",
+        emoji: "⬇️"
+      },
+      {
+        name: "Semicírculos cervicales",
+        instruction: "Lleva el oído al hombro derecho, luego el mentón al pecho, luego el oído al hombro izquierdo. <strong>Movimiento lento y controlado.</strong> Evita la extensión completa hacia atrás. 5 repeticiones.",
+        duration: 45,
+        benefits: ["Movilidad global", "Lubricación articular", "Relajación"],
+        svg: "cervical-circles",
+        emoji: "🌀"
+      }
+    ]
+  },
+  hombros: {
+    name: "Hombros y Trapecio",
+    sub: "Hombros, trapecios y manguito rotador · Esencial para trabajadores de oficina",
+    color: "#6B9157",
+    exercises: [
+      {
+        name: "Elevación de hombros",
+        instruction: "Eleva ambos hombros hacia las orejas, sostén <strong>3 segundos</strong>, luego suéltalos hacia abajo completamente. Siente la liberación. Repite <strong>8 veces</strong>.",
+        duration: 35,
+        benefits: ["Libera trapecio", "Reduce tensión", "Activa circulación"],
+        svg: "shoulder-shrug",
+        emoji: "⬆️"
+      },
+      {
+        name: "Rotación de hombros",
+        instruction: "Realiza círculos amplios con los hombros: <strong>5 hacia adelante</strong> y <strong>5 hacia atrás</strong>. Mantén los brazos relajados a los lados. Movimiento lento y consciente.",
+        duration: 40,
+        benefits: ["Lubrica articulación", "Activa manguito rotador", "Mejora rango"],
+        svg: "shoulder-rotation",
+        emoji: "🔄"
+      },
+      {
+        name: "Cruce de brazos",
+        instruction: "Lleva el brazo derecho horizontalmente cruzando el pecho. Con la mano izquierda, presiona suavemente el codo derecho hacia tu cuerpo. <strong>Sostén 20 seg</strong> y cambia.",
+        duration: 45,
+        benefits: ["Estira deltoides", "Estira posterior hombro", "Previene lesiones"],
+        svg: "shoulder-cross",
+        emoji: "✖️"
+      },
+      {
+        name: "Estiramiento pectoral",
+        instruction: "Entrelaza los dedos detrás de la espalda baja, lleva los hombros hacia atrás y abre el pecho. <strong>Sostén 20 seg</strong>. Respira profundo y siente la apertura en el pecho.",
+        duration: 35,
+        benefits: ["Abre pectoral", "Corrige postura", "Contrarresta cifosis"],
+        svg: "chest-open",
+        emoji: "🫁"
+      }
+    ]
+  },
+  munecas: {
+    name: "Muñecas y Manos",
+    sub: "Muñecas, manos y dedos · Prevención del síndrome del túnel carpiano",
+    color: "#C8A97A",
+    exercises: [
+      {
+        name: "Extensión de muñeca",
+        instruction: "Extiende el brazo con la palma hacia arriba. Con la otra mano, dobla los dedos suavemente hacia abajo. <strong>Sostén 20 seg</strong>. Sientes el estiramiento en el antebrazo.",
+        duration: 40,
+        benefits: ["Estira flexores", "Previene túnel carpiano", "Alivia tensión"],
+        svg: "wrist-extension",
+        emoji: "🙏"
+      },
+      {
+        name: "Flexión de muñeca",
+        instruction: "Extiende el brazo con la palma hacia abajo. Con la otra mano, dobla los dedos hacia abajo y hacia ti. <strong>Sostén 20 seg</strong>. Sientes el estiramiento en el dorso del antebrazo.",
+        duration: 40,
+        benefits: ["Estira extensores", "Reduce fatiga", "Mejora circulación"],
+        svg: "wrist-flex",
+        emoji: "👋"
+      },
+      {
+        name: "Rotación de muñecas",
+        instruction: "Con los brazos extendidos o codos doblados, realiza <strong>10 círculos lentos</strong> con ambas muñecas simultáneamente, primero en un sentido luego en el otro.",
+        duration: 35,
+        benefits: ["Lubrica articulación", "Activa tendones", "Previene rigidez"],
+        svg: "wrist-rotation",
+        emoji: "🌀"
+      },
+      {
+        name: "Estiramiento de dedos",
+        instruction: "Abre la mano completamente extendiendo todos los dedos, <strong>sostén 5 seg</strong>, luego cierra el puño con fuerza, <strong>sostén 5 seg</strong>. Repite <strong>6 veces</strong>. Termina sacudiendo las manos.",
+        duration: 45,
+        benefits: ["Activa tendones", "Reduce fatiga digital", "Mejora destreza"],
+        svg: "finger-stretch",
+        emoji: "🖐️"
+      }
+    ]
+  },
+  espalda: {
+    name: "Espalda y Columna",
+    sub: "Columna vertebral, dorsal y lumbar · Prevención de dolor lumbar y hernia",
+    color: "#4A6741",
+    exercises: [
+      {
+        name: "Flexión lumbar sentado",
+        instruction: "Sentado en la silla, inclina el tronco hacia adelante llevando el pecho hacia los muslos. Deja caer los brazos relajados. <strong>Sostén 20 seg</strong>. Exhala al inclinarte.",
+        duration: 35,
+        benefits: ["Estira lumbar", "Descomprime discos", "Alivia tensión"],
+        svg: "back-forward",
+        emoji: "🫳"
+      },
+      {
+        name: "Rotación de tronco",
+        instruction: "Sentado con la espalda erguida, gira el tronco hacia la derecha apoyando la mano izquierda en la rodilla derecha. <strong>Sostén 15 seg</strong>. Repite en el lado contrario. 3 repeticiones.",
+        duration: 50,
+        benefits: ["Moviliza columna", "Estira oblicuos", "Libera nervio ciático"],
+        svg: "trunk-rotation",
+        emoji: "🔄"
+      },
+      {
+        name: "Extensión de espalda",
+        instruction: "De pie, coloca las manos en la parte baja de la espalda. Inclínate levemente hacia atrás empujando las caderas hacia adelante. <strong>Sostén 10 seg</strong>. Contrarresta la postura sentada.",
+        duration: 30,
+        benefits: ["Estira columna anterior", "Corrige cifosis", "Alivia lumbalgia"],
+        svg: "back-extension",
+        emoji: "↩️"
+      },
+      {
+        name: "Estiramiento lateral",
+        instruction: "De pie, eleva el brazo derecho sobre la cabeza y inclínate suavemente hacia la izquierda. <strong>Sostén 20 seg</strong>. Cambia de lado. Mantén las caderas estables.",
+        duration: 45,
+        benefits: ["Estira intercostales", "Moviliza columna", "Activa lateral"],
+        svg: "lateral-stretch",
+        emoji: "↗️"
+      }
+    ]
+  },
+  cadera: {
+    name: "Cadera y Miembros Inferiores",
+    sub: "Cadera, glúteos, cuádriceps y gemelos · Para quienes permanecen sentados mucho tiempo",
+    color: "#8B5E3C",
+    exercises: [
+      {
+        name: "Estiramiento de glúteo",
+        instruction: "Sentado, cruza el tobillo derecho sobre la rodilla izquierda. Con la espalda erguida, inclínate levemente hacia adelante. <strong>Sostén 25 seg</strong>. Cambia de pierna.",
+        duration: 55,
+        benefits: ["Estira glúteo mayor", "Libera nervio ciático", "Abre cadera"],
+        svg: "glute-stretch",
+        emoji: "🦵"
+      },
+      {
+        name: "Elevación de talones",
+        instruction: "De pie (puedes apoyarte en la silla), eleva los talones hasta quedar en puntillas. <strong>Sostén 3 seg</strong> y baja lentamente. Repite <strong>10 veces</strong>. Activa la bomba venosa.",
+        duration: 40,
+        benefits: ["Activa gemelos", "Mejora circulación venosa", "Previene varices"],
+        svg: "calf-raise",
+        emoji: "👟"
+      },
+      {
+        name: "Marcha en sitio",
+        instruction: "De pie, eleva las rodillas alternadamente como si marcharas, llevando cada rodilla al menos a la altura de la cadera. <strong>30 pasos</strong> a ritmo moderado. ¡Activa todo el cuerpo!",
+        duration: 40,
+        benefits: ["Activa circulación", "Calienta articulaciones", "Energiza cuerpo"],
+        svg: "marching",
+        emoji: "🚶"
+      }
+    ]
+  },
+  ojos: {
+    name: "Higiene Visual",
+    sub: "Músculos oculares y fatiga visual · Esencial para usuarios de pantalla",
+    color: "#5B8FA8",
+    exercises: [
+      {
+        name: "Regla 20-20-20",
+        instruction: "Aparta la vista de la pantalla. Enfoca un objeto a <strong>20 pies (~6 metros)</strong> de distancia durante <strong>20 segundos</strong>. Parpadea conscientemente varias veces. Repite cada 20 minutos.",
+        duration: 25,
+        benefits: ["Relaja músculos ciliares", "Previene miopía progresiva", "Reduce fatiga"],
+        svg: "eye-focus",
+        emoji: "👀"
+      },
+      {
+        name: "Movimientos oculares",
+        instruction: "Sin mover la cabeza, mueve los ojos: <strong>arriba-abajo</strong> (5x), <strong>izquierda-derecha</strong> (5x), <strong>diagonales</strong> (5x cada una). Movimientos lentos y controlados.",
+        duration: 45,
+        benefits: ["Ejercita músculos extraoculares", "Mejora coordinación", "Reduce tensión"],
+        svg: "eye-movement",
+        emoji: "👁️"
+      },
+      {
+        name: "Palming ocular",
+        instruction: "Frota las palmas hasta sentirlas tibias. Cierra los ojos y cúbrelos con las palmas (sin presionar). Respira profundo. <strong>Relaja completamente la zona ocular por 20 seg.</strong>",
+        duration: 30,
+        benefits: ["Relaja completamente", "Reduce tensión ocular", "Descansa retina"],
+        svg: "eye-palming",
+        emoji: "🙈"
+      }
+    ]
+  }
+};
+
+// Full routine = all exercises
+const FULL_ROUTINE_KEYS = ['cervical','hombros','munecas','espalda','cadera','ojos'];
+
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+let currentQueue = [];
+let currentIndex = 0;
+let timerInterval = null;
+let timeRemaining = 0;
+let isPaused = false;
+let totalDuration = 0;
+let startTime = null;
+let activeZoneKey = null;
+
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+function showScreen(id) {
+  const overlay = document.getElementById('overlay');
+  overlay.classList.add('visible');
+  setTimeout(() => {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen-' + id).classList.add('active');
+    window.scrollTo(0,0);
+    overlay.classList.remove('visible');
+  }, 300);
+}
+
+// ═══════════════════════════════════════
+// ZONE SCREEN
+// ═══════════════════════════════════════
+function showZone(zoneKey) {
+  activeZoneKey = zoneKey;
+  const zone = ZONES[zoneKey];
+  document.getElementById('zone-title').textContent = zone.name;
+  document.getElementById('zone-sub').textContent = zone.sub;
+
+  const list = document.getElementById('exercise-list');
+  list.innerHTML = zone.exercises.map((ex, i) => `
+    <div class="ex-list-item" onclick="startSingleExercise('${zoneKey}', ${i})">
+      <div class="ex-list-icon" style="background: ${zone.color}22;">${ex.emoji}</div>
+      <div class="ex-list-info">
+        <div class="ex-list-name">${ex.name}</div>
+        <div class="ex-list-desc">${ex.benefits.slice(0,2).join(' · ')}</div>
+      </div>
+      <div class="ex-list-time">⏱ ${ex.duration}s</div>
+    </div>
+  `).join('');
+
+  showScreen('zone');
+}
+
+function startZoneRoutine() {
+  const zone = ZONES[activeZoneKey];
+  currentQueue = zone.exercises.map(ex => ({ ...ex, zone: zone.name, zoneColor: zone.color }));
+  launchRoutine();
+}
+
+function startSingleExercise(zoneKey, idx) {
+  const zone = ZONES[zoneKey];
+  currentQueue = [zone.exercises[idx]].map(ex => ({ ...ex, zone: zone.name, zoneColor: zone.color }));
+  launchRoutine();
+}
+
+function startFullRoutine() {
+  currentQueue = [];
+  FULL_ROUTINE_KEYS.forEach(key => {
+    const zone = ZONES[key];
+    zone.exercises.forEach(ex => {
+      currentQueue.push({ ...ex, zone: zone.name, zoneColor: zone.color });
+    });
+  });
+  launchRoutine();
+}
+
+// ═══════════════════════════════════════
+// ROUTINE ENGINE
+// ═══════════════════════════════════════
+function launchRoutine() {
+  currentIndex = 0;
+  totalDuration = currentQueue.reduce((s, ex) => s + ex.duration, 0);
+  startTime = Date.now();
+  showScreen('exercise');
+  setTimeout(() => loadExercise(0), 350);
+}
+
+function loadExercise(idx) {
+  if (idx >= currentQueue.length) {
+    finishRoutine();
+    return;
+  }
+
+  currentIndex = idx;
+  const ex = currentQueue[idx];
+  const total = currentQueue.length;
+
+  // Update UI
+  document.getElementById('ex-counter').textContent = `${idx + 1} / ${total}`;
+  document.getElementById('progress-fill').style.width = `${(idx / total) * 100}%`;
+  document.getElementById('ex-zone-badge').textContent = ex.zone;
+  document.getElementById('ex-title').textContent = ex.name;
+  document.getElementById('ex-instruction').innerHTML = ex.instruction;
+
+  // Benefits
+  document.getElementById('benefit-chips').innerHTML =
+    ex.benefits.map(b => `<div class="chip">✦ ${b}</div>`).join('');
+
+  // Illustration
+  renderIllustration(ex.svg, ex.emoji);
+
+  // Timer
+  clearInterval(timerInterval);
+  timeRemaining = ex.duration;
+  isPaused = false;
+  document.getElementById('btn-pause').textContent = '⏸';
+  updateTimerDisplay();
+  startTimer();
+}
+
+function startTimer() {
+  const circumference = 326.7;
+  const total = timeRemaining;
+  timerInterval = setInterval(() => {
+    if (isPaused) return;
+    timeRemaining--;
+    updateTimerDisplay();
+    const progress = timeRemaining / total;
+    document.getElementById('ring-fill').style.strokeDashoffset =
+      circumference * (1 - progress);
+    if (timeRemaining <= 0) {
+      clearInterval(timerInterval);
+      setTimeout(() => nextExercise(), 600);
+    }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  document.getElementById('timer-sec').textContent = timeRemaining;
+  // Color feedback
+  const fill = document.getElementById('ring-fill');
+  if (timeRemaining <= 5) fill.style.stroke = '#C05A34';
+  else if (timeRemaining <= 10) fill.style.stroke = '#C8A97A';
+  else fill.style.stroke = 'var(--sage-light)';
+}
+
+function togglePause() {
+  isPaused = !isPaused;
+  document.getElementById('btn-pause').textContent = isPaused ? '▶' : '⏸';
+}
+
+function nextExercise() {
+  clearInterval(timerInterval);
+  document.getElementById('ring-fill').style.strokeDashoffset = '0';
+  loadExercise(currentIndex + 1);
+}
+
+function skipExercise() {
+  nextExercise();
+}
+
+function exitExercise() {
+  clearInterval(timerInterval);
+  showScreen('home');
+}
+
+function finishRoutine() {
+  clearInterval(timerInterval);
+  const elapsed = Math.round((Date.now() - startTime) / 1000);
+  const mins = Math.round(elapsed / 60);
+  const zones = [...new Set(currentQueue.map(e => e.zone))].length;
+
+  document.getElementById('done-exercises').textContent = currentQueue.length;
+  document.getElementById('done-time').textContent = (mins < 1 ? '<1' : mins) + ' min';
+  document.getElementById('done-zones').textContent = zones;
+
+  showScreen('done');
+}
+
+// ═══════════════════════════════════════
+// SVG ILLUSTRATIONS
+// ═══════════════════════════════════════
+function renderIllustration(type, emoji) {
+  const container = document.getElementById('ex-illustration');
+
+  const svgMap = {
+    'cervical-lateral': buildBodySVG(['neck-r'], emoji),
+    'cervical-rotation': buildBodySVG(['neck-r', 'neck-l'], emoji),
+    'cervical-forward': buildBodySVG(['neck-f'], emoji),
+    'cervical-circles': buildBodySVG(['neck-r', 'neck-l', 'neck-f'], emoji),
+    'shoulder-shrug': buildBodySVG(['shoulder-l', 'shoulder-r'], emoji),
+    'shoulder-rotation': buildBodySVG(['shoulder-l', 'shoulder-r', 'arm-l'], emoji),
+    'shoulder-cross': buildBodySVG(['shoulder-r', 'arm-r'], emoji),
+    'chest-open': buildBodySVG(['chest', 'shoulder-l', 'shoulder-r'], emoji),
+    'wrist-extension': buildBodySVG(['wrist-r', 'forearm-r'], emoji),
+    'wrist-flex': buildBodySVG(['wrist-l', 'forearm-l'], emoji),
+    'wrist-rotation': buildBodySVG(['wrist-r', 'wrist-l'], emoji),
+    'finger-stretch': buildBodySVG(['hand-r', 'hand-l'], emoji),
+    'back-forward': buildBodySVG(['lower-back', 'upper-back'], emoji),
+    'trunk-rotation': buildBodySVG(['lower-back', 'oblique'], emoji),
+    'back-extension': buildBodySVG(['lower-back'], emoji),
+    'lateral-stretch': buildBodySVG(['side-r', 'upper-back'], emoji),
+    'glute-stretch': buildBodySVG(['glute-r', 'hip'], emoji),
+    'calf-raise': buildBodySVG(['calf-l', 'calf-r'], emoji),
+    'marching': buildBodySVG(['leg-l', 'leg-r', 'hip'], emoji),
+    'eye-focus': buildBodySVG(['eyes'], emoji),
+    'eye-movement': buildBodySVG(['eyes'], emoji),
+    'eye-palming': buildBodySVG(['eyes', 'hands-face'], emoji),
+  };
+
+  container.innerHTML = svgMap[type] || buildBodySVG([], emoji);
+}
+
+function buildBodySVG(highlights, emoji) {
+  // Body part paths mapped to highlight keys
+  const parts = {
+    head: { d: 'M100,25 C95,12 80,8 80,20 C80,32 88,42 100,44 C112,42 120,32 120,20 C120,8 105,12 100,25Z', key: 'head' },
+    neck: { d: 'M93,44 L93,55 L107,55 L107,44Z', keys: ['neck-r','neck-l','neck-f'] },
+    torso: { d: 'M72,55 C65,56 60,62 58,80 L58,120 L142,120 L142,80 C140,62 135,56 128,55 Z', keys: ['chest','oblique','upper-back'] },
+    'lower-torso': { d: 'M60,120 L60,145 L140,145 L140,120Z', keys: ['lower-back','side-r','side-l'] },
+    'left-shoulder': { d: 'M58,55 L40,55 L35,75 L58,80Z', keys: ['shoulder-l'] },
+    'right-shoulder': { d: 'M142,55 L160,55 L165,75 L142,80Z', keys: ['shoulder-r'] },
+    'left-arm': { d: 'M35,75 L28,110 L42,112 L46,77Z', keys: ['arm-l','forearm-l'] },
+    'right-arm': { d: 'M165,75 L172,110 L158,112 L154,77Z', keys: ['arm-r','forearm-r'] },
+    'left-hand': { d: 'M26,110 C22,118 22,128 28,130 C34,132 42,128 44,120 L40,112Z', keys: ['hand-l','wrist-l','hands-face'] },
+    'right-hand': { d: 'M174,110 C178,118 178,128 172,130 C166,132 158,128 156,120 L160,112Z', keys: ['hand-r','wrist-r','hands-face'] },
+    'left-leg': { d: 'M60,145 L55,195 L80,195 L85,145Z', keys: ['leg-l','glute-l','hip'] },
+    'right-leg': { d: 'M140,145 L145,195 L120,195 L115,145Z', keys: ['leg-r','glute-r','hip'] },
+    'left-calf': { d: 'M55,195 L52,240 L74,240 L78,195Z', keys: ['calf-l'] },
+    'right-calf': { d: 'M145,195 L148,240 L126,240 L122,195Z', keys: ['calf-r'] },
+    'eyes': { d: 'M87,22 C87,19 90,17 94,17 C98,17 100,19 100,22 C100,19 102,17 106,17 C110,17 113,19 113,22 C113,25 110,27 106,25 C102,23 100,22 100,22 C100,22 98,23 94,25 C90,27 87,25 87,22Z', keys: ['eyes'] },
+  };
+
+  let svgParts = '';
+  Object.entries(parts).forEach(([name, info]) => {
+    const keys = info.keys || [info.key];
+    const isHighlighted = keys.some(k => highlights.includes(k));
+    const fill = isHighlighted
+      ? 'fill="#A8C48A" class="body-part highlighted moving"'
+      : 'fill="rgba(255,255,255,0.12)" class="body-part"';
+    svgParts += `<path ${fill} d="${info.d}"/>`;
+  });
+
+  return `
+    <svg viewBox="0 0 200 260" width="160" height="208" xmlns="http://www.w3.org/2000/svg" style="position:relative;z-index:1">
+      <defs>
+        <filter id="glow">
+          <feGaussianBlur stdDeviation="3" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
+      <g filter="url(#glow)">
+        ${svgParts}
+      </g>
+      <text x="100" y="280" text-anchor="middle" font-size="28">${emoji}</text>
+    </svg>
+  `;
+}
+
+// Init
+showScreen('home');
+</script>
+</body>
+</html>
