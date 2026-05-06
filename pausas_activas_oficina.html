@@ -170,7 +170,7 @@ const CY=8000;
 function trans(fn){const ov=document.getElementById('ov');ov.classList.add('on');setTimeout(()=>{fn();ov.classList.remove('on');},260);}
 function goApp(t){
   if(t==='oficina'){showRoutineScreen();return;}
-  else{window.location.href='pausas_campo_v4.html';}
+  else{window.location.href='pausas_activas_campo.html';}
 }
 function goBack(){stopTimer();trans(()=>{document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById('home').classList.add('on');});}
 function goHome(){trans(()=>{document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById('home').classList.add('on');});}
