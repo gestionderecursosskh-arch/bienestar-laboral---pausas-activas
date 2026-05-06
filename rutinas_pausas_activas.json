@@ -1,0 +1,539 @@
+{
+  "meta": {
+    "programa": "Pausas Activas SKANHAWK SAS",
+    "version": "1.0",
+    "descripcion": "Rutinas diarias de pausas activas osteomusculares. Cada rutina dura máximo 5 minutos.",
+    "actualizado": "2026"
+  },
+  "categorias": {
+    "activacion": {
+      "nombre": "Activación Semanal",
+      "descripcion": "Rutina de arranque. Activa todo el cuerpo para comenzar la semana con energía.",
+      "color": "#10B981",
+      "icono": "⚡"
+    },
+    "cervical_hombros": {
+      "nombre": "Cuello y Hombros",
+      "descripcion": "Enfocada en la zona cervical y trapecio. Alivia la tensión acumulada del cuello y hombros.",
+      "color": "#2563EB",
+      "icono": "🔄"
+    },
+    "columna_core": {
+      "nombre": "Columna y Core",
+      "descripcion": "Trabaja la columna lumbar y dorsal. Previene el dolor de espalda por posturas prolongadas.",
+      "color": "#F59E0B",
+      "icono": "🦴"
+    },
+    "circulacion_piernas": {
+      "nombre": "Circulación y Piernas",
+      "descripcion": "Activa la circulación venosa y estira los miembros inferiores. Combate el sedentarismo.",
+      "color": "#8B5CF6",
+      "icono": "🦵"
+    },
+    "cierre_semana": {
+      "nombre": "Cierre de Semana",
+      "descripcion": "Estiramiento integral y relajante. Prepara el cuerpo para el descanso del fin de semana.",
+      "color": "#EC4899",
+      "icono": "🌅"
+    },
+    "hombros_brazos": {
+      "nombre": "Hombros y Brazos",
+      "descripcion": "Manguito rotador, antebrazos y muñecas. Previene lesiones por esfuerzo repetitivo.",
+      "color": "#EF4444",
+      "icono": "💪"
+    },
+    "descanso_activo": {
+      "nombre": "Descanso Activo",
+      "descripcion": "Rutina suave y consciente. Cervical ligero e higiene visual para el cierre del ciclo semanal.",
+      "color": "#06B6D4",
+      "icono": "🧘"
+    }
+  },
+  "ejercicios": {
+    "campo": {
+      "marching": {
+        "nombre": "Marcha en Sitio",
+        "duracion_seg": 40,
+        "zona": "activacion"
+      },
+      "hip-rotation": {
+        "nombre": "Rotación de Cadera",
+        "duracion_seg": 35,
+        "zona": "columna"
+      },
+      "shoulder-circles": {
+        "nombre": "Círculos de Hombros",
+        "duracion_seg": 35,
+        "zona": "hombros"
+      },
+      "squat": {
+        "nombre": "Sentadilla Parcial",
+        "duracion_seg": 40,
+        "zona": "piernas"
+      },
+      "trunk-rotation": {
+        "nombre": "Rotación de Tronco",
+        "duracion_seg": 35,
+        "zona": "columna"
+      },
+      "heel-raise": {
+        "nombre": "Elevación de Talones",
+        "duracion_seg": 30,
+        "zona": "piernas"
+      },
+      "back-extension": {
+        "nombre": "Extensión Lumbar",
+        "duracion_seg": 30,
+        "zona": "columna"
+      },
+      "hamstring": {
+        "nombre": "Isquiotibiales",
+        "duracion_seg": 40,
+        "zona": "piernas"
+      },
+      "pendulum": {
+        "nombre": "Péndulo de Hombro",
+        "duracion_seg": 35,
+        "zona": "hombros"
+      },
+      "quad-stretch": {
+        "nombre": "Estiramiento Cuádriceps",
+        "duracion_seg": 40,
+        "zona": "piernas"
+      },
+      "neck-tilt": {
+        "nombre": "Flexión Lateral Cuello",
+        "duracion_seg": 35,
+        "zona": "cervical"
+      }
+    },
+    "oficina": {
+      "neck-tilt": {
+        "nombre": "Flexión Lateral Cuello",
+        "duracion_seg": 35,
+        "zona": "cervical"
+      },
+      "neck-rotation": {
+        "nombre": "Rotación Cervical",
+        "duracion_seg": 35,
+        "zona": "cervical"
+      },
+      "chin-retraction": {
+        "nombre": "Retracción de Mentón",
+        "duracion_seg": 30,
+        "zona": "cervical"
+      },
+      "shoulder-shrug": {
+        "nombre": "Encogimiento de Hombros",
+        "duracion_seg": 30,
+        "zona": "hombros"
+      },
+      "shoulder-retraction": {
+        "nombre": "Retracción Escapular",
+        "duracion_seg": 30,
+        "zona": "hombros"
+      },
+      "shoulder-cross": {
+        "nombre": "Cruce de Brazos",
+        "duracion_seg": 35,
+        "zona": "hombros"
+      },
+      "wrist-extension": {
+        "nombre": "Extensión de Muñecas",
+        "duracion_seg": 30,
+        "zona": "muñecas"
+      },
+      "wrist-rotation": {
+        "nombre": "Rotación de Muñecas",
+        "duracion_seg": 25,
+        "zona": "muñecas"
+      },
+      "trunk-rotation": {
+        "nombre": "Rotación de Tronco",
+        "duracion_seg": 35,
+        "zona": "columna"
+      },
+      "back-extension": {
+        "nombre": "Extensión Lumbar",
+        "duracion_seg": 30,
+        "zona": "columna"
+      },
+      "lateral-stretch": {
+        "nombre": "Estiramiento Lateral",
+        "duracion_seg": 35,
+        "zona": "columna"
+      },
+      "eye-palming": {
+        "nombre": "Palming Visual",
+        "duracion_seg": 30,
+        "zona": "visual"
+      },
+      "eye-focus": {
+        "nombre": "Regla 20-20-20",
+        "duracion_seg": 20,
+        "zona": "visual"
+      }
+    }
+  },
+  "rutinas_semana": {
+    "lunes": {
+      "dia": "Lunes",
+      "categoria": "activacion",
+      "mensaje_campo": "Arranca fuerte esta semana 💪 Hoy es lunes y tu cuerpo necesita despertar. Tómate 5 minutos antes de iniciar el turno — esta rutina activa músculos, articula articulaciones y prepara tu cuerpo para el trabajo duro del día.",
+      "mensaje_oficina": "Nueva semana, cuerpo en marcha 🚀 Hoy es lunes. Antes de que el computador te absorba, dedica 5 minutos a activar tu cuerpo. Una buena semana comienza con movimiento consciente.",
+      "rutina_campo": [
+        {
+          "id": "marching",
+          "reps": "30 pasos",
+          "descripcion": "Activa la circulación y calienta articulaciones"
+        },
+        {
+          "id": "shoulder-circles",
+          "reps": "10 c/sentido",
+          "descripcion": "Lubrica los hombros para el trabajo físico"
+        },
+        {
+          "id": "hip-rotation",
+          "reps": "10 c/lado",
+          "descripcion": "Moviliza cadera y prepara la zona lumbar"
+        },
+        {
+          "id": "heel-raise",
+          "reps": "15 elevaciones",
+          "descripcion": "Activa gemelos y retorno venoso"
+        }
+      ],
+      "rutina_oficina": [
+        {
+          "id": "shoulder-shrug",
+          "reps": "10 reps",
+          "descripcion": "Libera la tensión del trapecio acumulada"
+        },
+        {
+          "id": "shoulder-retraction",
+          "reps": "10 reps",
+          "descripcion": "Abre el pecho y activa la espalda alta"
+        },
+        {
+          "id": "trunk-rotation",
+          "reps": "5 reps c/lado",
+          "descripcion": "Moviliza la columna para arrancar la semana"
+        },
+        {
+          "id": "neck-tilt",
+          "reps": "5 reps c/lado",
+          "descripcion": "Estira el trapecio antes de horas de pantalla"
+        }
+      ],
+      "duracion_min": 5,
+      "tip_dia": "El lunes marca el tono de toda la semana. Un cuerpo activo genera una mente más enfocada."
+    },
+    "martes": {
+      "dia": "Martes",
+      "categoria": "cervical_hombros",
+      "mensaje_campo": "Tu cuello y hombros también trabajan duro ⛑ Hoy es martes. El esfuerzo físico de ayer puede haber dejado tensión en la zona cervical y el trapecio. Esta pausa de 5 minutos es para ellos.",
+      "mensaje_oficina": "Horas de pantalla cobran su precio en el cuello 😤 Hoy es martes. El trapecio y las cervicales son las primeras víctimas del trabajo sedentario. Dale 5 minutos de atención antes de que el dolor llegue.",
+      "rutina_campo": [
+        {
+          "id": "neck-tilt",
+          "reps": "5 reps c/lado",
+          "descripcion": "Estira el trapecio y alivia tensión cervical"
+        },
+        {
+          "id": "shoulder-circles",
+          "reps": "10 c/sentido",
+          "descripcion": "Lubrica el manguito rotador"
+        },
+        {
+          "id": "pendulum",
+          "reps": "20 seg c/brazo",
+          "descripcion": "Descomprime la articulación del hombro"
+        },
+        {
+          "id": "marching",
+          "reps": "20 pasos",
+          "descripcion": "Activa la circulación para cerrar la pausa"
+        }
+      ],
+      "rutina_oficina": [
+        {
+          "id": "neck-tilt",
+          "reps": "5 reps c/lado",
+          "descripcion": "Estira el trapecio — el músculo más tenso en oficina"
+        },
+        {
+          "id": "neck-rotation",
+          "reps": "5 reps c/lado",
+          "descripcion": "Moviliza las vértebras cervicales"
+        },
+        {
+          "id": "chin-retraction",
+          "reps": "10 reps",
+          "descripcion": "Corrige la postura de cabeza adelantada"
+        },
+        {
+          "id": "shoulder-shrug",
+          "reps": "10 reps",
+          "descripcion": "Suelta la tensión del trapecio bruscamente"
+        }
+      ],
+      "duracion_min": 4,
+      "tip_dia": "El trapecio es el músculo más castigado en trabajo físico y sedentario por igual. Cuídalo todos los martes."
+    },
+    "miercoles": {
+      "dia": "Miércoles",
+      "categoria": "columna_core",
+      "mensaje_campo": "La mitad de la semana, cuida tu espalda 🦴 Hoy es miércoles. Llevas días de trabajo físico y tu columna lo siente. Esta rutina de 5 minutos está diseñada para aliviar la presión lumbar y movilizar la espalda.",
+      "mensaje_oficina": "Mitad de semana, espalda al límite 🦴 Hoy es miércoles. Horas sentado comprimen los discos vertebrales. Esta rutina de 5 minutos descomprime la columna y corrige la postura antes de que el dolor se instale.",
+      "rutina_campo": [
+        {
+          "id": "back-extension",
+          "reps": "3 veces · 20 seg",
+          "descripcion": "Contrarresta la inclinación del trabajo en campo"
+        },
+        {
+          "id": "trunk-rotation",
+          "reps": "8 reps c/lado",
+          "descripcion": "Moviliza la columna dorsal y lumbar"
+        },
+        {
+          "id": "hamstring",
+          "reps": "25 seg c/pierna",
+          "descripcion": "Estira isquiotibiales que tensan la lumbar"
+        },
+        {
+          "id": "hip-rotation",
+          "reps": "10 c/lado",
+          "descripcion": "Lubrica la articulación de cadera"
+        }
+      ],
+      "rutina_oficina": [
+        {
+          "id": "back-extension",
+          "reps": "3 veces · 20 seg",
+          "descripcion": "Contrarresta horas en posición sentada"
+        },
+        {
+          "id": "trunk-rotation",
+          "reps": "5 reps c/lado",
+          "descripcion": "Moviliza la columna que lleva horas quieta"
+        },
+        {
+          "id": "lateral-stretch",
+          "reps": "3 reps c/lado",
+          "descripcion": "Estira los oblicuos y la fascia lateral"
+        },
+        {
+          "id": "chin-retraction",
+          "reps": "10 reps",
+          "descripcion": "Corrige la postura de cabeza adelantada"
+        }
+      ],
+      "duracion_min": 5,
+      "tip_dia": "La columna necesita movimiento para nutrirse. Los discos vertebrales no tienen vasos sanguíneos propios — se nutren con el movimiento."
+    },
+    "jueves": {
+      "dia": "Jueves",
+      "categoria": "circulacion_piernas",
+      "mensaje_campo": "Tus piernas llevan la semana encima 🦵 Hoy es jueves. Cuatro días de trabajo físico y bipedestación prolongada afectan la circulación venosa y tensan cuádriceps e isquiotibiales. Dale a tus piernas 5 minutos.",
+      "mensaje_oficina": "La circulación te lo agradecerá 🦵 Hoy es jueves. Horas sentado frenan el retorno venoso y tensan las piernas. Esta pausa activa la bomba muscular de los gemelos y estira los músculos más sedentarios.",
+      "rutina_campo": [
+        {
+          "id": "heel-raise",
+          "reps": "15 elevaciones",
+          "descripcion": "Activa la bomba venosa de los gemelos"
+        },
+        {
+          "id": "squat",
+          "reps": "10 reps",
+          "descripcion": "Fortalece MMII y activa la circulación"
+        },
+        {
+          "id": "quad-stretch",
+          "reps": "25 seg c/pierna",
+          "descripcion": "Estira cuádriceps tensos por el trabajo físico"
+        },
+        {
+          "id": "hamstring",
+          "reps": "25 seg c/pierna",
+          "descripcion": "Alivia la tensión posterior del muslo"
+        }
+      ],
+      "rutina_oficina": [
+        {
+          "id": "back-extension",
+          "reps": "3 veces · 15 seg",
+          "descripcion": "Activa la circulación lumbar primero"
+        },
+        {
+          "id": "trunk-rotation",
+          "reps": "5 reps c/lado",
+          "descripcion": "Despierta el core antes del estiramiento"
+        },
+        {
+          "id": "lateral-stretch",
+          "reps": "3 reps c/lado",
+          "descripcion": "Estira el costado y activa la respiración"
+        },
+        {
+          "id": "eye-palming",
+          "reps": "2 veces · 20 seg",
+          "descripcion": "Descansa los ojos después de días de pantalla"
+        }
+      ],
+      "duracion_min": 5,
+      "tip_dia": "La elevación de talones activa la bomba venosa muscular del gemelo — el corazón de tus piernas."
+    },
+    "viernes": {
+      "dia": "Viernes",
+      "categoria": "cierre_semana",
+      "mensaje_campo": "¡Llegaste al viernes! Ahora cierra bien la semana 🌅 Hoy es viernes. Tu cuerpo ha trabajado duro. Esta rutina de cierre estira las zonas más exigidas de la semana y prepara tu cuerpo para el descanso del fin de semana.",
+      "mensaje_oficina": "Semana completa — mereces este descanso activo 🌅 Hoy es viernes. Antes de cerrar el computador, dedica 5 minutos a soltar la tensión acumulada. Tu cuerpo lo necesita para recuperarse bien este fin de semana.",
+      "rutina_campo": [
+        {
+          "id": "neck-tilt",
+          "reps": "5 reps c/lado",
+          "descripcion": "Suelta la tensión cervical de la semana"
+        },
+        {
+          "id": "back-extension",
+          "reps": "3 veces · 20 seg",
+          "descripcion": "Descomprime la columna lumbar"
+        },
+        {
+          "id": "hamstring",
+          "reps": "25 seg c/pierna",
+          "descripcion": "Estira los isquiotibiales — la semana completa"
+        },
+        {
+          "id": "heel-raise",
+          "reps": "15 elevaciones",
+          "descripcion": "Activa el retorno venoso para cerrar el turno"
+        }
+      ],
+      "rutina_oficina": [
+        {
+          "id": "neck-tilt",
+          "reps": "5 reps c/lado",
+          "descripcion": "Suelta la tensión cervical acumulada"
+        },
+        {
+          "id": "shoulder-retraction",
+          "reps": "10 reps",
+          "descripcion": "Abre el pecho y estira la espalda alta"
+        },
+        {
+          "id": "lateral-stretch",
+          "reps": "3 reps c/lado",
+          "descripcion": "Estiramiento integral de costados"
+        },
+        {
+          "id": "eye-focus",
+          "reps": "20 seg",
+          "descripcion": "Descansa los ojos — regla 20-20-20 de cierre"
+        }
+      ],
+      "duracion_min": 5,
+      "tip_dia": "El cierre consciente de la semana marca la diferencia en cómo llegas el lunes. Cuídate."
+    },
+    "sabado": {
+      "dia": "Sábado",
+      "categoria": "hombros_brazos",
+      "mensaje_campo": "El trabajo físico pasa factura en hombros y brazos 💪 Hoy es sábado. El manguito rotador, los antebrazos y las muñecas acumulan carga durante la semana. Esta pausa activa los lubrica y previene lesiones.",
+      "mensaje_oficina": "Sábado: tus brazos y muñecas también descansan 💪 Hoy es sábado. Horas de teclado y mouse cobran su precio en muñecas y antebrazos. Esta rutina previene el síndrome del túnel carpiano y alivia la fatiga de antebrazo.",
+      "rutina_campo": [
+        {
+          "id": "shoulder-circles",
+          "reps": "10 c/sentido",
+          "descripcion": "Lubrica el manguito rotador y el hombro"
+        },
+        {
+          "id": "pendulum",
+          "reps": "20 seg c/brazo",
+          "descripcion": "Descomprime la articulación glenohumeral"
+        },
+        {
+          "id": "neck-tilt",
+          "reps": "5 reps c/lado",
+          "descripcion": "Estira el trapecio tenso por los hombros"
+        },
+        {
+          "id": "marching",
+          "reps": "20 pasos",
+          "descripcion": "Cierra con activación general"
+        }
+      ],
+      "rutina_oficina": [
+        {
+          "id": "wrist-extension",
+          "reps": "3 reps c/posición",
+          "descripcion": "Estira flexores y extensores del antebrazo"
+        },
+        {
+          "id": "wrist-rotation",
+          "reps": "10 reps c/sentido",
+          "descripcion": "Lubrica la articulación de la muñeca"
+        },
+        {
+          "id": "shoulder-cross",
+          "reps": "3 reps c/brazo",
+          "descripcion": "Estira el deltoides posterior"
+        },
+        {
+          "id": "shoulder-retraction",
+          "reps": "10 reps",
+          "descripcion": "Activa trapecios y escápulas"
+        }
+      ],
+      "duracion_min": 4,
+      "tip_dia": "Las muñecas procesan miles de movimientos repetitivos por semana. Un buen estiramiento semanal previene el síndrome del túnel carpiano."
+    },
+    "domingo": {
+      "dia": "Domingo",
+      "categoria": "descanso_activo",
+      "mensaje_campo": "Domingo de descanso activo — suave pero constante 🧘 Hoy es domingo. No es día de exigirse, sino de mantener la movilidad. Una rutina ligera de 3-4 minutos mantiene el cuerpo ágil para el lunes.",
+      "mensaje_oficina": "Domingo: cuida tus ojos y tu mente 🧘 Hoy es domingo. La higiene visual y el descanso cervical son el regalo que le das a tu cuerpo antes de una nueva semana frente a pantallas. Solo 3 minutos.",
+      "rutina_campo": [
+        {
+          "id": "neck-tilt",
+          "reps": "5 reps c/lado",
+          "descripcion": "Estiramiento suave cervical"
+        },
+        {
+          "id": "back-extension",
+          "reps": "2 veces · 20 seg",
+          "descripcion": "Descomprime la columna suavemente"
+        },
+        {
+          "id": "heel-raise",
+          "reps": "10 elevaciones",
+          "descripcion": "Mantén la circulación activa"
+        }
+      ],
+      "rutina_oficina": [
+        {
+          "id": "eye-palming",
+          "reps": "2 veces · 20 seg",
+          "descripcion": "Relaja la musculatura ocular"
+        },
+        {
+          "id": "eye-focus",
+          "reps": "20 seg",
+          "descripcion": "Descansa el músculo ciliar — regla 20-20-20"
+        },
+        {
+          "id": "neck-tilt",
+          "reps": "5 reps c/lado",
+          "descripcion": "Estiramiento cervical suave de cierre"
+        },
+        {
+          "id": "chin-retraction",
+          "reps": "5 reps",
+          "descripcion": "Corrige la postura para la nueva semana"
+        }
+      ],
+      "duracion_min": 3,
+      "tip_dia": "El descanso activo es más restaurador que el descanso total. Un poco de movimiento suave el domingo acelera la recuperación muscular."
+    }
+  }
+}

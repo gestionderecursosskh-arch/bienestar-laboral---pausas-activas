@@ -2,301 +2,97 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bienestar Laboral · SKANHAWK SAS</title>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<title>Pausas Activas · SKANHAWK HSE</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #F7F4EF;
-    --dark: #141414;
-    --amber: #F5A623;
-    --forest: #2B4D2A;
-    --sage: #6B9157;
-    --text: #1E1E1E;
-    --dim: #7A7060;
-  }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    font-family: 'Source Sans 3', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* TOP BAR */
-  .topbar {
-    width: 100%;
-    background: var(--dark);
-    padding: 10px 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .topbar-brand {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: var(--amber);
-  }
-  .topbar-tag {
-    font-size: 0.65rem;
-    letter-spacing: 2px;
-    color: rgba(255,255,255,0.35);
-    text-transform: uppercase;
-  }
-
-  /* HERO */
-  .hero {
-    width: 100%;
-    max-width: 700px;
-    padding: 56px 28px 40px;
-    text-align: center;
-    animation: fadeUp 0.6s ease both;
-  }
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--forest);
-    color: #C8E6A0;
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 3px;
-    margin-bottom: 20px;
-  }
-  .hero h1 {
-    font-family: 'Oswald', sans-serif;
-    font-size: clamp(2.4rem, 6vw, 3.6rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    line-height: 1;
-    color: var(--dark);
-    margin-bottom: 14px;
-  }
-  .hero h1 span { color: var(--forest); }
-  .hero p {
-    font-size: 1rem;
-    color: var(--dim);
-    font-weight: 300;
-    line-height: 1.7;
-    max-width: 460px;
-    margin: 0 auto;
-  }
-
-  /* CARDS */
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    width: 100%;
-    max-width: 700px;
-    padding: 0 28px;
-    animation: fadeUp 0.6s 0.15s ease both;
-  }
-  @media (max-width: 520px) { .cards { grid-template-columns: 1fr; } }
-
-  .card {
-    background: #fff;
-    border: 2px solid #E0DAD0;
-    border-radius: 16px;
-    padding: 28px 22px 22px;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    transition: all 0.22s cubic-bezier(0.34,1.56,0.64,1);
-    position: relative;
-    overflow: hidden;
-  }
-  .card::after {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    height: 4px;
-    border-radius: 0 0 14px 14px;
-  }
-  .card.oficina::after { background: var(--forest); }
-  .card.campo::after   { background: var(--amber); }
-  .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.1); border-color: #C0BAB0; }
-
-  .card-icon { font-size: 2.6rem; line-height: 1; }
-  .card-label {
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-  .card.oficina .card-label { color: var(--sage); }
-  .card.campo   .card-label { color: var(--amber); }
-
-  .card-title {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.55rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--dark);
-    line-height: 1.1;
-  }
-  .card-desc {
-    font-size: 0.85rem;
-    color: var(--dim);
-    line-height: 1.6;
-    font-weight: 300;
-    flex: 1;
-  }
-
-  .card-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .pill {
-    font-size: 0.68rem;
-    padding: 3px 10px;
-    border-radius: 100px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-  }
-  .card.oficina .pill { background: rgba(43,77,42,0.08); color: var(--forest); }
-  .card.campo   .pill { background: rgba(245,166,35,0.1); color: #9A6500; }
-
-  .card-cta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 8px;
-    border-top: 1px solid #F0ECE4;
-    margin-top: 4px;
-  }
-  .card-cta span {
-    font-family: 'Oswald', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-  .card.oficina .card-cta span { color: var(--forest); }
-  .card.campo   .card-cta span { color: #C47D0E; }
-  .card-cta .arrow { font-size: 1.1rem; transition: transform 0.2s; }
-  .card:hover .arrow { transform: translateX(5px); }
-
-  /* INFO ROW */
-  .info-row {
-    display: flex;
-    gap: 20px;
-    width: 100%;
-    max-width: 700px;
-    padding: 20px 28px 0;
-    animation: fadeUp 0.6s 0.25s ease both;
-  }
-  .info-box {
-    flex: 1;
-    background: #fff;
-    border: 1.5px solid #E0DAD0;
-    border-radius: 12px;
-    padding: 14px 16px;
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-  }
-  .info-box .i-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 1px; }
-  .info-box p { font-size: 0.78rem; color: var(--dim); line-height: 1.5; font-weight: 300; }
-  .info-box p strong { color: var(--text); font-weight: 600; }
-
-  /* FOOTER */
-  footer {
-    margin-top: 40px;
-    padding: 20px 28px;
-    text-align: center;
-    font-size: 0.72rem;
-    color: var(--dim);
-    letter-spacing: 0.5px;
-    border-top: 1px solid #E0DAD0;
-    width: 100%;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
-  footer strong { color: var(--text); }
-
-  @keyframes fadeUp {
-    from { opacity:0; transform: translateY(16px); }
-    to   { opacity:1; transform: translateY(0); }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F4F6F9;--sur:#FFF;--bor:#E4E8EF;--txt:#0F172A;--mid:#475569;--dim:#94A3B8;
+  --blue:#2563EB;--bl:#EFF6FF;--bm:#BFDBFE;--grn:#10B981;--amb:#F59E0B;
+  --shl:0 8px 32px rgba(0,0,0,.10);--sh:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06)}
+body{font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--txt);
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:40px 24px;gap:32px;-webkit-font-smoothing:antialiased}
+.logo{display:flex;flex-direction:column;align-items:center;gap:8px}
+.brand{font-size:11px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--dim)}
+.ttl{font-family:"DM Serif Display",serif;font-size:42px;color:var(--txt);text-align:center;line-height:1.05}
+.ttl span{color:var(--blue)}
+.sub{font-size:14px;color:var(--mid);font-weight:300;text-align:center;line-height:1.7;max-width:320px}
+.card{background:var(--sur);border-radius:24px;box-shadow:var(--shl);width:100%;
+  max-width:420px;padding:36px 32px;display:flex;flex-direction:column;gap:28px;border:1px solid var(--bor)}
+.day-banner{background:var(--bl);border:1px solid var(--bm);border-radius:14px;
+  padding:14px 18px;display:flex;align-items:center;gap:12px}
+.day-icon{font-size:22px;flex-shrink:0}
+.day-info .day-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:2px}
+.day-info .day-name{font-size:14px;font-weight:600;color:var(--txt)}
+.hq{font-family:"DM Serif Display",serif;font-size:24px;color:var(--txt);text-align:center;line-height:1.3}
+.opts{display:flex;flex-direction:column;gap:12px}
+.opt{display:flex;align-items:center;gap:16px;background:var(--bg);
+  border:1.5px solid var(--bor);border-radius:16px;padding:20px 22px;
+  cursor:pointer;transition:all .2s;text-decoration:none}
+.opt:hover{border-color:var(--blue);background:var(--bl);transform:translateY(-2px);box-shadow:var(--sh)}
+.opt:active{transform:scale(.98)}
+.oic{width:48px;height:48px;border-radius:14px;display:flex;align-items:center;
+  justify-content:center;font-size:24px;flex-shrink:0}
+.oic.ca{background:#FEF3C7}.oic.of{background:var(--bl)}
+.oname{font-size:17px;font-weight:600;color:var(--txt)}
+.ochev{margin-left:auto;color:var(--dim);flex-shrink:0}
+.footer{display:flex;flex-direction:column;align-items:center;gap:6px}
+.footer-brand{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--dim)}
+.footer-tag{font-size:11px;color:var(--dim);font-weight:300}
 </style>
 </head>
 <body>
-
-<div class="topbar">
-  <span class="topbar-brand">SKANHAWK SAS</span>
-  <span class="topbar-tag">Programa de Bienestar Laboral · HSE</span>
+<div class="logo">
+  <span class="brand">SKANHAWK SAS · HSE</span>
+  <div class="ttl">Pausas<br><span>Activas</span></div>
+  <p class="sub">Programa de bienestar laboral y prevención de lesiones osteomusculares.</p>
 </div>
 
-<div class="hero">
-  <div class="hero-eyebrow">🌿 Prevención de Riesgos Osteomusculares</div>
-  <h1>Pausas<br><span>Activas</span></h1>
-  <p>Selecciona la versión según tu rol. Ejercicios guiados con temporizador para prevenir lesiones durante la jornada laboral.</p>
-</div>
-
-<div class="cards">
-
-  <a class="card oficina" href="pausas_activas_oficina.html">
-    <div class="card-icon">🖥️</div>
-    <div class="card-label">Personal Administrativo</div>
-    <div class="card-title">Versión Oficina</div>
-    <p class="card-desc">Estiramientos para trabajo en escritorio. Énfasis en cervical, muñecas, espalda y ojos.</p>
-    <div class="card-pills">
-      <span class="pill">6 zonas</span>
-      <span class="pill">22 ejercicios</span>
-      <span class="pill">~10 min</span>
+<div class="card">
+  <div class="day-banner">
+    <div class="day-icon" id="dayIcon">📅</div>
+    <div class="day-info">
+      <div class="day-lbl">Rutina de hoy</div>
+      <div class="day-name" id="dayName">Cargando...</div>
     </div>
-    <div class="card-cta">
-      <span>Abrir</span>
-      <span class="arrow">→</span>
-    </div>
-  </a>
-
-  <a class="card campo" href="pausas_activas_campo.html">
-    <div class="card-icon">⛽</div>
-    <div class="card-label">Personal de Campo</div>
-    <div class="card-title">Versión Campo</div>
-    <p class="card-desc">Calentamiento pre-operacional y pausas activas para trabajo físico en hidrocarburos.</p>
-    <div class="card-pills">
-      <span class="pill">Pre-operacional</span>
-      <span class="pill">Pausa activa</span>
-      <span class="pill">Con EPP</span>
-    </div>
-    <div class="card-cta">
-      <span>Abrir</span>
-      <span class="arrow">→</span>
-    </div>
-  </a>
-
-</div>
-
-<div class="info-row">
-  <div class="info-box">
-    <span class="i-icon">📱</span>
-    <p><strong>Funciona en celular.</strong> Puedes compartir este enlace por WhatsApp o Teams con todo el equipo.</p>
   </div>
-  <div class="info-box">
-    <span class="i-icon">⚠️</span>
-    <p><strong>Detente si sientes dolor.</strong> Consulta con el médico laboral ante molestias persistentes.</p>
+
+  <div class="hq">¿En qué lugar<br>estás ubicado?</div>
+
+  <div class="opts">
+    <a class="opt" href="pausas_campo_v4.html">
+      <div class="oic ca">⛑</div>
+      <div><div class="oname">Campo</div></div>
+      <svg class="ochev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+    <a class="opt" href="pausas_oficina_v5.html">
+      <div class="oic of">💻</div>
+      <div><div class="oname">Oficina</div></div>
+      <svg class="ochev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
   </div>
 </div>
 
-<footer>
-  <strong>SKANHAWK SAS</strong> · Sistema de Gestión Integrado · Programa de Bienestar Laboral<br>
-  Resolución 2346 · GTC 45 · Prevención DME
-</footer>
+<div class="footer">
+  <span class="footer-brand">SKANHAWK SAS</span>
+  <span class="footer-tag">Programa Bienestar Laboral · HSE</span>
+</div>
 
+<script>
+const DIAS = {
+  0: {nombre:'Descanso Activo',    icono:'🧘', cat:'domingo'},
+  1: {nombre:'Activación Semanal', icono:'⚡', cat:'lunes'},
+  2: {nombre:'Cuello y Hombros',   icono:'🔄', cat:'martes'},
+  3: {nombre:'Columna y Core',     icono:'🦴', cat:'miercoles'},
+  4: {nombre:'Circulación y Piernas', icono:'🦵', cat:'jueves'},
+  5: {nombre:'Cierre de Semana',   icono:'🌅', cat:'viernes'},
+  6: {nombre:'Hombros y Brazos',   icono:'💪', cat:'sabado'}
+};
+const hoy = new Date().getDay();
+const info = DIAS[hoy];
+document.getElementById('dayIcon').textContent = info.icono;
+document.getElementById('dayName').textContent = info.nombre;
+</script>
 </body>
 </html>
