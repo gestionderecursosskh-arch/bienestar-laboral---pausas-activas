@@ -114,10 +114,67 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
 .rbtn-start:hover{background:#1E293B;transform:translateY(-1px)}
 .rbtn-all{border:1.5px solid var(--bor);background:var(--sur);color:var(--mid);border-radius:12px;padding:15px 14px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
 .rbtn-all:hover{border-color:var(--blue);color:var(--blue);background:var(--bl)}
+
+/* ── COUNTDOWN TIMER ──────────────────────── */
+.cdarea{display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px 20px 4px}
+.cdring-wrap{position:relative;width:92px;height:92px;flex-shrink:0}
+.cdring-wrap svg{width:92px;height:92px;transform:rotate(-90deg)}
+.cdring-bg{stroke:#E4E8EF;stroke-width:7;fill:none}
+.cdring-fill{stroke:#2563EB;stroke-width:7;fill:none;stroke-linecap:round;
+  stroke-dasharray:251;stroke-dashoffset:0;transition:stroke-dashoffset .95s linear,stroke .3s}
+.cdtime{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:1px}
+.cdtime-num{font-family:'DM Serif Display',serif;font-size:22px;color:#0F172A;line-height:1}
+.cdtime-lbl{font-size:9px;color:#94A3B8;font-weight:600;letter-spacing:.8px;text-transform:uppercase}
+.cdbtns{display:flex;gap:10px;width:100%}
+.cdbtn-pause{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:#0F172A;color:white;border:none;border-radius:12px;padding:14px 20px;
+  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.cdbtn-pause:hover{background:#1E293B;transform:translateY(-1px)}
+.cdbtn-pause.paused{background:#10B981}
+.cdbtn-pause.done{background:#2563EB}
+.cdbtn-skip{width:50px;height:50px;border-radius:12px;border:1.5px solid #E4E8EF;
+  background:white;color:#475569;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;transition:all .2s;flex-shrink:0}
+.cdbtn-skip:hover{border-color:#2563EB;color:#2563EB;background:#EFF6FF}
+.auto-lbl{font-size:11px;color:#94A3B8;text-align:center;display:flex;align-items:center;gap:5px}
+
+
+.cdarea{display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px 20px 4px}
+.cdring-wrap{position:relative;width:96px;height:96px}
+.cdring-wrap svg{width:96px;height:96px;transform:rotate(-90deg)}
+.cdring-bg{stroke:#E4E8EF;stroke-width:7;fill:none}
+.cdring-fill{stroke:#2563EB;stroke-width:7;fill:none;stroke-linecap:round;stroke-dasharray:263;stroke-dashoffset:0;transition:stroke-dashoffset .95s linear,stroke .4s}
+.cdtime{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
+.cdtime-num{font-family:'DM Serif Display',serif;font-size:24px;color:#0F172A;line-height:1.1}
+.cdtime-lbl{font-size:9px;color:#94A3B8;font-weight:600;letter-spacing:.8px;text-transform:uppercase}
+.cdbtns{display:flex;gap:10px;width:100%}
+.cdbtn-pause{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#0F172A;color:white;border:none;border-radius:12px;padding:14px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.cdbtn-pause:hover{background:#1E293B;transform:translateY(-1px)}
+.cdbtn-pause.paused{background:#10B981}
+.cdbtn-skip{width:50px;height:50px;border-radius:12px;border:1.5px solid #E4E8EF;background:white;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.cdbtn-skip:hover{border-color:#2563EB;color:#2563EB;background:#EFF6FF}
+.cd-auto{font-size:11px;color:#94A3B8;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px}
+
+
+.rest-screen{display:none;position:fixed;inset:0;background:#F4F6F9;z-index:500;
+  flex-direction:column;align-items:center;justify-content:center;gap:12px}
+.rest-screen.on{display:flex}
+.rest-num{font-family:'DM Serif Display',serif;font-size:120px;color:#0F172A;line-height:1;
+  animation:restpulse .9s ease-in-out infinite}
+@keyframes restpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(.96)}}
+.rest-lbl{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#94A3B8}
+.rest-next{font-size:12px;color:#CBD5E1;margin-top:4px}
+
+
+.imgwrap{width:100%;background:linear-gradient(160deg,#F8FAFC,#EFF6FF);border-bottom:1px solid var(--bor);position:relative}
+.imgwrap img{width:100%;height:auto;display:block;max-height:280px;object-fit:contain;padding:8px}
+
 </style>
 </head>
 <body>
 <div class="ov" id="ov"></div>
+<div class="rest-screen" id="restScreen"><div class="rest-num" id="restNum">5</div><div class="rest-lbl">Descanso</div><div class="rest-next" id="restNext"></div></div>
 <div class="rscreen" id="rscreen"></div>
 <div class="sc on" id="home">
   <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
@@ -163,8 +220,32 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
   </div>
 </div>
 <script>
+const EX_IMGS = {
+  'squat': 'images/squat.png',
+  'neck-tilt': 'images/neck_tilt.png',
+  'back-extension': 'images/back_extension.png',
+  'heel-raise': 'images/heel_raise.png',
+  'shoulder-circles': 'images/shoulder_circles.png',
+  'hip-rotation': 'images/hip_rotation.png',
+  'trunk-rotation': 'images/trunk_rotation.png',
+  'hamstring': 'images/hamstring.png',
+  'pendulum': 'images/pendulum.png',
+  'quad-stretch': 'images/quad_stretch.png',
+  'marching': 'images/marching.png',
+  'chin-retraction': 'images/chin_retraction.png',
+  'shoulder-shrug': 'images/shoulder_shrug.png',
+  'shoulder-retraction': 'images/shoulder_retraction.png',
+  'shoulder-cross': 'images/shoulder_cross.png',
+  'wrist-extension': 'images/wrist_extension.png',
+  'wrist-rotation': 'images/wrist_extension.png',
+  'lateral-stretch': 'images/lateral_stretch.png',
+  'eye-palming': 'images/eye_palming.png',
+  'eye-focus': 'images/eye_focus.png',
+  'neck-rotation': 'images/neck_tilt.png',
+};
+
 const EX_SVGS = {'marching': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #m-lleg{transform-origin:88px 148px;animation:mll 2s ease-in-out infinite}\n  #m-lcalf{transform-origin:86px 188px;animation:mlc 2s ease-in-out infinite}\n  #m-rleg{transform-origin:94px 148px;animation:mrl 2s ease-in-out infinite}\n  #m-larm{transform-origin:80px 72px;animation:mla 2s ease-in-out infinite}\n  #m-rarm{transform-origin:88px 72px;animation:mra 2s ease-in-out infinite}\n  @keyframes mll{0%,45%,100%{transform:rotate(0deg)}15%,35%{transform:rotate(-50deg)}}\n  @keyframes mlc{0%,45%,100%{transform:rotate(0deg)}15%,35%{transform:rotate(70deg)}}\n  @keyframes mrl{0%,55%,100%{transform:rotate(0deg)}65%,85%{transform:rotate(-40deg)}}\n  @keyframes mla{0%,45%,100%{transform:rotate(0deg)}15%,35%{transform:rotate(32deg)}}\n  @keyframes mra{0%,55%,100%{transform:rotate(0deg)}65%,85%{transform:rotate(-28deg)}}\n</style>\n<ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="52" y1="228" x2="124" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="94" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="222" stroke-width="9" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="228" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n<g id="m-rarm"><line x1="88" y1="72" x2="104" y2="104" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="104" y1="104" x2="108" y2="130" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/></g>\n<line x1="80" y1="64" x2="80" y2="148" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<g id="m-lleg"><line x1="88" y1="148" x2="86" y2="188" stroke-width="13" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <g id="m-lcalf"><line x1="86" y1="188" x2="84" y2="218" stroke-width="10" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="84" y1="218" x2="74" y2="226" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/></g>\n</g>\n<g id="m-larm"><line x1="80" y1="72" x2="64" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="64" y1="106" x2="60" y2="130" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n<line x1="86" y1="48" x2="88" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="88" cy="32" r="16" fill="#CBD5E1"/>\n<line x1="74" y1="164" x2="74" y2="128" stroke="#2563EB" stroke-width="2.5"  fill="none" stroke-linecap="round"/><polygon points="74,128 79.0,138.0 69.0,138.0" fill="#2563EB"/>\n</svg>', 'hip-rotation': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #hr{transform-origin:100px 150px;animation:hrc 3s linear infinite}\n  @keyframes hrc{\n    0%{transform:translate(0,0)}25%{transform:translate(16px,8px)}\n    50%{transform:translate(0,16px)}75%{transform:translate(-16px,8px)}100%{transform:translate(0,0)}\n  }\n</style>\n<ellipse cx="100" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="58" y1="228" x2="142" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="74" y1="72" x2="52" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="52" y1="108" x2="46" y2="128" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="126" y1="72" x2="148" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="148" y1="108" x2="154" y2="128" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="74" y1="72" x2="126" y2="72" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="68" x2="100" y2="150" stroke-width="14" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="114" y2="150" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="48" x2="100" y2="46" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="100" cy="32" r="16" fill="#CBD5E1"/>\n<g id="hr">\n  <line x1="86" y1="150" x2="84" y2="188" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="84" y1="188" x2="82" y2="222" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="114" y1="150" x2="116" y2="188" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="116" y1="188" x2="118" y2="222" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="118" y1="222" x2="128" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n</g>\n<ellipse cx="100" cy="156" rx="38" ry="16" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.5"/>\n<polygon points="138,148 134,162 128,152" fill="#F59E0B" opacity="0.7"/>\n</svg>', 'shoulder-circles': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #sc-r{transform-origin:126px 72px;animation:scr 2s linear infinite}\n  #sc-l{transform-origin:74px 72px;animation:scl 2s linear infinite}\n  @keyframes scr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}\n  @keyframes scl{from{transform:rotate(0)}to{transform:rotate(360deg)}}\n</style>\n<ellipse cx="100" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="58" y1="228" x2="142" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="114" y1="150" x2="116" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="116" y1="188" x2="118" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="118" y1="222" x2="128" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="84" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="188" x2="82" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="74" y1="72" x2="126" y2="72" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="68" x2="100" y2="150" stroke-width="14" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="114" y2="150" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="48" x2="100" y2="46" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="100" cy="32" r="16" fill="#CBD5E1"/>\n<ellipse cx="126" cy="72" rx="44" ry="44" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3 5" opacity="0.18"/>\n<ellipse cx="74" cy="72" rx="44" ry="44" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3 5" opacity="0.18"/>\n<g id="sc-r"><line x1="126" y1="72" x2="142" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="142" y1="106" x2="146" y2="134" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n<g id="sc-l"><line x1="74" y1="72" x2="58" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="58" y1="106" x2="54" y2="134" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n</svg>', 'squat': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #sq-all{transform-origin:88px 148px;animation:sq-d 3.5s ease-in-out infinite}\n  #sq-t{transform-origin:88px 148px;animation:sq-ti 3.5s ease-in-out infinite}\n  #sq-c{transform-origin:86px 188px;animation:sq-ci 3.5s ease-in-out infinite}\n  @keyframes sq-d{0%,12%,88%,100%{transform:translateY(0)}38%,62%{transform:translateY(46px)}}\n  @keyframes sq-ti{0%,12%,88%,100%{transform:rotate(0)}38%,62%{transform:rotate(-46deg)}}\n  @keyframes sq-ci{0%,12%,88%,100%{transform:rotate(0)}38%,62%{transform:rotate(-72deg)}}\n</style>\n<ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="52" y1="228" x2="128" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/><line x1="94" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="222" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="228" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="88" y1="64" x2="88" y2="148" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="88" y1="148" x2="86" y2="186" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="186" x2="84" y2="222" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="222" x2="74" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="94" y1="72" x2="104" y2="104" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="104" y1="104" x2="108" y2="130" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n<g id="sq-all">\n  <line x1="80" y1="64" x2="80" y2="148" stroke-width="18" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="68" y1="70" x2="98" y2="70" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="68" y1="70" x2="52" y2="106" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="52" y1="106" x2="48" y2="132" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="86" y1="48" x2="86" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="86" cy="32" r="16" fill="#CBD5E1"/><circle cx="97" cy="32" r="3" fill="rgba(170,170,170,0.4)"/>\n</g>\n<g id="sq-t"><line x1="88" y1="148" x2="86" y2="188" stroke-width="13" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <g id="sq-c"><line x1="86" y1="188" x2="84" y2="222" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="84" y1="222" x2="74" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/></g>\n</g>\n<text x="100" y="218" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#F59E0B" font-weight="bold">↓ Baja controlado</text>\n</svg>', 'trunk-rotation': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #tr{transform-origin:100px 148px;animation:trun 4s ease-in-out infinite}\n  @keyframes trun{\n    0%,10%{transform:rotate(0deg)}28%,45%{transform:rotate(32deg)}\n    55%{transform:rotate(0deg)}68%,85%{transform:rotate(-32deg)}95%,100%{transform:rotate(0deg)}\n  }\n</style>\n<ellipse cx="100" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="58" y1="228" x2="142" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="114" y1="150" x2="116" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="116" y1="188" x2="118" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="118" y1="222" x2="128" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="84" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="188" x2="82" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="86" y1="150" x2="114" y2="150" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<g id="tr">\n  <line x1="74" y1="72" x2="126" y2="72" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="100" y1="72" x2="100" y2="150" stroke-width="14" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="74" y1="72" x2="56" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="56" y1="106" x2="50" y2="128" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="126" y1="72" x2="144" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="144" y1="106" x2="150" y2="128" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="100" y1="48" x2="100" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="100" cy="32" r="16" fill="#CBD5E1"/>\n</g>\n<path d="M 50 110 A 60 60 0 0 1 150 110" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="5 6" opacity="0.3"/>\n<polygon points="150,110 140,102 142,116" fill="#2563EB" opacity="0.5"/>\n<polygon points="50,110 60,102 58,116" fill="#2563EB" opacity="0.5"/>\n</svg>', 'heel-raise': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #hr2{animation:hrise 3s ease-in-out infinite}\n  #hr-toe{transform-origin:84px 220px;animation:htoe 3s ease-in-out infinite}\n  #hr-bktoe{transform-origin:92px 220px;animation:htoe 3s ease-in-out infinite}\n  @keyframes hrise{0%,15%,85%,100%{transform:translateY(0)}40%,65%{transform:translateY(-22px)}}\n  @keyframes htoe{0%,15%,85%,100%{transform:rotate(0deg)}40%,65%{transform:rotate(30deg)}}\n</style>\n<line x1="48" y1="222" x2="140" y2="222" stroke="#E2E8F0" stroke-width="2" fill="none"/><ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/>\n<rect x="68" y="30" width="40" height="30" rx="6" fill="#CBD5E144"/>\n<g id="hr2">\n  <line x1="94" y1="90" x2="92" y2="138" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="138" x2="91" y2="180" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/>\n  <line x1="88" y1="90" x2="86" y2="138" stroke-width="13" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="86" y1="138" x2="84" y2="180" stroke-width="10" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n</g>\n<g id="hr-toe"><line x1="84" y1="180" x2="74" y2="188" stroke-width="8" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n<g id="hr-bktoe"><line x1="91" y1="180" x2="101" y2="188" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/></g>\n<line x1="64" y1="178" x2="64" y2="140" stroke="#2563EB" stroke-width="2.5"  fill="none" stroke-linecap="round"/><polygon points="64,140 69.0,150.0 59.0,150.0" fill="#2563EB"/><line x1="116" y1="178" x2="116" y2="140" stroke="#2563EB" stroke-width="2.5"  fill="none" stroke-linecap="round"/><polygon points="116,140 121.0,150.0 111.0,150.0" fill="#2563EB"/>\n<text x="100" y="212" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#2563EB" font-weight="bold">Puntillas ↑</text>\n</svg>', 'back-extension': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #be{transform-origin:88px 148px;animation:bearc 4s ease-in-out infinite}\n  #be-hip{animation:behip 4s ease-in-out infinite}\n  @keyframes bearc{0%,15%,85%,100%{transform:rotate(0deg)}40%,65%{transform:rotate(-24deg)}}\n  @keyframes behip{0%,15%,85%,100%{transform:translateX(0)}40%,65%{transform:translateX(8px)}}\n</style>\n<ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="52" y1="228" x2="128" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/><line x1="94" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="222" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="228" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="88" y1="64" x2="88" y2="148" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="88" y1="148" x2="86" y2="186" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="186" x2="84" y2="222" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="222" x2="74" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="94" y1="72" x2="104" y2="104" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="104" y1="104" x2="108" y2="130" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n<g id="be-hip"><circle cx="88" cy="148" r="10" fill="#2563EB55"/></g>\n<g id="be">\n  <line x1="80" y1="64" x2="80" y2="148" stroke-width="18" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="68" y1="70" x2="96" y2="70" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="80" y1="72" x2="86" y2="118" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="118" x2="90" y2="136" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="82" y1="72" x2="74" y2="114" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="74" y1="114" x2="72" y2="132" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n  <line x1="82" y1="48" x2="82" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="82" cy="32" r="16" fill="#CBD5E1"/><circle cx="93" cy="32" r="3" fill="rgba(170,170,170,0.4)"/>\n</g>\n<path d="M 88 148 A 52 52 0 0 0 42 110" fill="none" stroke="#F59E0B" stroke-width="2.5"/>\n<polygon points="42,110 54,106 50,120" fill="#F59E0B"/>\n<text x="100" y="216" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#F59E0B" font-weight="bold">← Cadera adelante</text>\n</svg>', 'hamstring': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #hs-lean{transform-origin:86px 148px;animation:hslean 4s ease-in-out infinite}\n  #hs-leg{transform-origin:86px 148px;animation:hsleg 4s ease-in-out infinite}\n  @keyframes hslean{0%,15%,85%,100%{transform:rotate(0deg)}35%,65%{transform:rotate(-30deg)}}\n  @keyframes hsleg{0%,20%{transform:rotate(0deg)}35%,65%{transform:rotate(-80deg)}80%,100%{transform:rotate(0deg)}}\n</style>\n<ellipse cx="85" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="50" y1="226" x2="132" y2="226" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<rect x="108" y="172" width="46" height="12" rx="4" fill="#E2E8F0"/>\n<line x1="94" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="222" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="226" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/>\n<line x1="86" y1="148" x2="84" y2="186" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="186" x2="84" y2="218" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="218" x2="74" y2="226" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<g id="hs-leg">\n  <line x1="86" y1="148" x2="100" y2="186" stroke-width="12" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="100" y1="186" x2="104" y2="216" stroke-width="10" stroke="#2563EB" stroke-linecap="round" fill="none"/><circle cx="104" cy="216" r="8" fill="#2563EB"/>\n</g>\n<g id="hs-lean">\n  <line x1="78" y1="64" x2="78" y2="148" stroke-width="18" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="66" y1="72" x2="96" y2="72" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="66" y1="72" x2="50" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="50" y1="108" x2="46" y2="134" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="80" y1="72" x2="94" y2="104" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="94" y1="104" x2="98" y2="130" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n  <line x1="74" y1="48" x2="76" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="74" cy="32" r="16" fill="#CBD5E1"/><circle cx="85" cy="32" r="3" fill="rgba(170,170,170,0.4)"/>\n</g>\n<path d="M 86 148 A 50 50 0 0 0 40 112" fill="none" stroke="#F59E0B" stroke-width="2.5"/>\n<polygon points="40,112 52,106 50,120" fill="#F59E0B"/>\n</svg>', 'pendulum': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #pend{transform-origin:110px 92px;animation:pswing 2s ease-in-out infinite}\n  @keyframes pswing{0%,100%{transform:rotate(30deg)}50%{transform:rotate(-30deg)}}\n</style>\n<ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="50" y1="228" x2="150" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<rect x="28" y="100" width="46" height="8" rx="3" fill="#E2E8F0"/>\n<line x1="94" y1="158" x2="92" y2="196" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="196" x2="92" y2="222" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="228" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/>\n<line x1="84" y1="158" x2="82" y2="196" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="196" x2="82" y2="222" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="90" y1="154" x2="68" y2="80" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="68" y1="90" x2="48" y2="106" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="48" y1="106" x2="44" y2="100" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<circle cx="110" cy="92" r="7" fill="#2563EB66"/>\n<g id="pend">\n  <line x1="110" y1="92" x2="116" y2="140" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="116" y1="140" x2="120" y2="168" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/><circle cx="120" cy="168" r="8" fill="#2563EB"/>\n</g>\n<path d="M 80 92 A 56 56 0 0 1 140 92" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.3"/>\n<line x1="66" y1="80" x2="62" y2="68" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="62" cy="52" r="16" fill="#CBD5E1"/><circle cx="73" cy="52" r="3" fill="rgba(170,170,170,0.4)"/>\n<text x="108" y="210" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#2563EB" font-weight="bold">Brazo relajado — sin tensión</text>\n</svg>', 'quad-stretch': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #qu{transform-origin:86px 186px;animation:qubend 4s ease-in-out infinite}\n  #qu-hand{transform-origin:86px 186px;animation:quhand 4s ease-in-out infinite}\n  @keyframes qubend{0%,15%,85%,100%{transform:rotate(0deg)}40%,65%{transform:rotate(-122deg)}}\n  @keyframes quhand{0%,15%{transform:rotate(0deg) translate(0,0)}35%,65%{transform:rotate(-122deg) translate(0,0)}85%,100%{transform:rotate(0deg) translate(0,0)}}\n</style>\n<ellipse cx="86" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="48" y1="226" x2="130" y2="226" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<rect x="26" y="28" width="8" height="180" rx="3" fill="#E2E8F0"/>\n<line x1="74" y1="72" x2="36" y2="96" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="36" y1="96" x2="34" y2="112" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="86" y1="148" x2="84" y2="186" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="186" x2="84" y2="218" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="218" x2="74" y2="226" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="92" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="218" stroke-width="9" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="92" y1="218" x2="102" y2="226" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n<line x1="78" y1="64" x2="78" y2="148" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="66" y1="70" x2="96" y2="70" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="78" y1="48" x2="78" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="78" cy="32" r="16" fill="#CBD5E1"/><circle cx="89" cy="32" r="3" fill="rgba(170,170,170,0.4)"/>\n<g id="qu"><line x1="86" y1="186" x2="88" y2="220" stroke-width="10" stroke="#2563EB" stroke-linecap="round" fill="none"/><circle cx="88" cy="220" r="8" fill="#2563EB"/></g>\n<g id="qu-hand"><line x1="88" y1="110" x2="96" y2="172" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="96" y1="172" x2="94" y2="186" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n<line x1="114" y1="218" x2="114" y2="158" stroke="#F59E0B" stroke-width="2.5" stroke-dasharray="5 5" fill="none" stroke-linecap="round"/><polygon points="114,158 119.0,168.0 109.0,168.0" fill="#F59E0B"/>\n<text x="100" y="218" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#2563EB" font-weight="bold">Talón → Glúteo</text>\n</svg>', 'neck-tilt': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #nt{transform-origin:100px 64px;animation:ntilt 4s ease-in-out infinite}\n  @keyframes ntilt{\n    0%,10%{transform:rotate(0deg)}25%,42%{transform:rotate(25deg)}\n    52%{transform:rotate(0deg)}67%,82%{transform:rotate(-25deg)}92%,100%{transform:rotate(0deg)}\n  }\n</style>\n<ellipse cx="100" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="58" y1="228" x2="142" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="74" y1="72" x2="50" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="50" y1="108" x2="44" y2="128" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="126" y1="72" x2="150" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="150" y1="108" x2="156" y2="128" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="114" y1="150" x2="116" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="116" y1="188" x2="118" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="118" y1="222" x2="128" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="84" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="188" x2="82" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="74" y1="72" x2="126" y2="72" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="68" x2="100" y2="150" stroke-width="14" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="114" y2="150" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<g id="nt">\n  <line x1="100" y1="64" x2="100" y2="48" stroke-width="8" stroke="#2563EB" stroke-linecap="round" fill="none"/><circle cx="100" cy="32" r="16" fill="#2563EB"/>\n</g>\n<line x1="66" y1="26" x2="44" y2="26" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="5 5" fill="none" stroke-linecap="round"/><polygon points="44,26 54.0,21.0 54.0,31.0" fill="#2563EB"/><line x1="134" y1="26" x2="156" y2="26" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="5 5" fill="none" stroke-linecap="round"/><polygon points="156,26 146.0,31.0 146.0,21.0" fill="#2563EB"/>\n</svg>'};
-const EX_DATA = [{'id': 'marching', 'nm': 'Marcha', 'sub': 'en Sitio', 'zone': 'Activación General', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '40 seg', 'hold': '—', 'holdSub': '', 'freq': '30 reps', 'freqSub': '', 'desc': 'Eleva las rodillas alternadamente a la altura de la cadera. Brazos en movimiento natural opuesto.', 'tip': 'Mantén la espalda recta y los brazos moviéndose en oposición. La rodilla debe llegar a la cadera.'}, {'id': 'hip-rotation', 'nm': 'Rotación', 'sub': 'de Cadera', 'zone': 'Cadera · Lumbar', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '35 seg', 'hold': '—', 'holdSub': '', 'freq': '10 reps', 'freqSub': 'c/sentido', 'desc': 'Manos en la cintura, pies al ancho de hombros. Realiza círculos amplios con la cadera en ambas direcciones.', 'tip': 'Imagina que describes un círculo grande. Mantén hombros quietos, solo mueve la cadera.'}, {'id': 'shoulder-circles', 'nm': 'Círculos', 'sub': 'de Hombros', 'zone': 'Hombros · Trapecio', 'epp': '⛑ Casco · 🥾 Botas · 🧤 Guantes', 'dur': '35 seg', 'hold': '—', 'holdSub': '', 'freq': '10 reps', 'freqSub': 'c/sentido', 'desc': 'Extiende los brazos a los lados. Realiza círculos completos hacia adelante y luego hacia atrás.', 'tip': 'Comienza con círculos pequeños y aumenta el tamaño. Mantén el cuello relajado.'}, {'id': 'squat', 'nm': 'Sentadilla', 'sub': 'Parcial', 'zone': 'Rodillas · Cuádriceps', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '40 seg', 'hold': '2 seg', 'holdSub': 'en el fondo', 'freq': '10 reps', 'freqSub': '', 'desc': 'Pies separados, puntas hacia afuera. Baja hasta 90° en las rodillas. Espalda recta. Las rodillas no sobrepasen los pies.', 'tip': 'Empuja las rodillas hacia afuera alineándolas con los dedos del pie. Distribuye el peso en todo el pie.'}, {'id': 'trunk-rotation', 'nm': 'Rotación', 'sub': 'de Tronco', 'zone': 'Columna · Dorsal', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '35 seg', 'hold': '3 seg', 'holdSub': 'Cada lado', 'freq': '8 reps', 'freqSub': 'c/lado', 'desc': 'De pie, brazos cruzados o en la cintura. Gira el tronco completo al máximo. Caderas fijas.', 'tip': 'Las caderas deben permanecer completamente quietas. Solo rota desde la cintura hacia arriba.'}, {'id': 'heel-raise', 'nm': 'Elevación', 'sub': 'de Talones', 'zone': 'Gemelos · Circulación', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '30 seg', 'hold': '2 seg', 'holdSub': 'en puntillas', 'freq': '15 reps', 'freqSub': '', 'desc': 'Eleva ambos talones al máximo hasta quedar en puntillas. Sostén 2 seg y baja lentamente.', 'tip': 'Sube en 2 seg, mantén 2 seg, baja en 3 seg. Este ritmo maximiza el beneficio venoso.'}, {'id': 'back-extension', 'nm': 'Extensión', 'sub': 'Lumbar', 'zone': 'Espalda Baja · Lumbar', 'epp': '⛑ Casco · 🥾 Botas · 🦺 Overol', 'dur': '30 seg', 'hold': '20 seg', 'holdSub': '', 'freq': '3 reps', 'freqSub': '', 'desc': 'Coloca ambas manos en la espalda baja. Empuja las caderas al frente e inclínate suavemente hacia atrás.', 'tip': 'No fuerces el arco. La extensión debe sentirse como alivio, no como dolor. Exhala al extender.'}, {'id': 'hamstring', 'nm': 'Isquiotibiales', 'sub': 'Estiramiento', 'zone': 'Muslos Posteriores', 'epp': '⛑ Casco · 🥾 Botas · 🥽 Gafas', 'dur': '40 seg', 'hold': '25 seg', 'holdSub': 'Cada lado', 'freq': '3 reps', 'freqSub': 'c/pierna', 'desc': 'Apoya el talón en una superficie elevada. Pierna extendida. Inclínate hacia adelante con espalda recta.', 'tip': 'La inclinación debe venir desde la cadera, no de doblar la espalda. Mantén la rodilla extendida.'}, {'id': 'pendulum', 'nm': 'Péndulo', 'sub': 'de Hombro', 'zone': 'Hombro · Manguito Rotador', 'epp': '⛑ Casco · 🥽 Gafas · 🥾 Botas', 'dur': '35 seg', 'hold': '—', 'holdSub': '', 'freq': '20 reps', 'freqSub': 'c/brazo', 'desc': 'Inclínate con una mano apoyada. Deja el otro brazo colgar completamente libre. Pequeños círculos con la inercia.', 'tip': 'El brazo debe estar completamente relajado como un péndulo. No lo muevas activamente.'}, {'id': 'quad-stretch', 'nm': 'Cuádriceps', 'sub': 'Estiramiento', 'zone': 'Cuádriceps · Rodilla', 'epp': '⛑ Casco · 🥾 Botas · 🦺 Overol', 'dur': '40 seg', 'hold': '25 seg', 'holdSub': 'Cada lado', 'freq': '3 reps', 'freqSub': 'c/pierna', 'desc': 'De pie junto a una pared. Dobla la rodilla llevando el talón hacia los glúteos. Toma el tobillo.', 'tip': 'Mantén ambas rodillas juntas y la cadera recta. Si pierdes el equilibrio, acerca más el apoyo.'}, {'id': 'neck-tilt', 'nm': 'Flexión Lateral', 'sub': 'de Cuello', 'zone': 'Cervical · Trapecio', 'epp': '⛑ Retirar si área segura · 🥾 Botas', 'dur': '35 seg', 'hold': '20 seg', 'holdSub': 'Cada lado', 'freq': '5 reps', 'freqSub': 'c/lado', 'desc': 'Inclina suavemente la oreja hacia el hombro sin subirlo. Sostén 20 seg y cambia de lado.', 'tip': 'Mantén los hombros relajados y bajos. Imagina que alargas el cuello en lugar de solo doblarlo.'}];
+const EX_DATA = [{'id': 'marching', 'totalSeg': 35, 'nm': 'Marcha', 'sub': 'en Sitio', 'zone': 'Activación General', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '35 seg', 'hold': '—', 'holdSub': '', 'freq': '30 pasos', 'freqSub': '', 'desc': 'Eleva las rodillas alternadamente a la altura de la cadera. Brazos en movimiento natural opuesto.', 'tip': 'Mantén la espalda recta y los brazos moviéndose en oposición. La rodilla debe llegar a la cadera.'}, {'id': 'hip-rotation', 'totalSeg': 35, 'nm': 'Rotación', 'sub': 'de Cadera', 'zone': 'Cadera · Lumbar', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '35 seg', 'hold': '—', 'holdSub': '', 'freq': '10 reps', 'freqSub': 'c/sentido', 'desc': 'Manos en la cintura, pies al ancho de hombros. Realiza círculos amplios con la cadera en ambas direcciones.', 'tip': 'Imagina que describes un círculo grande. Mantén hombros quietos, solo mueve la cadera.'}, {'id': 'shoulder-circles', 'totalSeg': 35, 'nm': 'Círculos', 'sub': 'de Hombros', 'zone': 'Hombros · Trapecio', 'epp': '⛑ Casco · 🥾 Botas · 🧤 Guantes', 'dur': '35 seg', 'hold': '—', 'holdSub': '', 'freq': '10 reps', 'freqSub': 'c/sentido', 'desc': 'Extiende los brazos a los lados. Realiza círculos completos hacia adelante y luego hacia atrás.', 'tip': 'Comienza con círculos pequeños y aumenta el tamaño. Mantén el cuello relajado.'}, {'id': 'squat', 'totalSeg': 40, 'nm': 'Sentadilla', 'sub': 'Parcial', 'zone': 'Rodillas · Cuádriceps', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '40 seg', 'hold': '2 seg', 'holdSub': 'en el fondo', 'freq': '10 reps', 'freqSub': '', 'desc': 'Pies separados, puntas hacia afuera. Baja hasta 90° en las rodillas. Espalda recta. Las rodillas no sobrepasen los pies.', 'tip': 'Empuja las rodillas hacia afuera alineándolas con los dedos del pie. Distribuye el peso en todo el pie.'}, {'id': 'trunk-rotation', 'totalSeg': 40, 'nm': 'Rotación', 'sub': 'de Tronco', 'zone': 'Columna · Dorsal', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '40 seg', 'hold': '3 seg', 'holdSub': 'Cada lado', 'freq': '5 reps', 'freqSub': 'c/lado', 'desc': 'De pie, brazos cruzados o en la cintura. Gira el tronco completo al máximo. Caderas fijas.', 'tip': 'Las caderas deben permanecer completamente quietas. Solo rota desde la cintura hacia arriba.'}, {'id': 'heel-raise', 'totalSeg': 45, 'nm': 'Elevación', 'sub': 'de Talones', 'zone': 'Gemelos · Circulación', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '45 seg', 'hold': '2 seg', 'holdSub': 'en puntillas', 'freq': '15 reps', 'freqSub': '', 'desc': 'Eleva ambos talones al máximo hasta quedar en puntillas. Sostén 2 seg y baja lentamente.', 'tip': 'Sube en 2 seg, mantén 2 seg, baja en 3 seg. Este ritmo maximiza el beneficio venoso.'}, {'id': 'back-extension', 'totalSeg': 60, 'nm': 'Extensión', 'sub': 'Lumbar', 'zone': 'Espalda Baja · Lumbar', 'epp': '⛑ Casco · 🥾 Botas · 🦺 Overol', 'dur': '60 seg', 'hold': '20 seg', 'holdSub': '', 'freq': '3 reps', 'freqSub': '', 'desc': 'Coloca ambas manos en la espalda baja. Empuja las caderas al frente e inclínate suavemente hacia atrás.', 'tip': 'No fuerces el arco. La extensión debe sentirse como alivio, no como dolor. Exhala al extender.'}, {'id': 'hamstring', 'totalSeg': 50, 'nm': 'Isquiotibiales', 'sub': 'Estiramiento', 'zone': 'Muslos Posteriores', 'epp': '⛑ Casco · 🥾 Botas · 🥽 Gafas', 'dur': '50 seg', 'hold': '25 seg', 'holdSub': 'Cada lado', 'freq': '1 vez', 'freqSub': 'c/pierna', 'desc': 'Apoya el talón en una superficie elevada. Pierna extendida. Inclínate hacia adelante con espalda recta.', 'tip': 'La inclinación debe venir desde la cadera, no de doblar la espalda. Mantén la rodilla extendida.'}, {'id': 'pendulum', 'totalSeg': 40, 'nm': 'Péndulo', 'sub': 'de Hombro', 'zone': 'Hombro · Manguito Rotador', 'epp': '⛑ Casco · 🥽 Gafas · 🥾 Botas', 'dur': '40 seg', 'hold': '—', 'holdSub': '', 'freq': '20 seg', 'freqSub': 'c/brazo', 'desc': 'Inclínate con una mano apoyada. Deja el otro brazo colgar completamente libre. Pequeños círculos con la inercia.', 'tip': 'El brazo debe estar completamente relajado como un péndulo. No lo muevas activamente.'}, {'id': 'quad-stretch', 'totalSeg': 50, 'nm': 'Cuádriceps', 'sub': 'Estiramiento', 'zone': 'Cuádriceps · Rodilla', 'epp': '⛑ Casco · 🥾 Botas · 🦺 Overol', 'dur': '50 seg', 'hold': '25 seg', 'holdSub': 'Cada lado', 'freq': '1 vez', 'freqSub': 'c/pierna', 'desc': 'De pie junto a una pared. Dobla la rodilla llevando el talón hacia los glúteos. Toma el tobillo.', 'tip': 'Mantén ambas rodillas juntas y la cadera recta. Si pierdes el equilibrio, acerca más el apoyo.'}, {'id': 'neck-tilt', 'totalSeg': 40, 'nm': 'Flexión Lateral', 'sub': 'de Cuello', 'zone': 'Cervical · Trapecio', 'epp': '⛑ Retirar si área segura · 🥾 Botas', 'dur': '40 seg', 'hold': '20 seg', 'holdSub': 'Cada lado', 'freq': '1 vez', 'freqSub': 'c/lado', 'desc': 'Inclina suavemente la oreja hacia el hombro sin subirlo. Sostén 20 seg y cambia de lado.', 'tip': 'Mantén los hombros relajados y bajos. Imagina que alargas el cuello en lugar de solo doblarlo.'}];
 
 let ci=0,run=false,pTimer=null,elapsed=0,startTs=0;
 const CY=8000;
@@ -184,91 +265,20 @@ function loadEx(idx){
   document.getElementById('tc').textContent=(idx+1)+'/'+tot;
   const hs=e.holdSub?`<div class="msub">${e.holdSub}</div>`:`<div class="msub">Mantener</div>`;
   const fs=e.freqSub?`<div class="msub">${e.freqSub}</div>`:`<div class="msub">&nbsp;</div>`;
-  document.getElementById('xc').innerHTML=`
-    <div class="aarea">
-      <div class="spill" id="sp"><span class="sdot"></span><span id="st">PAUSED</span></div>
-      <div class="lbadge">⏱ 8s Loop</div>
-      <div class="svgwrap" id="svgwrap">${EX_SVGS[e.id]||''}</div>
-      <div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div>
-    </div>
-    <div class="xcnt">
-      <div class="brow"><span class="bdg bap">✓ Fisioterapeuta</span><span class="bdg bzn">${e.zone}</span></div>
-      <div class="brow"><span class="bdg bepp">${e.epp}</span></div>
-      <div class="xnm">${e.nm}<br><span>${e.sub}</span></div>
-      <p class="xdsc">${e.desc}</p>
-      <div class="mets">
-        <div class="met"><div class="mlbl">Duración</div><div class="mval">${e.dur}</div><div class="msub">Por ciclo</div></div>
-        <div class="met"><div class="mlbl">Hold</div><div class="mval">${e.hold}</div>${hs}</div>
-        <div class="met"><div class="mlbl">Frecuencia</div><div class="mval">${e.freq}</div>${fs}</div>
-      </div>
-      <div class="ctrls">
-        <button class="bpri" id="bm" onclick="toggleDemo()">
-          <svg id="bi" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-          <span id="bl">Iniciar Demostración</span>
-        </button>
-        <button class="bico" onclick="resetDemo()">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>
-        </button>
-      </div>
-      <div class="tip">
-        <div class="tico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
-        <div class="ttx"><strong>Consejo Profesional</strong><p>${e.tip}</p></div>
-      </div>
-      <div class="navb">
-        ${idx>0?'<button class="bnv" onclick="prevEx()">← Anterior</button>':''}
-        ${idx<tot-1?'<button class="bnv pnv" onclick="nextEx()">Siguiente →</button>':'<button class="bnv pnv" onclick="finishR()">Finalizar ✓</button>'}
-      </div>
-    </div>`;
+  document.getElementById('xc').innerHTML=buildCDCard(e,idx,tot,false);
+  setTimeout(()=>startCDTimer(e.totalSeg||45),100);
   // SVG animations auto-play via CSS — just start the progress bar
 }
 
 function stopTimer(){run=false;if(pTimer){clearInterval(pTimer);pTimer=null;}}
 
-function toggleDemo(){
-  if(run){
-    stopTimer();
-    // Pause CSS animations
-    const sw=document.getElementById('svgwrap');
-    if(sw) sw.querySelectorAll('*').forEach(el=>{el.style.animationPlayState='paused';});
-    const sp=document.getElementById('sp'),st=document.getElementById('st');
-    if(sp)sp.className='spill';if(st)st.textContent='PAUSED';
-    const bm=document.getElementById('bm'),bi=document.getElementById('bi'),bl=document.getElementById('bl');
-    if(bm)bm.className='bpri';if(bi)bi.innerHTML='<polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>';if(bl)bl.textContent='Reanudar';
-  }else{
-    run=true;
-    // Resume CSS animations
-    const sw=document.getElementById('svgwrap');
-    if(sw) sw.querySelectorAll('*').forEach(el=>{el.style.animationPlayState='running';});
-    const sp=document.getElementById('sp'),st=document.getElementById('st');
-    if(sp)sp.className='spill live';if(st)st.textContent='LIVE';
-    const bm=document.getElementById('bm'),bi=document.getElementById('bi'),bl=document.getElementById('bl');
-    if(bm)bm.className='bpri live';if(bi)bi.innerHTML='<rect x="6" y="4" width="4" height="16" fill="currentColor"/><rect x="14" y="4" width="4" height="16" fill="currentColor"/>';if(bl)bl.textContent='Pausar';
-    // Progress bar timer
-    const startEl=Date.now();
-    pTimer=setInterval(()=>{
-      if(!run){clearInterval(pTimer);return;}
-      const t=(Date.now()-startEl)%CY;
-      const pf=document.getElementById('pf');
-      if(pf)pf.style.width=(t/CY*100)+'%';
-    },50);
-  }
-}
 
-function resetDemo(){
-  stopTimer();elapsed=0;
-  const sw=document.getElementById('svgwrap');
-  if(sw) sw.querySelectorAll('*').forEach(el=>{el.style.animationPlayState='paused';el.style.animation='none';void el.offsetWidth;el.style.animation='';el.style.animationPlayState='paused';});
-  const pf=document.getElementById('pf');if(pf)pf.style.width='0%';
-  const sp=document.getElementById('sp'),st=document.getElementById('st');
-  if(sp)sp.className='spill';if(st)st.textContent='PAUSED';
-  const bm=document.getElementById('bm'),bi=document.getElementById('bi'),bl=document.getElementById('bl');
-  if(bm)bm.className='bpri';if(bi)bi.innerHTML='<polygon points="5 3 19 12 5 21 5 3" fill="currentColor"/>';if(bl)bl.textContent='Iniciar Demostración';
-  run=false;
-}
 
-function nextEx(){stopTimer();loadEx(ci+1);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
-function prevEx(){stopTimer();loadEx(ci-1);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
-function finishR(){
+
+
+function nextEx(){cdStop();stopTimer();loadEx(ci+1);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
+function prevEx(){cdStop();stopTimer();loadEx(ci-1);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
+function finishR(){cdStop();
   stopTimer();
   const sp=document.getElementById('sp'),st=document.getElementById('st');
   if(sp)sp.className='spill finish';if(st)st.textContent='FINISH';
@@ -350,6 +360,7 @@ function loadExF(pos){
   const realIdx=_rIndices[pos], tot=_rIndices.length;
   stopTimer();ci=realIdx;run=false;
   const e=EX_DATA[realIdx];
+  if(!e){return;}
   document.getElementById('tp').style.width=((pos/tot)*100)+'%';
   document.getElementById('tc').textContent=(pos+1)+'/'+tot;
   const hs=e.holdSub?'<div class="msub">'+e.holdSub+'</div>':'<div class="msub">Mantener</div>';
@@ -360,7 +371,7 @@ function loadExF(pos){
   document.getElementById('xc').innerHTML=
     '<div class="aarea"><div class="spill" id="sp"><span class="sdot"></span><span id="st">PAUSED</span></div>'+
     '<div class="lbadge">⏱ 8s Loop</div>'+
-    '<div class="svgwrap" id="svgwrap">'+(EX_SVGS[e.id]||'')+'</div>'+
+    '<div class="imgwrap"><img src="'+(EX_IMGS[e.id]||EX_IMGS["squat"]||'')+'" alt="'+e.nm+' '+e.sub+'" onerror="this.style.display=\'none\'"/></div>'+
     '<div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div></div>'+
     '<div class="xcnt">'+
     '<div class="brow"><span class="bdg bap">✓ Fisioterapeuta</span><span class="bdg bzn">'+e.zone+'</span></div>'+
@@ -371,24 +382,187 @@ function loadExF(pos){
     '<div class="met"><div class="mlbl">Duración</div><div class="mval">'+e.dur+'</div><div class="msub">Por ciclo</div></div>'+
     '<div class="met"><div class="mlbl">Hold</div><div class="mval">'+e.hold+'</div>'+hs+'</div>'+
     '<div class="met"><div class="mlbl">Frecuencia</div><div class="mval">'+e.freq+'</div>'+fs+'</div></div>'+
-    '<div class="ctrls"><button class="bpri" id="bm" onclick="toggleDemo()">'+
-    '<svg id="bi" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>'+
-    '<span id="bl">Iniciar Demostración</span></button>'+
-    '<button class="bico" onclick="resetDemo()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg></button></div>'+
+    '<div class="cdarea">'+
+    '<div class="cdring-wrap">'+
+    '<svg viewBox="0 0 96 96"><circle class="cdring-bg" cx="48" cy="48" r="42"/><circle class="cdring-fill" id="cdFill" cx="48" cy="48" r="42"/></svg>'+
+    '<div class="cdtime"><div class="cdtime-num" id="cdTime">'+fmt(e.totalSeg||45)+'</div><div class="cdtime-lbl" id="cdLbl">restante</div></div>'+
+    '</div>'+
+    '<div class="cdbtns">'+
+    '<button class="cdbtn-pause" id="cdPauseBtn" onclick="cdPauseResume()"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pausar</button>'+
+    '<button class="cdbtn-skip" onclick="cdSkip()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg></button>'+
+    '</div>'+
+    
+    '</div>'+
     '<div class="tip"><div class="tico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'+
     '<div class="ttx"><strong>Consejo Profesional</strong><p>'+e.tip+'</p></div></div>'+
     '<div class="navb">'+prevBtn+nextBtn+'</div></div>';
-}
 
-function nextExF(){
+  setTimeout(()=>cdStart(e.totalSeg||45),150);}
+
+function nextExF(){cdStop();
   if(!_rIndices){nextEx();return;}
   if(_rPos+1>=_rIndices.length){finishR();}
   else{_rPos++;loadExF(_rPos);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
 }
-function prevExF(){
+function prevExF(){cdStop();
   if(!_rIndices){prevEx();return;}
   if(_rPos<=0){showRoutineScreen();}
   else{_rPos--;loadExF(_rPos);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
+}
+
+
+window.addEventListener('DOMContentLoaded',()=>{
+  showRoutineScreen();
+});
+
+
+
+function resumeAnims(){
+  const sw=document.getElementById('svgwrap');
+  if(sw) sw.querySelectorAll('*').forEach(el=>{if(el.style) el.style.animationPlayState='running';});
+}
+function pauseAnims(){
+  const sw=document.getElementById('svgwrap');
+  if(sw) sw.querySelectorAll('*').forEach(el=>{if(el.style) el.style.animationPlayState='paused';});
+}
+
+// ── COUNTDOWN ───────────────────────────────
+const CIRC=263;
+let _cdTotal=0,_cdRem=0,_cdOn=false,_cdIv=null;
+
+function fmt(s){const m=Math.floor(s/60),ss=s%60;return m+':'+(ss<10?'0'+ss:ss);}
+
+function cdUpdate(){
+  const el=document.getElementById('cdTime'); if(el) el.textContent=fmt(_cdRem);
+  const lbl=document.getElementById('cdLbl'); if(lbl) lbl.textContent=_cdRem>0?'restante':'¡Listo!';
+  const ring=document.getElementById('cdFill');
+  if(ring){
+    const pct=_cdTotal>0?(_cdTotal-_cdRem)/_cdTotal:0;
+    ring.style.strokeDashoffset=CIRC-(CIRC*pct);
+    ring.style.stroke=_cdRem<=10?'#EF4444':_cdRem<=20?'#F59E0B':'#2563EB';
+  }
+  const pf=document.getElementById('pf');
+  if(pf&&_cdTotal>0) pf.style.width=((_cdTotal-_cdRem)/_cdTotal*100)+'%';
+  const btn=document.getElementById('cdPauseBtn');
+  if(btn){
+    if(_cdRem<=0){btn.className='cdbtn-pause';btn.innerHTML='✓ Completado';}
+    else{
+      btn.className='cdbtn-pause'+(_cdOn?'':' paused');
+      btn.innerHTML=_cdOn
+        ?'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pausar'
+        :'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Reanudar';
+    }
+  }
+  const sp=document.getElementById('sp'); const st=document.getElementById('st');
+  if(sp&&st){sp.className='spill '+(_cdOn?'live':'');st.textContent=_cdOn?'LIVE':'PAUSED';}
+}
+
+function cdStart(totalSeg){
+  if(_cdIv){clearInterval(_cdIv);_cdIv=null;}
+  _cdTotal=totalSeg; _cdRem=totalSeg; _cdOn=true;
+  cdUpdate(); resumeAnims();
+  _cdIv=setInterval(()=>{
+    if(!_cdOn) return;
+    _cdRem--;
+    cdUpdate();
+    if(_cdRem<=0){
+      clearInterval(_cdIv);_cdIv=null;_cdOn=false;
+      pauseAnims();
+      const _hasMore = _rIndices
+        ? (_rPos+1 < _rIndices.length)
+        : (ci+1 < EX_DATA.length);
+      const _nextRealIdx = _rIndices ? _rIndices[_rPos+1] : ci+1;
+      const _nextEx2 = _hasMore ? EX_DATA[_nextRealIdx] : null;
+      const _nextName = _nextEx2 ? (_nextEx2.nm+' '+_nextEx2.sub) : '';
+      const _advFn = _hasMore
+        ? (_rIndices ? ()=>nextExF() : ()=>nextEx())
+        : ()=>finishR();
+      if(_hasMore){ showRest(_advFn, _nextName); } else { finishR(); }
+    }
+  },1000);
+}
+
+function cdPauseResume(){
+  if(_cdRem<=0) return;
+  _cdOn=!_cdOn;
+  if(_cdOn) resumeAnims(); else pauseAnims();
+  cdUpdate();
+}
+
+function cdStop(){
+  _cdOn=false;
+  if(_cdIv){clearInterval(_cdIv);_cdIv=null;}
+  pauseAnims();
+}
+
+function cdSkip(){cdStop();if(window._rIndices)nextExF();else nextEx();}
+
+function cdCardHTML(e,pos,tot,filtered){
+  const ts=e['totalSeg']||45;
+  const hs=e.holdSub?'<div class="msub">'+e.holdSub+'</div>':'<div class="msub">Mantener</div>';
+  const fs=e.freqSub?'<div class="msub">'+e.freqSub+'</div>':'<div class="msub">&nbsp;</div>';
+  const epp=e.epp?'<div class="brow"><span class="bdg bepp">'+e.epp+'</span></div>':'';
+  const pFn=filtered?'prevExF()':'prevEx()';
+  const nFn=filtered?'nextExF()':'nextEx()';
+  return (
+    '<div class="aarea">'+
+    '<div class="spill live" id="sp"><span class="sdot"></span><span id="st">LIVE</span></div>'+
+    '<div class="lbadge">⏱ Auto</div>'+
+    '<div class="imgwrap"><img src="'+(EX_IMGS[e.id]||EX_IMGS["squat"]||'')+'" alt="'+e.nm+' '+e.sub+'" onerror="this.style.display=\'none\'"/></div>'+
+    '<div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div></div>'+
+    '<div class="xcnt">'+
+    '<div class="brow"><span class="bdg bap">✓ Fisioterapeuta</span><span class="bdg bzn">'+e.zone+'</span></div>'+
+    epp+
+    '<div class="xnm">'+e.nm+'<br><span>'+e.sub+'</span></div>'+
+    '<p class="xdsc">'+e.desc+'</p>'+
+    '<div class="mets">'+
+    '<div class="met"><div class="mlbl">Duración</div><div class="mval">'+e.dur+'</div><div class="msub">Por ciclo</div></div>'+
+    '<div class="met"><div class="mlbl">Hold</div><div class="mval">'+e.hold+'</div>'+hs+'</div>'+
+    '<div class="met"><div class="mlbl">Frecuencia</div><div class="mval">'+e.freq+'</div>'+fs+'</div>'+
+    '</div>'+
+    '<div class="cdarea">'+
+    '<div class="cdring-wrap">'+
+    '<svg viewBox="0 0 96 96"><circle class="cdring-bg" cx="48" cy="48" r="42"/><circle class="cdring-fill" id="cdFill" cx="48" cy="48" r="42"/></svg>'+
+    '<div class="cdtime"><div class="cdtime-num" id="cdTime">'+fmt(ts)+'</div><div class="cdtime-lbl" id="cdLbl">restante</div></div>'+
+    '</div>'+
+    '<div class="cdbtns">'+
+    '<button class="cdbtn-pause" id="cdPauseBtn" onclick="cdPauseResume()">'+
+    '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pausar</button>'+
+    '<button class="cdbtn-skip" onclick="cdSkip()" title="Saltar ejercicio">'+
+    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>'+
+    '</button></div>'+
+    
+    '</div>'+
+    '<div class="tip"><div class="tico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'+
+    '<div class="ttx"><strong>Consejo Profesional</strong><p>'+e.tip+'</p></div></div>'+
+    '<div class="navb">'+
+    (pos>0?'<button class="bnv" onclick="'+pFn+'">← Anterior</button>':'')+
+    (pos<tot-1?'<button class="bnv pnv" onclick="'+nFn+'">Siguiente →</button>':'<button class="bnv pnv" onclick="finishR()">Finalizar ✓</button>')+
+    '</div></div>'
+  );
+}
+
+
+// ── REST BETWEEN EXERCISES ───────────────────────────────
+let _restIv=null;
+
+function showRest(nextFn, nextName){
+  cdStop();
+  let secs=5;
+  document.getElementById('restNum').textContent=secs;
+  document.getElementById('restNext').textContent=nextName?'Siguiente: '+nextName:'';
+  document.getElementById('restScreen').classList.add('on');
+  if(_restIv) clearInterval(_restIv);
+  _restIv=setInterval(()=>{
+    secs--;
+    const el=document.getElementById('restNum');
+    if(el) el.textContent=secs;
+    if(secs<=0){
+      clearInterval(_restIv);_restIv=null;
+      document.getElementById('restScreen').classList.remove('on');
+      nextFn();
+    }
+  },1000);
 }
 
 </script>
