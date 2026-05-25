@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 <title>Pausas Activas · Campo · SKANHAWK HSE</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
-<style>*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#F4F6F9;--sur:#FFF;--bor:#E4E8EF;--txt:#0F172A;--mid:#475569;--dim:#94A3B8;--blue:#2563EB;--bl:#EFF6FF;--bm:#BFDBFE;--grn:#10B981;--amb:#F59E0B;--red:#EF4444;--sh:0 1px 3px rgba(0,0,0,.06),0 4px 16px rgba(0,0,0,.06);--shl:0 8px 32px rgba(0,0,0,.10)}
 body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-height:100vh;-webkit-font-smoothing:antialiased}
 .sc{display:none;min-height:100vh;flex-direction:column;align-items:center}.sc.on{display:flex}
@@ -17,65 +18,86 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
 .hq{font-family:'DM Serif Display',serif;font-size:22px;color:var(--txt);text-align:center;line-height:1.3}
 .hopts{display:flex;flex-direction:column;gap:12px}
 .hopt{display:flex;align-items:center;gap:16px;background:var(--bg);border:1.5px solid var(--bor);border-radius:14px;padding:18px 20px;cursor:pointer;transition:all .2s}
-.hopt:hover{border-color:var(--blue);background:var(--bl);transform:translateY(-1px);box-shadow:var(--sh)}
-.hopt:active{transform:scale(.98)}
+.hopt:hover{border-color:var(--blue);background:var(--bl);transform:translateY(-1px)}
 .oic{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .oic.ca{background:#FEF3C7}.oic.of{background:var(--bl)}
 .onm{font-size:16px;font-weight:600;color:var(--txt)}
 .hft{font-size:11px;color:var(--dim);text-align:center;letter-spacing:.5px}
-#ex{padding:0;justify-content:flex-start}
+.rsc{display:none;min-height:100vh;flex-direction:column;align-items:center;background:var(--bg)}.rsc.on{display:flex}
 .topbar{width:100%;background:var(--sur);border-bottom:1px solid var(--bor);padding:12px 20px;display:flex;align-items:center;gap:12px;flex-shrink:0}
 .bbk{width:38px;height:38px;border-radius:10px;border:1.5px solid var(--bor);background:transparent;color:var(--mid);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
 .bbk:hover{border-color:var(--blue);color:var(--blue);background:var(--bl)}
 .tinfo{flex:1}.tmode{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.tsub{font-size:11px;color:var(--dim);margin-top:2px}
 .tprow{display:flex;align-items:center;gap:10px}
 .tpt{flex:1;height:4px;background:var(--bor);border-radius:2px;overflow:hidden}
 .tpf{height:100%;border-radius:2px;background:var(--blue);transition:width .4s ease}
 .tpc{font-size:12px;font-weight:600;color:var(--dim);white-space:nowrap}
-.xscroll{flex:1;overflow-y:auto;width:100%;max-width:460px;align-self:center;padding:0 0 24px}
-.xcard{background:var(--sur);margin:16px 16px 0;border-radius:20px;box-shadow:var(--shl);overflow:hidden;border:1px solid var(--bor)}
-.aarea{background:linear-gradient(160deg,#F8FAFC,#EFF6FF);padding:28px 24px 18px;display:flex;flex-direction:column;align-items:center;gap:14px;position:relative;border-bottom:1px solid var(--bor)}
-.spill{position:absolute;top:14px;left:14px;display:flex;align-items:center;gap:6px;background:white;border:1px solid var(--bor);border-radius:100px;padding:4px 12px 4px 8px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--mid);box-shadow:var(--sh);transition:all .3s}
+.rwrap{flex:1;overflow-y:auto;width:100%;padding-bottom:24px}
+.rcard{background:var(--sur);border-radius:20px;box-shadow:var(--shl);border:1px solid var(--bor);margin:16px auto 0;max-width:620px;overflow:hidden}
+.rhead{padding:22px 22px 18px;border-bottom:1px solid var(--bor)}
+.rcat{display:flex;align-items:center;gap:8px;margin-bottom:6px}
+.rcat-ic{font-size:20px}.rcat-nm{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue)}
+.rday{font-family:'DM Serif Display',serif;font-size:22px;color:var(--txt);margin-bottom:8px}
+.rmsg{font-size:13px;color:var(--mid);line-height:1.65;font-weight:300}
+.rlist{padding:14px 22px;display:flex;flex-direction:column;gap:8px}
+.ritem{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border:1px solid var(--bor);border-radius:12px;padding:11px 13px}
+.rnum{width:24px;height:24px;border-radius:7px;background:var(--bl);color:var(--blue);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.rnm{font-size:13px;font-weight:600;color:var(--txt)}.rreps{font-size:11px;color:var(--blue);font-weight:500;margin-top:1px}.rdsc{font-size:11px;color:var(--mid);margin-top:2px;line-height:1.4;font-weight:300}
+.rdur{display:flex;align-items:center;gap:6px;padding:0 22px 14px;font-size:12px;color:var(--dim);font-weight:500}
+.rtip{margin:0 22px 18px;background:var(--bg);border:1px solid var(--bor);border-radius:12px;padding:12px 14px;display:flex;gap:10px}
+.rtico{width:28px;height:28px;border-radius:8px;background:var(--bl);border:1px solid var(--bm);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue)}
+.rtxt strong{display:block;font-size:11px;font-weight:700;color:var(--txt);margin-bottom:2px}
+.rtxt p{font-size:12px;color:var(--mid);line-height:1.5;font-weight:300}
+.ract{display:flex;gap:10px;padding:0 22px 22px}
+.rbstart{flex:1;background:var(--txt);color:white;border:none;border-radius:12px;padding:15px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+.rbstart:hover{background:#1E293B;transform:translateY(-1px)}
+.rball{border:1.5px solid var(--bor);background:var(--sur);color:var(--mid);border-radius:12px;padding:15px 14px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+.rball:hover{border-color:var(--blue);color:var(--blue);background:var(--bl)}
+#ex{padding:0;justify-content:flex-start}
+.xscroll{flex:1;overflow-y:auto;width:100%;padding:0 0 24px}
+.xcard{background:var(--sur);margin:16px auto 0;max-width:620px;border-radius:20px;box-shadow:var(--shl);overflow:hidden;border:1px solid var(--bor)}
+.aarea{position:relative;border-bottom:1px solid var(--bor);background:linear-gradient(160deg,#F8FAFC,#EFF6FF)}
+.spill{position:absolute;top:10px;left:10px;z-index:10;display:flex;align-items:center;gap:6px;background:white;border:1px solid var(--bor);border-radius:100px;padding:4px 12px 4px 8px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--mid);box-shadow:var(--sh);transition:all .3s}
 .spill.live{color:var(--grn);border-color:#A7F3D0;background:#F0FDF9}
 .spill.finish{color:var(--blue);border-color:var(--bm);background:var(--bl)}
 .sdot{width:7px;height:7px;border-radius:50%;background:currentColor}
-.spill.live .sdot{animation:sdpulse 1s infinite}
-@keyframes sdpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.lbadge{position:absolute;top:14px;right:14px;font-size:10px;color:var(--dim);font-weight:500}
-.svgwrap{display:flex;align-items:center;justify-content:center;width:180px;height:216px}
-.svgwrap svg{width:180px;height:216px}
-.pbar{width:100%;height:4px;background:var(--bor);border-radius:2px;overflow:hidden}
-.pfill{height:100%;border-radius:2px;background:var(--blue);transition:all .3s}
-.xcnt{padding:20px}
+.spill.live .sdot{animation:sdp 1s infinite}
+@keyframes sdp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.ex-img{width:100%;display:block;max-height:300px;object-fit:contain;padding-top:42px}
+.pbar{width:100%;height:4px;background:var(--bor)}
+.pfill{height:100%;border-radius:2px;background:var(--blue);transition:background .3s}
+.xcnt{padding:18px}
 .brow{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px}
 .bdg{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:4px 10px;border-radius:100px}
 .bap{background:var(--bl);color:var(--blue);border:1px solid var(--bm)}
 .bzn{background:#F0FDF9;color:#059669;border:1px solid #A7F3D0}
 .bepp{background:#FFF7ED;color:#C2410C;border:1px solid #FED7AA;font-size:9px}
-.xnm{font-family:'DM Serif Display',serif;font-size:24px;line-height:1.15;color:var(--txt);margin-bottom:6px}
+.xnm{font-family:'DM Serif Display',serif;font-size:22px;line-height:1.15;color:var(--txt);margin-bottom:5px}
 .xnm span{color:var(--blue)}
-.xdsc{font-size:13px;color:var(--mid);line-height:1.65;font-weight:300;margin-bottom:18px}
-.mets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
-.met{background:var(--bg);border:1px solid var(--bor);border-radius:12px;padding:11px 10px}
+.xdsc{font-size:13px;color:var(--mid);line-height:1.65;font-weight:300;margin-bottom:16px}
+.mets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.met{background:var(--bg);border:1px solid var(--bor);border-radius:12px;padding:10px}
 .mlbl{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);margin-bottom:2px}
 .mval{font-size:15px;font-weight:600;color:var(--txt);line-height:1.2}
 .msub{font-size:10px;color:var(--dim);margin-top:1px}
-.ctrls{display:flex;gap:10px;margin-bottom:18px}
-.bpri{flex:1;display:flex;align-items:center;justify-content:center;gap:9px;background:var(--txt);color:white;border:none;border-radius:12px;padding:15px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
-.bpri:hover{background:#1E293B;transform:translateY(-1px)}
-.bpri.live{background:var(--red)}.bpri.live:hover{background:#DC2626}
-.bico{width:50px;height:50px;border-radius:12px;border:1.5px solid var(--bor);background:var(--sur);color:var(--mid);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
-.bico:hover{border-color:var(--blue);color:var(--blue);background:var(--bl)}
-.tip{background:var(--bg);border:1px solid var(--bor);border-radius:12px;padding:13px 14px;display:flex;gap:11px;align-items:flex-start;margin-bottom:18px}
-.tico{width:30px;height:30px;border-radius:8px;background:var(--bl);border:1px solid var(--bm);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue)}
+.cdarea{display:flex;flex-direction:column;align-items:center;gap:12px;padding:16px 18px 4px}
+.cdring-wrap{position:relative;width:92px;height:92px}
+.cdring-wrap svg{width:92px;height:92px;transform:rotate(-90deg)}
+.cdring-bg{stroke:#E4E8EF;stroke-width:7;fill:none}
+.cdring-fill{stroke:#2563EB;stroke-width:7;fill:none;stroke-linecap:round;stroke-dasharray:251;stroke-dashoffset:0;transition:stroke-dashoffset .95s linear,stroke .3s}
+.cdtime{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.cdtime-num{font-family:'DM Serif Display',serif;font-size:22px;color:var(--txt);line-height:1}
+.cdtime-lbl{font-size:9px;color:var(--dim);font-weight:600;letter-spacing:.8px;text-transform:uppercase;margin-top:1px}
+.cdbtn{width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:var(--txt);color:white;border:none;border-radius:12px;padding:14px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;margin-bottom:16px}
+.cdbtn:hover{background:#1E293B}
+.cdbtn.paused{background:var(--grn)}
+.tip{background:var(--bg);border:1px solid var(--bor);border-radius:12px;padding:12px 14px;display:flex;gap:10px;margin-bottom:16px}
+.tico{width:28px;height:28px;border-radius:8px;background:var(--bl);border:1px solid var(--bm);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue)}
 .ttx strong{display:block;font-size:11px;font-weight:700;color:var(--txt);margin-bottom:2px}
 .ttx p{font-size:12px;color:var(--mid);line-height:1.55;font-weight:300}
-.navb{display:flex;gap:10px}
-.bnv{flex:1;border:1.5px solid var(--bor);background:var(--sur);color:var(--mid);border-radius:12px;padding:12px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:7px}
-.bnv:hover{border-color:var(--blue);color:var(--blue);background:var(--bl)}
-.bnv.pnv{background:var(--txt);color:white;border-color:var(--txt)}.bnv.pnv:hover{background:#1E293B}
 #done{padding:40px 24px;gap:24px;justify-content:center}
-.dcard{background:var(--sur);border-radius:24px;box-shadow:var(--shl);width:100%;max-width:380px;padding:36px 28px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;border:1px solid var(--bor)}
+.dcard{background:var(--sur);border-radius:24px;box-shadow:var(--shl);width:100%;max-width:420px;padding:36px 28px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;border:1px solid var(--bor)}
 .dbadge{width:72px;height:72px;background:var(--grn);border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:28px;box-shadow:0 0 0 12px rgba(16,185,129,.1),0 0 0 24px rgba(16,185,129,.05);animation:popIn .5s cubic-bezier(.34,1.56,.64,1) both}
 @keyframes popIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
 .dttl{font-family:'DM Serif Display',serif;font-size:28px;color:var(--txt)}.dttl span{color:var(--grn)}
@@ -85,97 +107,23 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
 .dn{font-family:'DM Serif Display',serif;font-size:26px;color:var(--blue);display:block}
 .dl{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--dim)}
 .bdone{width:100%;background:var(--txt);color:white;border:none;border-radius:14px;padding:16px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
-.bdone:hover{background:#1E293B;transform:translateY(-1px)}
+.bdone:hover{background:#1E293B}
+.rest{display:none;position:fixed;inset:0;background:var(--bg);z-index:500;flex-direction:column;align-items:center;justify-content:center;gap:10px}
+.rest.on{display:flex}
+.rest-n{font-family:'DM Serif Display',serif;font-size:110px;color:var(--txt);line-height:1;animation:rp .9s ease-in-out infinite}
+@keyframes rp{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(.96)}}
+.rest-lbl{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--dim)}
+.rest-next{font-size:12px;color:var(--dim);margin-top:4px}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--bor);border-radius:2px}
-.ov{position:fixed;inset:0;background:var(--bg);z-index:200;pointer-events:none;opacity:0;transition:opacity .25s}.ov.on{opacity:1;pointer-events:all}
-.rscreen{display:none;min-height:100vh;flex-direction:column;align-items:center;background:var(--bg)}
-.rscreen.on{display:flex}
-.rcard-wrap{flex:1;overflow-y:auto;width:100%;max-width:460px;align-self:center;padding-bottom:24px}
-.rcard{background:var(--sur);border-radius:20px;box-shadow:var(--shl);border:1px solid var(--bor);margin:16px 16px 0;overflow:hidden}
-.rday-header{padding:24px 22px 20px;border-bottom:1px solid var(--bor);display:flex;flex-direction:column;gap:10px}
-.rcat-row{display:flex;align-items:center;gap:10px}
-.rcat-icon{font-size:24px}
-.rcat-name{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue)}
-.rday-title{font-family:'DM Serif Display',serif;font-size:22px;color:var(--txt);line-height:1.2}
-.rday-msg{font-size:13px;color:var(--mid);line-height:1.65;font-weight:300}
-.rex-list{padding:16px 22px;display:flex;flex-direction:column;gap:10px}
-.rex-item{display:flex;align-items:flex-start;gap:12px;background:var(--bg);border:1px solid var(--bor);border-radius:12px;padding:12px 14px}
-.rex-num{width:26px;height:26px;border-radius:8px;background:var(--bl);color:var(--blue);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.rex-name{font-size:13px;font-weight:600;color:var(--txt)}
-.rex-reps{font-size:11px;color:var(--blue);margin-top:1px;font-weight:500}
-.rex-dsc{font-size:11px;color:var(--mid);margin-top:2px;line-height:1.4;font-weight:300}
-.rdur{display:flex;align-items:center;gap:6px;padding:0 22px 16px;font-size:12px;color:var(--dim);font-weight:500}
-.rtip{margin:0 22px 20px;background:var(--bg);border:1px solid var(--bor);border-radius:12px;padding:13px 14px;display:flex;gap:10px}
-.rtip-icon{width:28px;height:28px;border-radius:8px;background:var(--bl);border:1px solid var(--bm);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue)}
-.rtip-txt strong{display:block;font-size:11px;font-weight:700;color:var(--txt);margin-bottom:2px}
-.rtip-txt p{font-size:12px;color:var(--mid);line-height:1.5;font-weight:300}
-.ract-btns{display:flex;gap:10px;padding:0 22px 22px}
-.rbtn-start{flex:1;background:var(--txt);color:white;border:none;border-radius:12px;padding:15px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
-.rbtn-start:hover{background:#1E293B;transform:translateY(-1px)}
-.rbtn-all{border:1.5px solid var(--bor);background:var(--sur);color:var(--mid);border-radius:12px;padding:15px 14px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
-.rbtn-all:hover{border-color:var(--blue);color:var(--blue);background:var(--bl)}
-
-/* ── COUNTDOWN TIMER ──────────────────────── */
-.cdarea{display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px 20px 4px}
-.cdring-wrap{position:relative;width:92px;height:92px;flex-shrink:0}
-.cdring-wrap svg{width:92px;height:92px;transform:rotate(-90deg)}
-.cdring-bg{stroke:#E4E8EF;stroke-width:7;fill:none}
-.cdring-fill{stroke:#2563EB;stroke-width:7;fill:none;stroke-linecap:round;
-  stroke-dasharray:251;stroke-dashoffset:0;transition:stroke-dashoffset .95s linear,stroke .3s}
-.cdtime{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:1px}
-.cdtime-num{font-family:'DM Serif Display',serif;font-size:22px;color:#0F172A;line-height:1}
-.cdtime-lbl{font-size:9px;color:#94A3B8;font-weight:600;letter-spacing:.8px;text-transform:uppercase}
-.cdbtns{display:flex;gap:10px;width:100%}
-.cdbtn-pause{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;
-  background:#0F172A;color:white;border:none;border-radius:12px;padding:14px 20px;
-  font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
-.cdbtn-pause:hover{background:#1E293B;transform:translateY(-1px)}
-.cdbtn-pause.paused{background:#10B981}
-.cdbtn-pause.done{background:#2563EB}
-.cdbtn-skip{width:50px;height:50px;border-radius:12px;border:1.5px solid #E4E8EF;
-  background:white;color:#475569;cursor:pointer;display:flex;align-items:center;
-  justify-content:center;transition:all .2s;flex-shrink:0}
-.cdbtn-skip:hover{border-color:#2563EB;color:#2563EB;background:#EFF6FF}
-.auto-lbl{font-size:11px;color:#94A3B8;text-align:center;display:flex;align-items:center;gap:5px}
-
-
-.cdarea{display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px 20px 4px}
-.cdring-wrap{position:relative;width:96px;height:96px}
-.cdring-wrap svg{width:96px;height:96px;transform:rotate(-90deg)}
-.cdring-bg{stroke:#E4E8EF;stroke-width:7;fill:none}
-.cdring-fill{stroke:#2563EB;stroke-width:7;fill:none;stroke-linecap:round;stroke-dasharray:263;stroke-dashoffset:0;transition:stroke-dashoffset .95s linear,stroke .4s}
-.cdtime{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}
-.cdtime-num{font-family:'DM Serif Display',serif;font-size:24px;color:#0F172A;line-height:1.1}
-.cdtime-lbl{font-size:9px;color:#94A3B8;font-weight:600;letter-spacing:.8px;text-transform:uppercase}
-.cdbtns{display:flex;gap:10px;width:100%}
-.cdbtn-pause{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;background:#0F172A;color:white;border:none;border-radius:12px;padding:14px 20px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
-.cdbtn-pause:hover{background:#1E293B;transform:translateY(-1px)}
-.cdbtn-pause.paused{background:#10B981}
-.cdbtn-skip{width:50px;height:50px;border-radius:12px;border:1.5px solid #E4E8EF;background:white;color:#475569;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
-.cdbtn-skip:hover{border-color:#2563EB;color:#2563EB;background:#EFF6FF}
-.cd-auto{font-size:11px;color:#94A3B8;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px}
-
-
-.rest-screen{display:none;position:fixed;inset:0;background:#F4F6F9;z-index:500;
-  flex-direction:column;align-items:center;justify-content:center;gap:12px}
-.rest-screen.on{display:flex}
-.rest-num{font-family:'DM Serif Display',serif;font-size:120px;color:#0F172A;line-height:1;
-  animation:restpulse .9s ease-in-out infinite}
-@keyframes restpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(.96)}}
-.rest-lbl{font-size:13px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:#94A3B8}
-.rest-next{font-size:12px;color:#CBD5E1;margin-top:4px}
-
-
-.imgwrap{width:100%;background:linear-gradient(160deg,#F8FAFC,#EFF6FF);border-bottom:1px solid var(--bor);position:relative}
-.imgwrap img{width:100%;height:auto;display:block;max-height:280px;object-fit:contain;padding:8px}
-
 </style>
 </head>
 <body>
-<div class="ov" id="ov"></div>
-<div class="rest-screen" id="restScreen"><div class="rest-num" id="restNum">5</div><div class="rest-lbl">Descanso</div><div class="rest-next" id="restNext"></div></div>
-<div class="rscreen" id="rscreen"></div>
+<div class="rest" id="rest">
+  <div class="rest-n" id="restN">5</div>
+  <div class="rest-lbl">Descanso</div>
+  <div class="rest-next" id="restNext"></div>
+</div>
+
 <div class="sc on" id="home">
   <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
     <span class="brand">SKANHAWK SAS · HSE</span>
@@ -185,11 +133,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
   <div class="hcard">
     <div class="hq">¿En qué lugar<br>estás ubicado?</div>
     <div class="hopts">
-      <div class="hopt" onclick="goApp('campo')">
+      <div class="hopt" onclick="window.location.href='pausas_activas_campo.html'">
         <div class="oic ca">⛑</div><div><div class="onm">Campo</div></div>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
-      <div class="hopt" onclick="goApp('oficina')">
+      <div class="hopt" onclick="window.location.href='pausas_activas_oficina.html'">
         <div class="oic of">💻</div><div><div class="onm">Oficina</div></div>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
       </div>
@@ -197,16 +145,20 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
   </div>
   <span class="hft">Programa Bienestar Laboral · SKANHAWK SAS</span>
 </div>
+
+<div class="rsc" id="rscreen"></div>
+
 <div class="sc" id="ex">
   <div class="topbar">
-    <button class="bbk" onclick="goBack()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button class="bbk" onclick="goHome()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
     <div class="tinfo">
       <div class="tmode">PAUSAS ACTIVAS · CAMPO</div>
-      <div class="tprow"><div class="tpt"><div class="tpf" id="tp" style="width:0%"></div></div><div class="tpc" id="tc">1/11</div></div>
+      <div class="tprow"><div class="tpt"><div class="tpf" id="tp" style="width:0%"></div></div><div class="tpc" id="tc">1/1</div></div>
     </div>
   </div>
   <div class="xscroll"><div class="xcard" id="xc"></div></div>
 </div>
+
 <div class="sc" id="done">
   <div class="dcard">
     <div class="dbadge">✓</div>
@@ -219,297 +171,89 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--txt);min-
     <button class="bdone" onclick="goHome()">← Volver al Inicio</button>
   </div>
 </div>
+
 <script>
-const EX_IMGS = {
-  'squat': 'images/squat.png',
-  'neck-tilt': 'images/neck_tilt.png',
-  'back-extension': 'images/back_extension.png',
-  'heel-raise': 'images/heel_raise.png',
-  'shoulder-circles': 'images/shoulder_circles.png',
-  'hip-rotation': 'images/hip_rotation.png',
-  'trunk-rotation': 'images/trunk_rotation.png',
-  'hamstring': 'images/hamstring.png',
-  'pendulum': 'images/pendulum.png',
-  'quad-stretch': 'images/quad_stretch.png',
-  'marching': 'images/marching.png',
-  'chin-retraction': 'images/chin_retraction.png',
-  'shoulder-shrug': 'images/shoulder_shrug.png',
-  'shoulder-retraction': 'images/shoulder_retraction.png',
-  'shoulder-cross': 'images/shoulder_cross.png',
-  'wrist-extension': 'images/wrist_extension.png',
-  'wrist-rotation': 'images/wrist_extension.png',
-  'lateral-stretch': 'images/lateral_stretch.png',
-  'eye-palming': 'images/eye_palming.png',
-  'eye-focus': 'images/eye_focus.png',
-  'neck-rotation': 'images/neck_tilt.png',
-};
-
-const EX_SVGS = {'marching': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #m-lleg{transform-origin:88px 148px;animation:mll 2s ease-in-out infinite}\n  #m-lcalf{transform-origin:86px 188px;animation:mlc 2s ease-in-out infinite}\n  #m-rleg{transform-origin:94px 148px;animation:mrl 2s ease-in-out infinite}\n  #m-larm{transform-origin:80px 72px;animation:mla 2s ease-in-out infinite}\n  #m-rarm{transform-origin:88px 72px;animation:mra 2s ease-in-out infinite}\n  @keyframes mll{0%,45%,100%{transform:rotate(0deg)}15%,35%{transform:rotate(-50deg)}}\n  @keyframes mlc{0%,45%,100%{transform:rotate(0deg)}15%,35%{transform:rotate(70deg)}}\n  @keyframes mrl{0%,55%,100%{transform:rotate(0deg)}65%,85%{transform:rotate(-40deg)}}\n  @keyframes mla{0%,45%,100%{transform:rotate(0deg)}15%,35%{transform:rotate(32deg)}}\n  @keyframes mra{0%,55%,100%{transform:rotate(0deg)}65%,85%{transform:rotate(-28deg)}}\n</style>\n<ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="52" y1="228" x2="124" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="94" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="222" stroke-width="9" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="228" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n<g id="m-rarm"><line x1="88" y1="72" x2="104" y2="104" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="104" y1="104" x2="108" y2="130" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/></g>\n<line x1="80" y1="64" x2="80" y2="148" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<g id="m-lleg"><line x1="88" y1="148" x2="86" y2="188" stroke-width="13" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <g id="m-lcalf"><line x1="86" y1="188" x2="84" y2="218" stroke-width="10" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="84" y1="218" x2="74" y2="226" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/></g>\n</g>\n<g id="m-larm"><line x1="80" y1="72" x2="64" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="64" y1="106" x2="60" y2="130" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n<line x1="86" y1="48" x2="88" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="88" cy="32" r="16" fill="#CBD5E1"/>\n<line x1="74" y1="164" x2="74" y2="128" stroke="#2563EB" stroke-width="2.5"  fill="none" stroke-linecap="round"/><polygon points="74,128 79.0,138.0 69.0,138.0" fill="#2563EB"/>\n</svg>', 'hip-rotation': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #hr{transform-origin:100px 150px;animation:hrc 3s linear infinite}\n  @keyframes hrc{\n    0%{transform:translate(0,0)}25%{transform:translate(16px,8px)}\n    50%{transform:translate(0,16px)}75%{transform:translate(-16px,8px)}100%{transform:translate(0,0)}\n  }\n</style>\n<ellipse cx="100" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="58" y1="228" x2="142" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="74" y1="72" x2="52" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="52" y1="108" x2="46" y2="128" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="126" y1="72" x2="148" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="148" y1="108" x2="154" y2="128" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="74" y1="72" x2="126" y2="72" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="68" x2="100" y2="150" stroke-width="14" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="114" y2="150" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="48" x2="100" y2="46" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="100" cy="32" r="16" fill="#CBD5E1"/>\n<g id="hr">\n  <line x1="86" y1="150" x2="84" y2="188" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="84" y1="188" x2="82" y2="222" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="114" y1="150" x2="116" y2="188" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="116" y1="188" x2="118" y2="222" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="118" y1="222" x2="128" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n</g>\n<ellipse cx="100" cy="156" rx="38" ry="16" fill="none" stroke="#F59E0B" stroke-width="1.5" stroke-dasharray="4 5" opacity="0.5"/>\n<polygon points="138,148 134,162 128,152" fill="#F59E0B" opacity="0.7"/>\n</svg>', 'shoulder-circles': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #sc-r{transform-origin:126px 72px;animation:scr 2s linear infinite}\n  #sc-l{transform-origin:74px 72px;animation:scl 2s linear infinite}\n  @keyframes scr{from{transform:rotate(0)}to{transform:rotate(-360deg)}}\n  @keyframes scl{from{transform:rotate(0)}to{transform:rotate(360deg)}}\n</style>\n<ellipse cx="100" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="58" y1="228" x2="142" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="114" y1="150" x2="116" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="116" y1="188" x2="118" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="118" y1="222" x2="128" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="84" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="188" x2="82" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="74" y1="72" x2="126" y2="72" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="68" x2="100" y2="150" stroke-width="14" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="114" y2="150" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="48" x2="100" y2="46" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="100" cy="32" r="16" fill="#CBD5E1"/>\n<ellipse cx="126" cy="72" rx="44" ry="44" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3 5" opacity="0.18"/>\n<ellipse cx="74" cy="72" rx="44" ry="44" fill="none" stroke="#2563EB" stroke-width="1" stroke-dasharray="3 5" opacity="0.18"/>\n<g id="sc-r"><line x1="126" y1="72" x2="142" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="142" y1="106" x2="146" y2="134" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n<g id="sc-l"><line x1="74" y1="72" x2="58" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="58" y1="106" x2="54" y2="134" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n</svg>', 'squat': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #sq-all{transform-origin:88px 148px;animation:sq-d 3.5s ease-in-out infinite}\n  #sq-t{transform-origin:88px 148px;animation:sq-ti 3.5s ease-in-out infinite}\n  #sq-c{transform-origin:86px 188px;animation:sq-ci 3.5s ease-in-out infinite}\n  @keyframes sq-d{0%,12%,88%,100%{transform:translateY(0)}38%,62%{transform:translateY(46px)}}\n  @keyframes sq-ti{0%,12%,88%,100%{transform:rotate(0)}38%,62%{transform:rotate(-46deg)}}\n  @keyframes sq-ci{0%,12%,88%,100%{transform:rotate(0)}38%,62%{transform:rotate(-72deg)}}\n</style>\n<ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="52" y1="228" x2="128" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/><line x1="94" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="222" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="228" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="88" y1="64" x2="88" y2="148" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="88" y1="148" x2="86" y2="186" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="186" x2="84" y2="222" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="222" x2="74" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="94" y1="72" x2="104" y2="104" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="104" y1="104" x2="108" y2="130" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n<g id="sq-all">\n  <line x1="80" y1="64" x2="80" y2="148" stroke-width="18" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="68" y1="70" x2="98" y2="70" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="68" y1="70" x2="52" y2="106" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="52" y1="106" x2="48" y2="132" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="86" y1="48" x2="86" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="86" cy="32" r="16" fill="#CBD5E1"/><circle cx="97" cy="32" r="3" fill="rgba(170,170,170,0.4)"/>\n</g>\n<g id="sq-t"><line x1="88" y1="148" x2="86" y2="188" stroke-width="13" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <g id="sq-c"><line x1="86" y1="188" x2="84" y2="222" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="84" y1="222" x2="74" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/></g>\n</g>\n<text x="100" y="218" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#F59E0B" font-weight="bold">↓ Baja controlado</text>\n</svg>', 'trunk-rotation': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #tr{transform-origin:100px 148px;animation:trun 4s ease-in-out infinite}\n  @keyframes trun{\n    0%,10%{transform:rotate(0deg)}28%,45%{transform:rotate(32deg)}\n    55%{transform:rotate(0deg)}68%,85%{transform:rotate(-32deg)}95%,100%{transform:rotate(0deg)}\n  }\n</style>\n<ellipse cx="100" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="58" y1="228" x2="142" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="114" y1="150" x2="116" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="116" y1="188" x2="118" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="118" y1="222" x2="128" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="84" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="188" x2="82" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="86" y1="150" x2="114" y2="150" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<g id="tr">\n  <line x1="74" y1="72" x2="126" y2="72" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="100" y1="72" x2="100" y2="150" stroke-width="14" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="74" y1="72" x2="56" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="56" y1="106" x2="50" y2="128" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="126" y1="72" x2="144" y2="106" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="144" y1="106" x2="150" y2="128" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="100" y1="48" x2="100" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="100" cy="32" r="16" fill="#CBD5E1"/>\n</g>\n<path d="M 50 110 A 60 60 0 0 1 150 110" fill="none" stroke="#2563EB" stroke-width="2" stroke-dasharray="5 6" opacity="0.3"/>\n<polygon points="150,110 140,102 142,116" fill="#2563EB" opacity="0.5"/>\n<polygon points="50,110 60,102 58,116" fill="#2563EB" opacity="0.5"/>\n</svg>', 'heel-raise': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #hr2{animation:hrise 3s ease-in-out infinite}\n  #hr-toe{transform-origin:84px 220px;animation:htoe 3s ease-in-out infinite}\n  #hr-bktoe{transform-origin:92px 220px;animation:htoe 3s ease-in-out infinite}\n  @keyframes hrise{0%,15%,85%,100%{transform:translateY(0)}40%,65%{transform:translateY(-22px)}}\n  @keyframes htoe{0%,15%,85%,100%{transform:rotate(0deg)}40%,65%{transform:rotate(30deg)}}\n</style>\n<line x1="48" y1="222" x2="140" y2="222" stroke="#E2E8F0" stroke-width="2" fill="none"/><ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/>\n<rect x="68" y="30" width="40" height="30" rx="6" fill="#CBD5E144"/>\n<g id="hr2">\n  <line x1="94" y1="90" x2="92" y2="138" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="138" x2="91" y2="180" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/>\n  <line x1="88" y1="90" x2="86" y2="138" stroke-width="13" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="86" y1="138" x2="84" y2="180" stroke-width="10" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n</g>\n<g id="hr-toe"><line x1="84" y1="180" x2="74" y2="188" stroke-width="8" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n<g id="hr-bktoe"><line x1="91" y1="180" x2="101" y2="188" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/></g>\n<line x1="64" y1="178" x2="64" y2="140" stroke="#2563EB" stroke-width="2.5"  fill="none" stroke-linecap="round"/><polygon points="64,140 69.0,150.0 59.0,150.0" fill="#2563EB"/><line x1="116" y1="178" x2="116" y2="140" stroke="#2563EB" stroke-width="2.5"  fill="none" stroke-linecap="round"/><polygon points="116,140 121.0,150.0 111.0,150.0" fill="#2563EB"/>\n<text x="100" y="212" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#2563EB" font-weight="bold">Puntillas ↑</text>\n</svg>', 'back-extension': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #be{transform-origin:88px 148px;animation:bearc 4s ease-in-out infinite}\n  #be-hip{animation:behip 4s ease-in-out infinite}\n  @keyframes bearc{0%,15%,85%,100%{transform:rotate(0deg)}40%,65%{transform:rotate(-24deg)}}\n  @keyframes behip{0%,15%,85%,100%{transform:translateX(0)}40%,65%{transform:translateX(8px)}}\n</style>\n<ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="52" y1="228" x2="128" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/><line x1="94" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="222" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="228" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="88" y1="64" x2="88" y2="148" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="88" y1="148" x2="86" y2="186" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="186" x2="84" y2="222" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="222" x2="74" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="94" y1="72" x2="104" y2="104" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="104" y1="104" x2="108" y2="130" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n<g id="be-hip"><circle cx="88" cy="148" r="10" fill="#2563EB55"/></g>\n<g id="be">\n  <line x1="80" y1="64" x2="80" y2="148" stroke-width="18" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="68" y1="70" x2="96" y2="70" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="80" y1="72" x2="86" y2="118" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="118" x2="90" y2="136" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="82" y1="72" x2="74" y2="114" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="74" y1="114" x2="72" y2="132" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n  <line x1="82" y1="48" x2="82" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="82" cy="32" r="16" fill="#CBD5E1"/><circle cx="93" cy="32" r="3" fill="rgba(170,170,170,0.4)"/>\n</g>\n<path d="M 88 148 A 52 52 0 0 0 42 110" fill="none" stroke="#F59E0B" stroke-width="2.5"/>\n<polygon points="42,110 54,106 50,120" fill="#F59E0B"/>\n<text x="100" y="216" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#F59E0B" font-weight="bold">← Cadera adelante</text>\n</svg>', 'hamstring': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #hs-lean{transform-origin:86px 148px;animation:hslean 4s ease-in-out infinite}\n  #hs-leg{transform-origin:86px 148px;animation:hsleg 4s ease-in-out infinite}\n  @keyframes hslean{0%,15%,85%,100%{transform:rotate(0deg)}35%,65%{transform:rotate(-30deg)}}\n  @keyframes hsleg{0%,20%{transform:rotate(0deg)}35%,65%{transform:rotate(-80deg)}80%,100%{transform:rotate(0deg)}}\n</style>\n<ellipse cx="85" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="50" y1="226" x2="132" y2="226" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<rect x="108" y="172" width="46" height="12" rx="4" fill="#E2E8F0"/>\n<line x1="94" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="222" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="226" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/>\n<line x1="86" y1="148" x2="84" y2="186" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="186" x2="84" y2="218" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="218" x2="74" y2="226" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<g id="hs-leg">\n  <line x1="86" y1="148" x2="100" y2="186" stroke-width="12" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="100" y1="186" x2="104" y2="216" stroke-width="10" stroke="#2563EB" stroke-linecap="round" fill="none"/><circle cx="104" cy="216" r="8" fill="#2563EB"/>\n</g>\n<g id="hs-lean">\n  <line x1="78" y1="64" x2="78" y2="148" stroke-width="18" stroke="#2563EB" stroke-linecap="round" fill="none"/>\n  <line x1="66" y1="72" x2="96" y2="72" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="66" y1="72" x2="50" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="50" y1="108" x2="46" y2="134" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n  <line x1="80" y1="72" x2="94" y2="104" stroke-width="10" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="94" y1="104" x2="98" y2="130" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n  <line x1="74" y1="48" x2="76" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="74" cy="32" r="16" fill="#CBD5E1"/><circle cx="85" cy="32" r="3" fill="rgba(170,170,170,0.4)"/>\n</g>\n<path d="M 86 148 A 50 50 0 0 0 40 112" fill="none" stroke="#F59E0B" stroke-width="2.5"/>\n<polygon points="40,112 52,106 50,120" fill="#F59E0B"/>\n</svg>', 'pendulum': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #pend{transform-origin:110px 92px;animation:pswing 2s ease-in-out infinite}\n  @keyframes pswing{0%,100%{transform:rotate(30deg)}50%{transform:rotate(-30deg)}}\n</style>\n<ellipse cx="88" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="50" y1="228" x2="150" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<rect x="28" y="100" width="46" height="8" rx="3" fill="#E2E8F0"/>\n<line x1="94" y1="158" x2="92" y2="196" stroke-width="11" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="196" x2="92" y2="222" stroke-width="9" stroke="#CBD5E199" stroke-linecap="round" fill="none"/><line x1="92" y1="222" x2="102" y2="228" stroke-width="8" stroke="#CBD5E199" stroke-linecap="round" fill="none"/>\n<line x1="84" y1="158" x2="82" y2="196" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="196" x2="82" y2="222" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="90" y1="154" x2="68" y2="80" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="68" y1="90" x2="48" y2="106" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="48" y1="106" x2="44" y2="100" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<circle cx="110" cy="92" r="7" fill="#2563EB66"/>\n<g id="pend">\n  <line x1="110" y1="92" x2="116" y2="140" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="116" y1="140" x2="120" y2="168" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/><circle cx="120" cy="168" r="8" fill="#2563EB"/>\n</g>\n<path d="M 80 92 A 56 56 0 0 1 140 92" fill="none" stroke="#2563EB" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.3"/>\n<line x1="66" y1="80" x2="62" y2="68" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="62" cy="52" r="16" fill="#CBD5E1"/><circle cx="73" cy="52" r="3" fill="rgba(170,170,170,0.4)"/>\n<text x="108" y="210" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#2563EB" font-weight="bold">Brazo relajado — sin tensión</text>\n</svg>', 'quad-stretch': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #qu{transform-origin:86px 186px;animation:qubend 4s ease-in-out infinite}\n  #qu-hand{transform-origin:86px 186px;animation:quhand 4s ease-in-out infinite}\n  @keyframes qubend{0%,15%,85%,100%{transform:rotate(0deg)}40%,65%{transform:rotate(-122deg)}}\n  @keyframes quhand{0%,15%{transform:rotate(0deg) translate(0,0)}35%,65%{transform:rotate(-122deg) translate(0,0)}85%,100%{transform:rotate(0deg) translate(0,0)}}\n</style>\n<ellipse cx="86" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="48" y1="226" x2="130" y2="226" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<rect x="26" y="28" width="8" height="180" rx="3" fill="#E2E8F0"/>\n<line x1="74" y1="72" x2="36" y2="96" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="36" y1="96" x2="34" y2="112" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="86" y1="148" x2="84" y2="186" stroke-width="13" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="186" x2="84" y2="218" stroke-width="10" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="218" x2="74" y2="226" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="92" y1="148" x2="92" y2="186" stroke-width="11" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="92" y1="186" x2="92" y2="218" stroke-width="9" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/><line x1="92" y1="218" x2="102" y2="226" stroke-width="8" stroke="#CBD5E1AA" stroke-linecap="round" fill="none"/>\n<line x1="78" y1="64" x2="78" y2="148" stroke-width="18" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="66" y1="70" x2="96" y2="70" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="78" y1="48" x2="78" y2="64" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><circle cx="78" cy="32" r="16" fill="#CBD5E1"/><circle cx="89" cy="32" r="3" fill="rgba(170,170,170,0.4)"/>\n<g id="qu"><line x1="86" y1="186" x2="88" y2="220" stroke-width="10" stroke="#2563EB" stroke-linecap="round" fill="none"/><circle cx="88" cy="220" r="8" fill="#2563EB"/></g>\n<g id="qu-hand"><line x1="88" y1="110" x2="96" y2="172" stroke-width="11" stroke="#2563EB" stroke-linecap="round" fill="none"/><line x1="96" y1="172" x2="94" y2="186" stroke-width="9" stroke="#2563EB" stroke-linecap="round" fill="none"/></g>\n<line x1="114" y1="218" x2="114" y2="158" stroke="#F59E0B" stroke-width="2.5" stroke-dasharray="5 5" fill="none" stroke-linecap="round"/><polygon points="114,158 119.0,168.0 109.0,168.0" fill="#F59E0B"/>\n<text x="100" y="218" text-anchor="middle" font-family="DM Sans,sans-serif" font-size="9" fill="#2563EB" font-weight="bold">Talón → Glúteo</text>\n</svg>', 'neck-tilt': '<svg viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg">\n<style>\n  #nt{transform-origin:100px 64px;animation:ntilt 4s ease-in-out infinite}\n  @keyframes ntilt{\n    0%,10%{transform:rotate(0deg)}25%,42%{transform:rotate(25deg)}\n    52%{transform:rotate(0deg)}67%,82%{transform:rotate(-25deg)}92%,100%{transform:rotate(0deg)}\n  }\n</style>\n<ellipse cx="100" cy="232" rx="22" ry="5" fill="rgba(0,0,0,0.06)"/><line x1="58" y1="228" x2="142" y2="228" stroke="#E2E8F0" stroke-width="2" fill="none"/>\n<line x1="74" y1="72" x2="50" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="50" y1="108" x2="44" y2="128" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="126" y1="72" x2="150" y2="108" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="150" y1="108" x2="156" y2="128" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<line x1="114" y1="150" x2="116" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="116" y1="188" x2="118" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="118" y1="222" x2="128" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="84" y2="188" stroke-width="11" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="84" y1="188" x2="82" y2="222" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="82" y1="222" x2="72" y2="228" stroke-width="8" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="74" y1="72" x2="126" y2="72" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="100" y1="68" x2="100" y2="150" stroke-width="14" stroke="#CBD5E1" stroke-linecap="round" fill="none"/><line x1="86" y1="150" x2="114" y2="150" stroke-width="9" stroke="#CBD5E1" stroke-linecap="round" fill="none"/>\n<g id="nt">\n  <line x1="100" y1="64" x2="100" y2="48" stroke-width="8" stroke="#2563EB" stroke-linecap="round" fill="none"/><circle cx="100" cy="32" r="16" fill="#2563EB"/>\n</g>\n<line x1="66" y1="26" x2="44" y2="26" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="5 5" fill="none" stroke-linecap="round"/><polygon points="44,26 54.0,21.0 54.0,31.0" fill="#2563EB"/><line x1="134" y1="26" x2="156" y2="26" stroke="#2563EB" stroke-width="2.5" stroke-dasharray="5 5" fill="none" stroke-linecap="round"/><polygon points="156,26 146.0,31.0 146.0,21.0" fill="#2563EB"/>\n</svg>'};
-const EX_DATA = [{'id': 'marching', 'totalSeg': 35, 'nm': 'Marcha', 'sub': 'en Sitio', 'zone': 'Activación General', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '35 seg', 'hold': '—', 'holdSub': '', 'freq': '30 pasos', 'freqSub': '', 'desc': 'Eleva las rodillas alternadamente a la altura de la cadera. Brazos en movimiento natural opuesto.', 'tip': 'Mantén la espalda recta y los brazos moviéndose en oposición. La rodilla debe llegar a la cadera.'}, {'id': 'hip-rotation', 'totalSeg': 35, 'nm': 'Rotación', 'sub': 'de Cadera', 'zone': 'Cadera · Lumbar', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '35 seg', 'hold': '—', 'holdSub': '', 'freq': '10 reps', 'freqSub': 'c/sentido', 'desc': 'Manos en la cintura, pies al ancho de hombros. Realiza círculos amplios con la cadera en ambas direcciones.', 'tip': 'Imagina que describes un círculo grande. Mantén hombros quietos, solo mueve la cadera.'}, {'id': 'shoulder-circles', 'totalSeg': 35, 'nm': 'Círculos', 'sub': 'de Hombros', 'zone': 'Hombros · Trapecio', 'epp': '⛑ Casco · 🥾 Botas · 🧤 Guantes', 'dur': '35 seg', 'hold': '—', 'holdSub': '', 'freq': '10 reps', 'freqSub': 'c/sentido', 'desc': 'Extiende los brazos a los lados. Realiza círculos completos hacia adelante y luego hacia atrás.', 'tip': 'Comienza con círculos pequeños y aumenta el tamaño. Mantén el cuello relajado.'}, {'id': 'squat', 'totalSeg': 40, 'nm': 'Sentadilla', 'sub': 'Parcial', 'zone': 'Rodillas · Cuádriceps', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '40 seg', 'hold': '2 seg', 'holdSub': 'en el fondo', 'freq': '10 reps', 'freqSub': '', 'desc': 'Pies separados, puntas hacia afuera. Baja hasta 90° en las rodillas. Espalda recta. Las rodillas no sobrepasen los pies.', 'tip': 'Empuja las rodillas hacia afuera alineándolas con los dedos del pie. Distribuye el peso en todo el pie.'}, {'id': 'trunk-rotation', 'totalSeg': 40, 'nm': 'Rotación', 'sub': 'de Tronco', 'zone': 'Columna · Dorsal', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '40 seg', 'hold': '3 seg', 'holdSub': 'Cada lado', 'freq': '5 reps', 'freqSub': 'c/lado', 'desc': 'De pie, brazos cruzados o en la cintura. Gira el tronco completo al máximo. Caderas fijas.', 'tip': 'Las caderas deben permanecer completamente quietas. Solo rota desde la cintura hacia arriba.'}, {'id': 'heel-raise', 'totalSeg': 45, 'nm': 'Elevación', 'sub': 'de Talones', 'zone': 'Gemelos · Circulación', 'epp': '🥾 Botas · 🦺 Overol', 'dur': '45 seg', 'hold': '2 seg', 'holdSub': 'en puntillas', 'freq': '15 reps', 'freqSub': '', 'desc': 'Eleva ambos talones al máximo hasta quedar en puntillas. Sostén 2 seg y baja lentamente.', 'tip': 'Sube en 2 seg, mantén 2 seg, baja en 3 seg. Este ritmo maximiza el beneficio venoso.'}, {'id': 'back-extension', 'totalSeg': 60, 'nm': 'Extensión', 'sub': 'Lumbar', 'zone': 'Espalda Baja · Lumbar', 'epp': '⛑ Casco · 🥾 Botas · 🦺 Overol', 'dur': '60 seg', 'hold': '20 seg', 'holdSub': '', 'freq': '3 reps', 'freqSub': '', 'desc': 'Coloca ambas manos en la espalda baja. Empuja las caderas al frente e inclínate suavemente hacia atrás.', 'tip': 'No fuerces el arco. La extensión debe sentirse como alivio, no como dolor. Exhala al extender.'}, {'id': 'hamstring', 'totalSeg': 50, 'nm': 'Isquiotibiales', 'sub': 'Estiramiento', 'zone': 'Muslos Posteriores', 'epp': '⛑ Casco · 🥾 Botas · 🥽 Gafas', 'dur': '50 seg', 'hold': '25 seg', 'holdSub': 'Cada lado', 'freq': '1 vez', 'freqSub': 'c/pierna', 'desc': 'Apoya el talón en una superficie elevada. Pierna extendida. Inclínate hacia adelante con espalda recta.', 'tip': 'La inclinación debe venir desde la cadera, no de doblar la espalda. Mantén la rodilla extendida.'}, {'id': 'pendulum', 'totalSeg': 40, 'nm': 'Péndulo', 'sub': 'de Hombro', 'zone': 'Hombro · Manguito Rotador', 'epp': '⛑ Casco · 🥽 Gafas · 🥾 Botas', 'dur': '40 seg', 'hold': '—', 'holdSub': '', 'freq': '20 seg', 'freqSub': 'c/brazo', 'desc': 'Inclínate con una mano apoyada. Deja el otro brazo colgar completamente libre. Pequeños círculos con la inercia.', 'tip': 'El brazo debe estar completamente relajado como un péndulo. No lo muevas activamente.'}, {'id': 'quad-stretch', 'totalSeg': 50, 'nm': 'Cuádriceps', 'sub': 'Estiramiento', 'zone': 'Cuádriceps · Rodilla', 'epp': '⛑ Casco · 🥾 Botas · 🦺 Overol', 'dur': '50 seg', 'hold': '25 seg', 'holdSub': 'Cada lado', 'freq': '1 vez', 'freqSub': 'c/pierna', 'desc': 'De pie junto a una pared. Dobla la rodilla llevando el talón hacia los glúteos. Toma el tobillo.', 'tip': 'Mantén ambas rodillas juntas y la cadera recta. Si pierdes el equilibrio, acerca más el apoyo.'}, {'id': 'neck-tilt', 'totalSeg': 40, 'nm': 'Flexión Lateral', 'sub': 'de Cuello', 'zone': 'Cervical · Trapecio', 'epp': '⛑ Retirar si área segura · 🥾 Botas', 'dur': '40 seg', 'hold': '20 seg', 'holdSub': 'Cada lado', 'freq': '1 vez', 'freqSub': 'c/lado', 'desc': 'Inclina suavemente la oreja hacia el hombro sin subirlo. Sostén 20 seg y cambia de lado.', 'tip': 'Mantén los hombros relajados y bajos. Imagina que alargas el cuello en lugar de solo doblarlo.'}];
-
-let ci=0,run=false,pTimer=null,elapsed=0,startTs=0;
-const CY=8000;
-
-function trans(fn){const ov=document.getElementById('ov');ov.classList.add('on');setTimeout(()=>{fn();ov.classList.remove('on');},260);}
-function goApp(t){
-  if(t==='campo'){trans(()=>{document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById('ex').classList.add('on');ci=0;elapsed=0;startTs=Date.now();loadEx(0);});}
-  else{window.location.href='pausas_activas_oficina.html';}
-}
-function goBack(){stopTimer();trans(()=>{document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById('home').classList.add('on');});}
-function goHome(){trans(()=>{document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById('home').classList.add('on');});}
-
-function loadEx(idx){
-  stopTimer();ci=idx;elapsed=0;run=false;
-  const e=EX_DATA[idx],tot=EX_DATA.length;
-  document.getElementById('tp').style.width=((idx/tot)*100)+'%';
-  document.getElementById('tc').textContent=(idx+1)+'/'+tot;
-  const hs=e.holdSub?`<div class="msub">${e.holdSub}</div>`:`<div class="msub">Mantener</div>`;
-  const fs=e.freqSub?`<div class="msub">${e.freqSub}</div>`:`<div class="msub">&nbsp;</div>`;
-  document.getElementById('xc').innerHTML=buildCDCard(e,idx,tot,false);
-  setTimeout(()=>startCDTimer(e.totalSeg||45),100);
-  // SVG animations auto-play via CSS — just start the progress bar
-}
-
-function stopTimer(){run=false;if(pTimer){clearInterval(pTimer);pTimer=null;}}
-
-
-
-
-
-function nextEx(){cdStop();stopTimer();loadEx(ci+1);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
-function prevEx(){cdStop();stopTimer();loadEx(ci-1);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
-function finishR(){cdStop();
-  stopTimer();
-  const sp=document.getElementById('sp'),st=document.getElementById('st');
-  if(sp)sp.className='spill finish';if(st)st.textContent='FINISH';
-  setTimeout(()=>{
-    const mins=Math.round((Date.now()-startTs)/60000);
-    document.getElementById('dne').textContent=EX_DATA.length;
-    document.getElementById('dnm').textContent=Math.max(1,mins);
-    trans(()=>{document.querySelectorAll('.sc').forEach(s=>s.classList.remove('on'));document.getElementById('done').classList.add('on');});
-  },600);
-}
-const RUTINAS_DATA = {"meta": {"programa": "Pausas Activas SKANHAWK SAS", "version": "1.0", "descripcion": "Rutinas diarias de pausas activas osteomusculares. Cada rutina dura máximo 5 minutos.", "actualizado": "2026"}, "categorias": {"activacion": {"nombre": "Activación Semanal", "descripcion": "Rutina de arranque. Activa todo el cuerpo para comenzar la semana con energía.", "color": "#10B981", "icono": "⚡"}, "cervical_hombros": {"nombre": "Cuello y Hombros", "descripcion": "Enfocada en la zona cervical y trapecio. Alivia la tensión acumulada del cuello y hombros.", "color": "#2563EB", "icono": "🔄"}, "columna_core": {"nombre": "Columna y Core", "descripcion": "Trabaja la columna lumbar y dorsal. Previene el dolor de espalda por posturas prolongadas.", "color": "#F59E0B", "icono": "🦴"}, "circulacion_piernas": {"nombre": "Circulación y Piernas", "descripcion": "Activa la circulación venosa y estira los miembros inferiores. Combate el sedentarismo.", "color": "#8B5CF6", "icono": "🦵"}, "cierre_semana": {"nombre": "Cierre de Semana", "descripcion": "Estiramiento integral y relajante. Prepara el cuerpo para el descanso del fin de semana.", "color": "#EC4899", "icono": "🌅"}, "hombros_brazos": {"nombre": "Hombros y Brazos", "descripcion": "Manguito rotador, antebrazos y muñecas. Previene lesiones por esfuerzo repetitivo.", "color": "#EF4444", "icono": "💪"}, "descanso_activo": {"nombre": "Descanso Activo", "descripcion": "Rutina suave y consciente. Cervical ligero e higiene visual para el cierre del ciclo semanal.", "color": "#06B6D4", "icono": "🧘"}}, "ejercicios": {"campo": {"marching": {"nombre": "Marcha en Sitio", "duracion_seg": 40, "zona": "activacion"}, "hip-rotation": {"nombre": "Rotación de Cadera", "duracion_seg": 35, "zona": "columna"}, "shoulder-circles": {"nombre": "Círculos de Hombros", "duracion_seg": 35, "zona": "hombros"}, "squat": {"nombre": "Sentadilla Parcial", "duracion_seg": 40, "zona": "piernas"}, "trunk-rotation": {"nombre": "Rotación de Tronco", "duracion_seg": 35, "zona": "columna"}, "heel-raise": {"nombre": "Elevación de Talones", "duracion_seg": 30, "zona": "piernas"}, "back-extension": {"nombre": "Extensión Lumbar", "duracion_seg": 30, "zona": "columna"}, "hamstring": {"nombre": "Isquiotibiales", "duracion_seg": 40, "zona": "piernas"}, "pendulum": {"nombre": "Péndulo de Hombro", "duracion_seg": 35, "zona": "hombros"}, "quad-stretch": {"nombre": "Estiramiento Cuádriceps", "duracion_seg": 40, "zona": "piernas"}, "neck-tilt": {"nombre": "Flexión Lateral Cuello", "duracion_seg": 35, "zona": "cervical"}}, "oficina": {"neck-tilt": {"nombre": "Flexión Lateral Cuello", "duracion_seg": 35, "zona": "cervical"}, "neck-rotation": {"nombre": "Rotación Cervical", "duracion_seg": 35, "zona": "cervical"}, "chin-retraction": {"nombre": "Retracción de Mentón", "duracion_seg": 30, "zona": "cervical"}, "shoulder-shrug": {"nombre": "Encogimiento de Hombros", "duracion_seg": 30, "zona": "hombros"}, "shoulder-retraction": {"nombre": "Retracción Escapular", "duracion_seg": 30, "zona": "hombros"}, "shoulder-cross": {"nombre": "Cruce de Brazos", "duracion_seg": 35, "zona": "hombros"}, "wrist-extension": {"nombre": "Extensión de Muñecas", "duracion_seg": 30, "zona": "muñecas"}, "wrist-rotation": {"nombre": "Rotación de Muñecas", "duracion_seg": 25, "zona": "muñecas"}, "trunk-rotation": {"nombre": "Rotación de Tronco", "duracion_seg": 35, "zona": "columna"}, "back-extension": {"nombre": "Extensión Lumbar", "duracion_seg": 30, "zona": "columna"}, "lateral-stretch": {"nombre": "Estiramiento Lateral", "duracion_seg": 35, "zona": "columna"}, "eye-palming": {"nombre": "Palming Visual", "duracion_seg": 30, "zona": "visual"}, "eye-focus": {"nombre": "Regla 20-20-20", "duracion_seg": 20, "zona": "visual"}}}, "rutinas_semana": {"lunes": {"dia": "Lunes", "categoria": "activacion", "mensaje_campo": "Arranca fuerte esta semana 💪 Hoy es lunes y tu cuerpo necesita despertar. Tómate 5 minutos antes de iniciar el turno — esta rutina activa músculos, articula articulaciones y prepara tu cuerpo para el trabajo duro del día.", "mensaje_oficina": "Nueva semana, cuerpo en marcha 🚀 Hoy es lunes. Antes de que el computador te absorba, dedica 5 minutos a activar tu cuerpo. Una buena semana comienza con movimiento consciente.", "rutina_campo": [{"id": "marching", "reps": "30 pasos", "descripcion": "Activa la circulación y calienta articulaciones"}, {"id": "shoulder-circles", "reps": "10 c/sentido", "descripcion": "Lubrica los hombros para el trabajo físico"}, {"id": "hip-rotation", "reps": "10 c/lado", "descripcion": "Moviliza cadera y prepara la zona lumbar"}, {"id": "heel-raise", "reps": "15 elevaciones", "descripcion": "Activa gemelos y retorno venoso"}], "rutina_oficina": [{"id": "shoulder-shrug", "reps": "10 reps", "descripcion": "Libera la tensión del trapecio acumulada"}, {"id": "shoulder-retraction", "reps": "10 reps", "descripcion": "Abre el pecho y activa la espalda alta"}, {"id": "trunk-rotation", "reps": "5 reps c/lado", "descripcion": "Moviliza la columna para arrancar la semana"}, {"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estira el trapecio antes de horas de pantalla"}], "duracion_min": 5, "tip_dia": "El lunes marca el tono de toda la semana. Un cuerpo activo genera una mente más enfocada."}, "martes": {"dia": "Martes", "categoria": "cervical_hombros", "mensaje_campo": "Tu cuello y hombros también trabajan duro ⛑ Hoy es martes. El esfuerzo físico de ayer puede haber dejado tensión en la zona cervical y el trapecio. Esta pausa de 5 minutos es para ellos.", "mensaje_oficina": "Horas de pantalla cobran su precio en el cuello 😤 Hoy es martes. El trapecio y las cervicales son las primeras víctimas del trabajo sedentario. Dale 5 minutos de atención antes de que el dolor llegue.", "rutina_campo": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estira el trapecio y alivia tensión cervical"}, {"id": "shoulder-circles", "reps": "10 c/sentido", "descripcion": "Lubrica el manguito rotador"}, {"id": "pendulum", "reps": "20 seg c/brazo", "descripcion": "Descomprime la articulación del hombro"}, {"id": "marching", "reps": "20 pasos", "descripcion": "Activa la circulación para cerrar la pausa"}], "rutina_oficina": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estira el trapecio — el músculo más tenso en oficina"}, {"id": "neck-rotation", "reps": "5 reps c/lado", "descripcion": "Moviliza las vértebras cervicales"}, {"id": "chin-retraction", "reps": "10 reps", "descripcion": "Corrige la postura de cabeza adelantada"}, {"id": "shoulder-shrug", "reps": "10 reps", "descripcion": "Suelta la tensión del trapecio bruscamente"}], "duracion_min": 4, "tip_dia": "El trapecio es el músculo más castigado en trabajo físico y sedentario por igual. Cuídalo todos los martes."}, "miercoles": {"dia": "Miércoles", "categoria": "columna_core", "mensaje_campo": "La mitad de la semana, cuida tu espalda 🦴 Hoy es miércoles. Llevas días de trabajo físico y tu columna lo siente. Esta rutina de 5 minutos está diseñada para aliviar la presión lumbar y movilizar la espalda.", "mensaje_oficina": "Mitad de semana, espalda al límite 🦴 Hoy es miércoles. Horas sentado comprimen los discos vertebrales. Esta rutina de 5 minutos descomprime la columna y corrige la postura antes de que el dolor se instale.", "rutina_campo": [{"id": "back-extension", "reps": "3 veces · 20 seg", "descripcion": "Contrarresta la inclinación del trabajo en campo"}, {"id": "trunk-rotation", "reps": "8 reps c/lado", "descripcion": "Moviliza la columna dorsal y lumbar"}, {"id": "hamstring", "reps": "25 seg c/pierna", "descripcion": "Estira isquiotibiales que tensan la lumbar"}, {"id": "hip-rotation", "reps": "10 c/lado", "descripcion": "Lubrica la articulación de cadera"}], "rutina_oficina": [{"id": "back-extension", "reps": "3 veces · 20 seg", "descripcion": "Contrarresta horas en posición sentada"}, {"id": "trunk-rotation", "reps": "5 reps c/lado", "descripcion": "Moviliza la columna que lleva horas quieta"}, {"id": "lateral-stretch", "reps": "3 reps c/lado", "descripcion": "Estira los oblicuos y la fascia lateral"}, {"id": "chin-retraction", "reps": "10 reps", "descripcion": "Corrige la postura de cabeza adelantada"}], "duracion_min": 5, "tip_dia": "La columna necesita movimiento para nutrirse. Los discos vertebrales no tienen vasos sanguíneos propios — se nutren con el movimiento."}, "jueves": {"dia": "Jueves", "categoria": "circulacion_piernas", "mensaje_campo": "Tus piernas llevan la semana encima 🦵 Hoy es jueves. Cuatro días de trabajo físico y bipedestación prolongada afectan la circulación venosa y tensan cuádriceps e isquiotibiales. Dale a tus piernas 5 minutos.", "mensaje_oficina": "La circulación te lo agradecerá 🦵 Hoy es jueves. Horas sentado frenan el retorno venoso y tensan las piernas. Esta pausa activa la bomba muscular de los gemelos y estira los músculos más sedentarios.", "rutina_campo": [{"id": "heel-raise", "reps": "15 elevaciones", "descripcion": "Activa la bomba venosa de los gemelos"}, {"id": "squat", "reps": "10 reps", "descripcion": "Fortalece MMII y activa la circulación"}, {"id": "quad-stretch", "reps": "25 seg c/pierna", "descripcion": "Estira cuádriceps tensos por el trabajo físico"}, {"id": "hamstring", "reps": "25 seg c/pierna", "descripcion": "Alivia la tensión posterior del muslo"}], "rutina_oficina": [{"id": "back-extension", "reps": "3 veces · 15 seg", "descripcion": "Activa la circulación lumbar primero"}, {"id": "trunk-rotation", "reps": "5 reps c/lado", "descripcion": "Despierta el core antes del estiramiento"}, {"id": "lateral-stretch", "reps": "3 reps c/lado", "descripcion": "Estira el costado y activa la respiración"}, {"id": "eye-palming", "reps": "2 veces · 20 seg", "descripcion": "Descansa los ojos después de días de pantalla"}], "duracion_min": 5, "tip_dia": "La elevación de talones activa la bomba venosa muscular del gemelo — el corazón de tus piernas."}, "viernes": {"dia": "Viernes", "categoria": "cierre_semana", "mensaje_campo": "¡Llegaste al viernes! Ahora cierra bien la semana 🌅 Hoy es viernes. Tu cuerpo ha trabajado duro. Esta rutina de cierre estira las zonas más exigidas de la semana y prepara tu cuerpo para el descanso del fin de semana.", "mensaje_oficina": "Semana completa — mereces este descanso activo 🌅 Hoy es viernes. Antes de cerrar el computador, dedica 5 minutos a soltar la tensión acumulada. Tu cuerpo lo necesita para recuperarse bien este fin de semana.", "rutina_campo": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Suelta la tensión cervical de la semana"}, {"id": "back-extension", "reps": "3 veces · 20 seg", "descripcion": "Descomprime la columna lumbar"}, {"id": "hamstring", "reps": "25 seg c/pierna", "descripcion": "Estira los isquiotibiales — la semana completa"}, {"id": "heel-raise", "reps": "15 elevaciones", "descripcion": "Activa el retorno venoso para cerrar el turno"}], "rutina_oficina": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Suelta la tensión cervical acumulada"}, {"id": "shoulder-retraction", "reps": "10 reps", "descripcion": "Abre el pecho y estira la espalda alta"}, {"id": "lateral-stretch", "reps": "3 reps c/lado", "descripcion": "Estiramiento integral de costados"}, {"id": "eye-focus", "reps": "20 seg", "descripcion": "Descansa los ojos — regla 20-20-20 de cierre"}], "duracion_min": 5, "tip_dia": "El cierre consciente de la semana marca la diferencia en cómo llegas el lunes. Cuídate."}, "sabado": {"dia": "Sábado", "categoria": "hombros_brazos", "mensaje_campo": "El trabajo físico pasa factura en hombros y brazos 💪 Hoy es sábado. El manguito rotador, los antebrazos y las muñecas acumulan carga durante la semana. Esta pausa activa los lubrica y previene lesiones.", "mensaje_oficina": "Sábado: tus brazos y muñecas también descansan 💪 Hoy es sábado. Horas de teclado y mouse cobran su precio en muñecas y antebrazos. Esta rutina previene el síndrome del túnel carpiano y alivia la fatiga de antebrazo.", "rutina_campo": [{"id": "shoulder-circles", "reps": "10 c/sentido", "descripcion": "Lubrica el manguito rotador y el hombro"}, {"id": "pendulum", "reps": "20 seg c/brazo", "descripcion": "Descomprime la articulación glenohumeral"}, {"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estira el trapecio tenso por los hombros"}, {"id": "marching", "reps": "20 pasos", "descripcion": "Cierra con activación general"}], "rutina_oficina": [{"id": "wrist-extension", "reps": "3 reps c/posición", "descripcion": "Estira flexores y extensores del antebrazo"}, {"id": "wrist-rotation", "reps": "10 reps c/sentido", "descripcion": "Lubrica la articulación de la muñeca"}, {"id": "shoulder-cross", "reps": "3 reps c/brazo", "descripcion": "Estira el deltoides posterior"}, {"id": "shoulder-retraction", "reps": "10 reps", "descripcion": "Activa trapecios y escápulas"}], "duracion_min": 4, "tip_dia": "Las muñecas procesan miles de movimientos repetitivos por semana. Un buen estiramiento semanal previene el síndrome del túnel carpiano."}, "domingo": {"dia": "Domingo", "categoria": "descanso_activo", "mensaje_campo": "Domingo de descanso activo — suave pero constante 🧘 Hoy es domingo. No es día de exigirse, sino de mantener la movilidad. Una rutina ligera de 3-4 minutos mantiene el cuerpo ágil para el lunes.", "mensaje_oficina": "Domingo: cuida tus ojos y tu mente 🧘 Hoy es domingo. La higiene visual y el descanso cervical son el regalo que le das a tu cuerpo antes de una nueva semana frente a pantallas. Solo 3 minutos.", "rutina_campo": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estiramiento suave cervical"}, {"id": "back-extension", "reps": "2 veces · 20 seg", "descripcion": "Descomprime la columna suavemente"}, {"id": "heel-raise", "reps": "10 elevaciones", "descripcion": "Mantén la circulación activa"}], "rutina_oficina": [{"id": "eye-palming", "reps": "2 veces · 20 seg", "descripcion": "Relaja la musculatura ocular"}, {"id": "eye-focus", "reps": "20 seg", "descripcion": "Descansa el músculo ciliar — regla 20-20-20"}, {"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estiramiento cervical suave de cierre"}, {"id": "chin-retraction", "reps": "5 reps", "descripcion": "Corrige la postura para la nueva semana"}], "duracion_min": 3, "tip_dia": "El descanso activo es más restaurador que el descanso total. Un poco de movimiento suave el domingo acelera la recuperación muscular."}}};
+const EX_DATA = [{"id": "marching", "nm": "Marcha", "sub": "en Sitio", "zone": "Activación General", "epp": "🥾 Botas · 🦺 Overol", "dur": "35 seg", "hold": "—", "holdSub": "", "freq": "30 pasos", "freqSub": "", "totalSeg": 35, "desc": "Eleva las rodillas alternadamente a la altura de la cadera. Brazos en movimiento natural opuesto.", "tip": "Mantén la espalda recta y los brazos moviéndose en oposición. La rodilla debe llegar a la cadera."}, {"id": "hip-rotation", "nm": "Rotación", "sub": "de Cadera", "zone": "Cadera · Lumbar", "epp": "🥾 Botas · 🦺 Overol", "dur": "35 seg", "hold": "—", "holdSub": "", "freq": "10 reps", "freqSub": "c/sentido", "totalSeg": 35, "desc": "Manos en la cintura, pies al ancho de hombros. Realiza círculos amplios con la cadera en ambas direcciones.", "tip": "Imagina que describes un círculo grande. Mantén hombros quietos, solo mueve la cadera."}, {"id": "shoulder-circles", "nm": "Círculos", "sub": "de Hombros", "zone": "Hombros · Trapecio", "epp": "⛑ Casco · 🥾 Botas · 🧤 Guantes", "dur": "35 seg", "hold": "—", "holdSub": "", "freq": "10 reps", "freqSub": "c/sentido", "totalSeg": 35, "desc": "Extiende los brazos a los lados. Realiza círculos completos hacia adelante y luego hacia atrás.", "tip": "Comienza con círculos pequeños y aumenta el tamaño. Mantén el cuello relajado."}, {"id": "squat", "nm": "Sentadilla", "sub": "Parcial", "zone": "Rodillas · Cuádriceps", "epp": "🥾 Botas · 🦺 Overol", "dur": "40 seg", "hold": "2 seg", "holdSub": "en el fondo", "freq": "10 reps", "freqSub": "", "totalSeg": 40, "desc": "Pies separados, puntas hacia afuera. Baja hasta 90° en las rodillas. Espalda recta. Rodillas no sobrepasen los pies.", "tip": "Empuja las rodillas hacia afuera alineándolas con los dedos del pie. Distribuye el peso en todo el pie."}, {"id": "trunk-rotation", "nm": "Rotación", "sub": "de Tronco", "zone": "Columna · Dorsal", "epp": "🥾 Botas · 🦺 Overol", "dur": "40 seg", "hold": "3 seg", "holdSub": "Cada lado", "freq": "5 reps", "freqSub": "c/lado", "totalSeg": 40, "desc": "De pie, brazos cruzados o en la cintura. Gira el tronco completo al máximo. Caderas fijas.", "tip": "Las caderas deben permanecer completamente quietas. Solo rota desde la cintura hacia arriba."}, {"id": "heel-raise", "nm": "Elevación", "sub": "de Talones", "zone": "Gemelos · Circulación", "epp": "🥾 Botas · 🦺 Overol", "dur": "45 seg", "hold": "2 seg", "holdSub": "en puntillas", "freq": "15 reps", "freqSub": "", "totalSeg": 45, "desc": "Eleva ambos talones al máximo hasta quedar en puntillas. Sostén 2 seg y baja lentamente.", "tip": "Sube en 2 seg, mantén 2 seg, baja en 3 seg. Este ritmo activa el retorno venoso."}, {"id": "back-extension", "nm": "Extensión", "sub": "Lumbar", "zone": "Espalda Baja · Lumbar", "epp": "⛑ Casco · 🥾 Botas · 🦺 Overol", "dur": "60 seg", "hold": "20 seg", "holdSub": "", "freq": "3 reps", "freqSub": "", "totalSeg": 60, "desc": "Coloca ambas manos en la espalda baja. Empuja las caderas al frente e inclínate suavemente hacia atrás.", "tip": "No fuerces el arco. La extensión debe sentirse como alivio, no como dolor. Exhala al extender."}, {"id": "hamstring", "nm": "Isquiotibiales", "sub": "Estiramiento", "zone": "Muslos Posteriores", "epp": "⛑ Casco · 🥾 Botas · 🥽 Gafas", "dur": "50 seg", "hold": "25 seg", "holdSub": "Cada lado", "freq": "1 vez", "freqSub": "c/pierna", "totalSeg": 50, "desc": "Apoya el talón en una superficie elevada. Pierna extendida. Inclínate hacia adelante con espalda recta.", "tip": "La inclinación debe venir desde la cadera, no de doblar la espalda. Mantén la rodilla extendida."}, {"id": "pendulum", "nm": "Péndulo", "sub": "de Hombro", "zone": "Hombro · Manguito Rotador", "epp": "⛑ Casco · 🥽 Gafas · 🥾 Botas", "dur": "40 seg", "hold": "—", "holdSub": "", "freq": "20 seg", "freqSub": "c/brazo", "totalSeg": 40, "desc": "Inclínate con una mano apoyada. Deja el otro brazo colgar completamente libre. Pequeños círculos con la inercia.", "tip": "El brazo debe estar completamente relajado como un péndulo. No lo muevas activamente."}, {"id": "quad-stretch", "nm": "Cuádriceps", "sub": "Estiramiento", "zone": "Cuádriceps · Rodilla", "epp": "⛑ Casco · 🥾 Botas · 🦺 Overol", "dur": "50 seg", "hold": "25 seg", "holdSub": "Cada lado", "freq": "1 vez", "freqSub": "c/pierna", "totalSeg": 50, "desc": "De pie junto a una pared. Dobla la rodilla llevando el talón hacia los glúteos. Toma el tobillo.", "tip": "Mantén ambas rodillas juntas y la cadera recta. Si pierdes el equilibrio, acerca más el apoyo."}, {"id": "neck-tilt", "nm": "Flexión Lateral", "sub": "de Cuello", "zone": "Cervical · Trapecio", "epp": "⛑ Retirar si área segura · 🥾 Botas", "dur": "40 seg", "hold": "20 seg", "holdSub": "Cada lado", "freq": "1 vez", "freqSub": "c/lado", "totalSeg": 40, "desc": "Inclina suavemente la oreja hacia el hombro sin subirlo. Sostén 20 seg y cambia de lado.", "tip": "Mantén los hombros relajados y bajos. Imagina que alargas el cuello en lugar de solo doblarlo."}];
+const IMG_MAP  = {"marching": "images/marching.png", "hip-rotation": "images/hip_rotation.png", "shoulder-circles": "images/shoulder_circles.png", "squat": "images/squat.png", "trunk-rotation": "images/trunk_rotation.png", "heel-raise": "images/heel_raise.png", "back-extension": "images/back_extension.png", "hamstring": "images/hamstring.png", "pendulum": "images/pendulum.png", "quad-stretch": "images/quad_stretch.png", "neck-tilt": "images/neck_tilt.png"};
+const RUTINAS  = {"meta": {"programa": "Pausas Activas SKANHAWK SAS", "version": "1.0", "descripcion": "Rutinas diarias de pausas activas osteomusculares. Cada rutina dura máximo 5 minutos.", "actualizado": "2026"}, "categorias": {"activacion": {"nombre": "Activación Semanal", "descripcion": "Rutina de arranque. Activa todo el cuerpo para comenzar la semana con energía.", "color": "#10B981", "icono": "⚡"}, "cervical_hombros": {"nombre": "Cuello y Hombros", "descripcion": "Enfocada en la zona cervical y trapecio. Alivia la tensión acumulada del cuello y hombros.", "color": "#2563EB", "icono": "🔄"}, "columna_core": {"nombre": "Columna y Core", "descripcion": "Trabaja la columna lumbar y dorsal. Previene el dolor de espalda por posturas prolongadas.", "color": "#F59E0B", "icono": "🦴"}, "circulacion_piernas": {"nombre": "Circulación y Piernas", "descripcion": "Activa la circulación venosa y estira los miembros inferiores. Combate el sedentarismo.", "color": "#8B5CF6", "icono": "🦵"}, "cierre_semana": {"nombre": "Cierre de Semana", "descripcion": "Estiramiento integral y relajante. Prepara el cuerpo para el descanso del fin de semana.", "color": "#EC4899", "icono": "🌅"}, "hombros_brazos": {"nombre": "Hombros y Brazos", "descripcion": "Manguito rotador, antebrazos y muñecas. Previene lesiones por esfuerzo repetitivo.", "color": "#EF4444", "icono": "💪"}, "descanso_activo": {"nombre": "Descanso Activo", "descripcion": "Rutina suave y consciente. Cervical ligero e higiene visual para el cierre del ciclo semanal.", "color": "#06B6D4", "icono": "🧘"}}, "ejercicios": {"campo": {"marching": {"nombre": "Marcha en Sitio", "duracion_seg": 40, "zona": "activacion"}, "hip-rotation": {"nombre": "Rotación de Cadera", "duracion_seg": 35, "zona": "columna"}, "shoulder-circles": {"nombre": "Círculos de Hombros", "duracion_seg": 35, "zona": "hombros"}, "squat": {"nombre": "Sentadilla Parcial", "duracion_seg": 40, "zona": "piernas"}, "trunk-rotation": {"nombre": "Rotación de Tronco", "duracion_seg": 35, "zona": "columna"}, "heel-raise": {"nombre": "Elevación de Talones", "duracion_seg": 30, "zona": "piernas"}, "back-extension": {"nombre": "Extensión Lumbar", "duracion_seg": 30, "zona": "columna"}, "hamstring": {"nombre": "Isquiotibiales", "duracion_seg": 40, "zona": "piernas"}, "pendulum": {"nombre": "Péndulo de Hombro", "duracion_seg": 35, "zona": "hombros"}, "quad-stretch": {"nombre": "Estiramiento Cuádriceps", "duracion_seg": 40, "zona": "piernas"}, "neck-tilt": {"nombre": "Flexión Lateral Cuello", "duracion_seg": 35, "zona": "cervical"}}, "oficina": {"neck-tilt": {"nombre": "Flexión Lateral Cuello", "duracion_seg": 35, "zona": "cervical"}, "neck-rotation": {"nombre": "Rotación Cervical", "duracion_seg": 35, "zona": "cervical"}, "chin-retraction": {"nombre": "Retracción de Mentón", "duracion_seg": 30, "zona": "cervical"}, "shoulder-shrug": {"nombre": "Encogimiento de Hombros", "duracion_seg": 30, "zona": "hombros"}, "shoulder-retraction": {"nombre": "Retracción Escapular", "duracion_seg": 30, "zona": "hombros"}, "shoulder-cross": {"nombre": "Cruce de Brazos", "duracion_seg": 35, "zona": "hombros"}, "wrist-extension": {"nombre": "Extensión de Muñecas", "duracion_seg": 30, "zona": "muñecas"}, "wrist-rotation": {"nombre": "Rotación de Muñecas", "duracion_seg": 25, "zona": "muñecas"}, "trunk-rotation": {"nombre": "Rotación de Tronco", "duracion_seg": 35, "zona": "columna"}, "back-extension": {"nombre": "Extensión Lumbar", "duracion_seg": 30, "zona": "columna"}, "lateral-stretch": {"nombre": "Estiramiento Lateral", "duracion_seg": 35, "zona": "columna"}, "eye-palming": {"nombre": "Palming Visual", "duracion_seg": 30, "zona": "visual"}, "eye-focus": {"nombre": "Regla 20-20-20", "duracion_seg": 20, "zona": "visual"}}}, "rutinas_semana": {"lunes": {"dia": "Lunes", "categoria": "activacion", "mensaje_campo": "Arranca fuerte esta semana 💪 Hoy es lunes y tu cuerpo necesita despertar. Tómate 5 minutos antes de iniciar el turno — esta rutina activa músculos, articula articulaciones y prepara tu cuerpo para el trabajo duro del día.", "mensaje_oficina": "Nueva semana, cuerpo en marcha 🚀 Hoy es lunes. Antes de que el computador te absorba, dedica 5 minutos a activar tu cuerpo. Una buena semana comienza con movimiento consciente.", "rutina_campo": [{"id": "marching", "reps": "30 pasos", "descripcion": "Activa la circulación y calienta articulaciones"}, {"id": "shoulder-circles", "reps": "10 c/sentido", "descripcion": "Lubrica los hombros para el trabajo físico"}, {"id": "hip-rotation", "reps": "10 c/lado", "descripcion": "Moviliza cadera y prepara la zona lumbar"}, {"id": "heel-raise", "reps": "15 elevaciones", "descripcion": "Activa gemelos y retorno venoso"}], "rutina_oficina": [{"id": "shoulder-shrug", "reps": "10 reps", "descripcion": "Libera la tensión del trapecio acumulada"}, {"id": "shoulder-retraction", "reps": "10 reps", "descripcion": "Abre el pecho y activa la espalda alta"}, {"id": "trunk-rotation", "reps": "5 reps c/lado", "descripcion": "Moviliza la columna para arrancar la semana"}, {"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estira el trapecio antes de horas de pantalla"}], "duracion_min": 5, "tip_dia": "El lunes marca el tono de toda la semana. Un cuerpo activo genera una mente más enfocada."}, "martes": {"dia": "Martes", "categoria": "cervical_hombros", "mensaje_campo": "Tu cuello y hombros también trabajan duro ⛑ Hoy es martes. El esfuerzo físico de ayer puede haber dejado tensión en la zona cervical y el trapecio. Esta pausa de 5 minutos es para ellos.", "mensaje_oficina": "Horas de pantalla cobran su precio en el cuello 😤 Hoy es martes. El trapecio y las cervicales son las primeras víctimas del trabajo sedentario. Dale 5 minutos de atención antes de que el dolor llegue.", "rutina_campo": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estira el trapecio y alivia tensión cervical"}, {"id": "shoulder-circles", "reps": "10 c/sentido", "descripcion": "Lubrica el manguito rotador"}, {"id": "pendulum", "reps": "20 seg c/brazo", "descripcion": "Descomprime la articulación del hombro"}, {"id": "marching", "reps": "20 pasos", "descripcion": "Activa la circulación para cerrar la pausa"}], "rutina_oficina": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estira el trapecio — el músculo más tenso en oficina"}, {"id": "neck-rotation", "reps": "5 reps c/lado", "descripcion": "Moviliza las vértebras cervicales"}, {"id": "chin-retraction", "reps": "10 reps", "descripcion": "Corrige la postura de cabeza adelantada"}, {"id": "shoulder-shrug", "reps": "10 reps", "descripcion": "Suelta la tensión del trapecio bruscamente"}], "duracion_min": 4, "tip_dia": "El trapecio es el músculo más castigado en trabajo físico y sedentario por igual. Cuídalo todos los martes."}, "miercoles": {"dia": "Miércoles", "categoria": "columna_core", "mensaje_campo": "La mitad de la semana, cuida tu espalda 🦴 Hoy es miércoles. Llevas días de trabajo físico y tu columna lo siente. Esta rutina de 5 minutos está diseñada para aliviar la presión lumbar y movilizar la espalda.", "mensaje_oficina": "Mitad de semana, espalda al límite 🦴 Hoy es miércoles. Horas sentado comprimen los discos vertebrales. Esta rutina de 5 minutos descomprime la columna y corrige la postura antes de que el dolor se instale.", "rutina_campo": [{"id": "back-extension", "reps": "3 veces · 20 seg", "descripcion": "Contrarresta la inclinación del trabajo en campo"}, {"id": "trunk-rotation", "reps": "8 reps c/lado", "descripcion": "Moviliza la columna dorsal y lumbar"}, {"id": "hamstring", "reps": "25 seg c/pierna", "descripcion": "Estira isquiotibiales que tensan la lumbar"}, {"id": "hip-rotation", "reps": "10 c/lado", "descripcion": "Lubrica la articulación de cadera"}], "rutina_oficina": [{"id": "back-extension", "reps": "3 veces · 20 seg", "descripcion": "Contrarresta horas en posición sentada"}, {"id": "trunk-rotation", "reps": "5 reps c/lado", "descripcion": "Moviliza la columna que lleva horas quieta"}, {"id": "lateral-stretch", "reps": "3 reps c/lado", "descripcion": "Estira los oblicuos y la fascia lateral"}, {"id": "chin-retraction", "reps": "10 reps", "descripcion": "Corrige la postura de cabeza adelantada"}], "duracion_min": 5, "tip_dia": "La columna necesita movimiento para nutrirse. Los discos vertebrales no tienen vasos sanguíneos propios — se nutren con el movimiento."}, "jueves": {"dia": "Jueves", "categoria": "circulacion_piernas", "mensaje_campo": "Tus piernas llevan la semana encima 🦵 Hoy es jueves. Cuatro días de trabajo físico y bipedestación prolongada afectan la circulación venosa y tensan cuádriceps e isquiotibiales. Dale a tus piernas 5 minutos.", "mensaje_oficina": "La circulación te lo agradecerá 🦵 Hoy es jueves. Horas sentado frenan el retorno venoso y tensan las piernas. Esta pausa activa la bomba muscular de los gemelos y estira los músculos más sedentarios.", "rutina_campo": [{"id": "heel-raise", "reps": "15 elevaciones", "descripcion": "Activa la bomba venosa de los gemelos"}, {"id": "squat", "reps": "10 reps", "descripcion": "Fortalece MMII y activa la circulación"}, {"id": "quad-stretch", "reps": "25 seg c/pierna", "descripcion": "Estira cuádriceps tensos por el trabajo físico"}, {"id": "hamstring", "reps": "25 seg c/pierna", "descripcion": "Alivia la tensión posterior del muslo"}], "rutina_oficina": [{"id": "back-extension", "reps": "3 veces · 15 seg", "descripcion": "Activa la circulación lumbar primero"}, {"id": "trunk-rotation", "reps": "5 reps c/lado", "descripcion": "Despierta el core antes del estiramiento"}, {"id": "lateral-stretch", "reps": "3 reps c/lado", "descripcion": "Estira el costado y activa la respiración"}, {"id": "eye-palming", "reps": "2 veces · 20 seg", "descripcion": "Descansa los ojos después de días de pantalla"}], "duracion_min": 5, "tip_dia": "La elevación de talones activa la bomba venosa muscular del gemelo — el corazón de tus piernas."}, "viernes": {"dia": "Viernes", "categoria": "cierre_semana", "mensaje_campo": "¡Llegaste al viernes! Ahora cierra bien la semana 🌅 Hoy es viernes. Tu cuerpo ha trabajado duro. Esta rutina de cierre estira las zonas más exigidas de la semana y prepara tu cuerpo para el descanso del fin de semana.", "mensaje_oficina": "Semana completa — mereces este descanso activo 🌅 Hoy es viernes. Antes de cerrar el computador, dedica 5 minutos a soltar la tensión acumulada. Tu cuerpo lo necesita para recuperarse bien este fin de semana.", "rutina_campo": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Suelta la tensión cervical de la semana"}, {"id": "back-extension", "reps": "3 veces · 20 seg", "descripcion": "Descomprime la columna lumbar"}, {"id": "hamstring", "reps": "25 seg c/pierna", "descripcion": "Estira los isquiotibiales — la semana completa"}, {"id": "heel-raise", "reps": "15 elevaciones", "descripcion": "Activa el retorno venoso para cerrar el turno"}], "rutina_oficina": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Suelta la tensión cervical acumulada"}, {"id": "shoulder-retraction", "reps": "10 reps", "descripcion": "Abre el pecho y estira la espalda alta"}, {"id": "lateral-stretch", "reps": "3 reps c/lado", "descripcion": "Estiramiento integral de costados"}, {"id": "eye-focus", "reps": "20 seg", "descripcion": "Descansa los ojos — regla 20-20-20 de cierre"}], "duracion_min": 5, "tip_dia": "El cierre consciente de la semana marca la diferencia en cómo llegas el lunes. Cuídate."}, "sabado": {"dia": "Sábado", "categoria": "hombros_brazos", "mensaje_campo": "El trabajo físico pasa factura en hombros y brazos 💪 Hoy es sábado. El manguito rotador, los antebrazos y las muñecas acumulan carga durante la semana. Esta pausa activa los lubrica y previene lesiones.", "mensaje_oficina": "Sábado: tus brazos y muñecas también descansan 💪 Hoy es sábado. Horas de teclado y mouse cobran su precio en muñecas y antebrazos. Esta rutina previene el síndrome del túnel carpiano y alivia la fatiga de antebrazo.", "rutina_campo": [{"id": "shoulder-circles", "reps": "10 c/sentido", "descripcion": "Lubrica el manguito rotador y el hombro"}, {"id": "pendulum", "reps": "20 seg c/brazo", "descripcion": "Descomprime la articulación glenohumeral"}, {"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estira el trapecio tenso por los hombros"}, {"id": "marching", "reps": "20 pasos", "descripcion": "Cierra con activación general"}], "rutina_oficina": [{"id": "wrist-extension", "reps": "3 reps c/posición", "descripcion": "Estira flexores y extensores del antebrazo"}, {"id": "wrist-rotation", "reps": "10 reps c/sentido", "descripcion": "Lubrica la articulación de la muñeca"}, {"id": "shoulder-cross", "reps": "3 reps c/brazo", "descripcion": "Estira el deltoides posterior"}, {"id": "shoulder-retraction", "reps": "10 reps", "descripcion": "Activa trapecios y escápulas"}], "duracion_min": 4, "tip_dia": "Las muñecas procesan miles de movimientos repetitivos por semana. Un buen estiramiento semanal previene el síndrome del túnel carpiano."}, "domingo": {"dia": "Domingo", "categoria": "descanso_activo", "mensaje_campo": "Domingo de descanso activo — suave pero constante 🧘 Hoy es domingo. No es día de exigirse, sino de mantener la movilidad. Una rutina ligera de 3-4 minutos mantiene el cuerpo ágil para el lunes.", "mensaje_oficina": "Domingo: cuida tus ojos y tu mente 🧘 Hoy es domingo. La higiene visual y el descanso cervical son el regalo que le das a tu cuerpo antes de una nueva semana frente a pantallas. Solo 3 minutos.", "rutina_campo": [{"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estiramiento suave cervical"}, {"id": "back-extension", "reps": "2 veces · 20 seg", "descripcion": "Descomprime la columna suavemente"}, {"id": "heel-raise", "reps": "10 elevaciones", "descripcion": "Mantén la circulación activa"}], "rutina_oficina": [{"id": "eye-palming", "reps": "2 veces · 20 seg", "descripcion": "Relaja la musculatura ocular"}, {"id": "eye-focus", "reps": "20 seg", "descripcion": "Descansa el músculo ciliar — regla 20-20-20"}, {"id": "neck-tilt", "reps": "5 reps c/lado", "descripcion": "Estiramiento cervical suave de cierre"}, {"id": "chin-retraction", "reps": "5 reps", "descripcion": "Corrige la postura para la nueva semana"}], "duracion_min": 3, "tip_dia": "El descanso activo es más restaurador que el descanso total. Un poco de movimiento suave el domingo acelera la recuperación muscular."}}};
 const DIAS_MAP = {0:'domingo',1:'lunes',2:'martes',3:'miercoles',4:'jueves',5:'viernes',6:'sabado'};
 const CAT_ICONS = {activacion:'⚡',cervical_hombros:'🔄',columna_core:'🦴',circulacion_piernas:'🦵',cierre_semana:'🌅',hombros_brazos:'💪',descanso_activo:'🧘'};
 const CAT_NAMES = {activacion:'Activación Semanal',cervical_hombros:'Cuello y Hombros',columna_core:'Columna y Core',circulacion_piernas:'Circulación y Piernas',cierre_semana:'Cierre de Semana',hombros_brazos:'Hombros y Brazos',descanso_activo:'Descanso Activo'};
 
-let _rIndices=null, _rPos=0, _rTipo='campo';
+var ci=0, rIdx=null, rPos=0, startTs=0;
+var cdTotal=0, cdRem=0, cdOn=false, cdIv=null, restIv=null;
+var CIRC=251;
 
-function showRoutineScreen(){
-  const dia=DIAS_MAP[new Date().getDay()];
-  const rutina=RUTINAS_DATA.rutinas_semana[dia];
-  const ejercicios=rutina.rutina_campo;
-  const msg=rutina.mensaje_campo;
-  const catIcon=CAT_ICONS[rutina.categoria]||'📋';
-  const catName=CAT_NAMES[rutina.categoria]||rutina.categoria;
-  const listHTML=ejercicios.map((e,i)=>{
-    const ex=EX_DATA.find(x=>x.id===e.id);
-    const nm=ex?ex.nm+' '+ex.sub:e.id;
-    return '<div class="rex-item"><div class="rex-num">'+(i+1)+'</div><div><div class="rex-name">'+nm+'</div><div class="rex-reps">'+e.reps+'</div><div class="rex-dsc">'+e.descripcion+'</div></div></div>';
+function fmt(s){var m=Math.floor(s/60),ss=s%60;return m+':'+(ss<10?'0'+ss:ss);}
+function goHome(){window.location.href='index.html';}
+function showScr(id){['home','rscreen','ex','done'].forEach(function(s){var el=document.getElementById(s);if(el){el.classList.remove('on');}});var t=document.getElementById(id);if(t)t.classList.add('on');}
+
+function showRoutine(){
+  var dia=DIAS_MAP[new Date().getDay()];
+  var r=RUTINAS.rutinas_semana[dia];
+  var msg=r['mensaje_campo']; var exs=r['rutina_campo'];
+  var catIcon=CAT_ICONS[r.categoria]||'📋';
+  var catName=CAT_NAMES[r.categoria]||r.categoria;
+  var list=exs.map(function(e,i){
+    var ex=EX_DATA.find(function(x){return x.id===e.id;});
+    var nm=ex?(ex.nm+' '+ex.sub):e.id;
+    return '<div class="ritem"><div class="rnum">'+(i+1)+'</div><div><div class="rnm">'+nm+'</div><div class="rreps">'+e.reps+'</div><div class="rdsc">'+e.descripcion+'</div></div></div>';
   }).join('');
   document.getElementById('rscreen').innerHTML=
-    '<div class="topbar">'+
-    '<button class="bbk" onclick="goHome()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>'+
-    '<div class="tinfo"><div class="tmode">PAUSAS ACTIVAS · CAMPO</div>'+
-    '<div style="font-size:11px;color:var(--dim);margin-top:2px">Rutina de hoy · '+rutina.duracion_min+' min</div></div></div>'+
-    '<div class="rcard-wrap"><div class="rcard">'+
-    '<div class="rday-header">'+
-    '<div class="rcat-row"><span class="rcat-icon">'+catIcon+'</span><span class="rcat-name">'+catName+'</span></div>'+
-    '<div class="rday-title">'+rutina.dia+'</div>'+
-    '<div class="rday-msg">'+msg+'</div></div>'+
-    '<div class="rex-list">'+listHTML+'</div>'+
-    '<div class="rdur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Duración estimada: '+rutina.duracion_min+' minutos</div>'+
-    '<div class="rtip"><div class="rtip-icon"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'+
-    '<div class="rtip-txt"><strong>Tip del día</strong><p>'+rutina.tip_dia+'</p></div></div>'+
-    '<div class="ract-btns">'+
-    '<button class="rbtn-start" onclick="startDayRoutine()">▶ Iniciar rutina de hoy</button>'+
-    '<button class="rbtn-all" onclick="startAllExercises()">Ver todos</button>'+
+    '<div class="topbar"><button class="bbk" onclick="goHome()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>'+
+    '<div class="tinfo"><div class="tmode">PAUSAS ACTIVAS · CAMPO</div><div class="tsub">Rutina de hoy · '+r.duracion_min+' min</div></div></div>'+
+    '<div class="rwrap"><div class="rcard">'+
+    '<div class="rhead"><div class="rcat"><span class="rcat-ic">'+catIcon+'</span><span class="rcat-nm">'+catName+'</span></div>'+
+    '<div class="rday">'+r.dia+'</div><div class="rmsg">'+msg+'</div></div>'+
+    '<div class="rlist">'+list+'</div>'+
+    '<div class="rdur"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Duración estimada: '+r.duracion_min+' minutos</div>'+
+    '<div class="rtip"><div class="rtico"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'+
+    '<div class="rtxt"><strong>Tip del día</strong><p>'+r.tip_dia+'</p></div></div>'+
+    '<div class="ract">'+
+    '<button class="rbstart" onclick="startRoutine()">▶ Iniciar rutina de hoy</button>'+
+    '<button class="rball" onclick="startAll()">Ver todos</button>'+
     '</div></div></div>';
-  trans(()=>{
-    document.querySelectorAll('.sc,.rscreen').forEach(s=>s.classList.remove('on'));
-    document.getElementById('rscreen').classList.add('on');
-  });
+  showScr('rscreen');
 }
 
-function startDayRoutine(){
-  const dia=DIAS_MAP[new Date().getDay()];
-  const rutina=RUTINAS_DATA.rutinas_semana[dia];
-  const ids=rutina.rutina_campo.map(e=>e.id);
-  _rIndices=ids.map(id=>EX_DATA.findIndex(x=>x.id===id)).filter(i=>i>=0);
-  _rPos=0;
-  trans(()=>{
-    document.querySelectorAll('.sc,.rscreen').forEach(s=>s.classList.remove('on'));
-    document.getElementById('ex').classList.add('on');
-    startTs=Date.now(); loadExF(0);
-  });
+function startRoutine(){
+  var dia=DIAS_MAP[new Date().getDay()];
+  var r=RUTINAS.rutinas_semana[dia];
+  var ids=r['rutina_campo'].map(function(e){return e.id;});
+  rIdx=ids.map(function(id){return EX_DATA.findIndex(function(x){return x.id===id;});}).filter(function(i){return i>=0;});
+  rPos=0; startTs=Date.now();
+  showScr('ex');
+  loadAndStart(rIdx[0]);
 }
 
-function startAllExercises(){
-  _rIndices=null;
-  trans(()=>{
-    document.querySelectorAll('.sc,.rscreen').forEach(s=>s.classList.remove('on'));
-    document.getElementById('ex').classList.add('on');
-    ci=0; startTs=Date.now(); loadEx(0);
-  });
+function startAll(){
+  rIdx=null; rPos=0; ci=0; startTs=Date.now();
+  showScr('ex');
+  loadAndStart(0);
 }
 
-function loadExF(pos){
-  if(!_rIndices){loadEx(0);return;}
-  _rPos=pos;
-  const realIdx=_rIndices[pos], tot=_rIndices.length;
-  stopTimer();ci=realIdx;run=false;
-  const e=EX_DATA[realIdx];
-  if(!e){return;}
+function loadAndStart(idx){
+  loadEx(idx);
+  setTimeout(function(){startTimer(EX_DATA[idx].totalSeg||45);},100);
+}
+
+function loadEx(idx){
+  ci=idx;
+  var e=EX_DATA[idx];
+  var tot=rIdx?rIdx.length:EX_DATA.length;
+  var pos=rIdx?rPos:idx;
   document.getElementById('tp').style.width=((pos/tot)*100)+'%';
   document.getElementById('tc').textContent=(pos+1)+'/'+tot;
-  const hs=e.holdSub?'<div class="msub">'+e.holdSub+'</div>':'<div class="msub">Mantener</div>';
-  const fs=e.freqSub?'<div class="msub">'+e.freqSub+'</div>':'<div class="msub">&nbsp;</div>';
-  const epp=e.epp?'<div class="brow"><span class="bdg bepp">'+e.epp+'</span></div>':'';
-  const prevBtn=pos>0?'<button class="bnv" onclick="prevExF()">← Anterior</button>':'';
-  const nextBtn=pos<tot-1?'<button class="bnv pnv" onclick="nextExF()">Siguiente →</button>':'<button class="bnv pnv" onclick="finishR()">Finalizar ✓</button>';
+  var hs=e.holdSub?'<div class="msub">'+e.holdSub+'</div>':'<div class="msub">Mantener</div>';
+  var fs=e.freqSub?'<div class="msub">'+e.freqSub+'</div>':'<div class="msub">&nbsp;</div>';
+  var epp=e.epp?'<div class="brow"><span class="bdg bepp">'+e.epp+'</span></div>':'';
+  var img=IMG_MAP[e.id]||'';
   document.getElementById('xc').innerHTML=
-    '<div class="aarea"><div class="spill" id="sp"><span class="sdot"></span><span id="st">PAUSED</span></div>'+
-    '<div class="lbadge">⏱ 8s Loop</div>'+
-    '<div class="imgwrap"><img src="'+(EX_IMGS[e.id]||EX_IMGS["squat"]||'')+'" alt="'+e.nm+' '+e.sub+'" onerror="this.style.display=\'none\'"/></div>'+
-    '<div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div></div>'+
-    '<div class="xcnt">'+
-    '<div class="brow"><span class="bdg bap">✓ Fisioterapeuta</span><span class="bdg bzn">'+e.zone+'</span></div>'+
-    epp+
-    '<div class="xnm">'+e.nm+'<br><span>'+e.sub+'</span></div>'+
-    '<p class="xdsc">'+e.desc+'</p>'+
-    '<div class="mets">'+
-    '<div class="met"><div class="mlbl">Duración</div><div class="mval">'+e.dur+'</div><div class="msub">Por ciclo</div></div>'+
-    '<div class="met"><div class="mlbl">Hold</div><div class="mval">'+e.hold+'</div>'+hs+'</div>'+
-    '<div class="met"><div class="mlbl">Frecuencia</div><div class="mval">'+e.freq+'</div>'+fs+'</div></div>'+
-    '<div class="cdarea">'+
-    '<div class="cdring-wrap">'+
-    '<svg viewBox="0 0 96 96"><circle class="cdring-bg" cx="48" cy="48" r="42"/><circle class="cdring-fill" id="cdFill" cx="48" cy="48" r="42"/></svg>'+
-    '<div class="cdtime"><div class="cdtime-num" id="cdTime">'+fmt(e.totalSeg||45)+'</div><div class="cdtime-lbl" id="cdLbl">restante</div></div>'+
-    '</div>'+
-    '<div class="cdbtns">'+
-    '<button class="cdbtn-pause" id="cdPauseBtn" onclick="cdPauseResume()"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pausar</button>'+
-    '<button class="cdbtn-skip" onclick="cdSkip()"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg></button>'+
-    '</div>'+
-    
-    '</div>'+
-    '<div class="tip"><div class="tico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'+
-    '<div class="ttx"><strong>Consejo Profesional</strong><p>'+e.tip+'</p></div></div>'+
-    '<div class="navb">'+prevBtn+nextBtn+'</div></div>';
-
-  setTimeout(()=>cdStart(e.totalSeg||45),150);}
-
-function nextExF(){cdStop();
-  if(!_rIndices){nextEx();return;}
-  if(_rPos+1>=_rIndices.length){finishR();}
-  else{_rPos++;loadExF(_rPos);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
-}
-function prevExF(){cdStop();
-  if(!_rIndices){prevEx();return;}
-  if(_rPos<=0){showRoutineScreen();}
-  else{_rPos--;loadExF(_rPos);document.querySelector('.xscroll').scrollTo({top:0,behavior:'smooth'});}
-}
-
-
-window.addEventListener('DOMContentLoaded',()=>{
-  showRoutineScreen();
-});
-
-
-
-function resumeAnims(){
-  const sw=document.getElementById('svgwrap');
-  if(sw) sw.querySelectorAll('*').forEach(el=>{if(el.style) el.style.animationPlayState='running';});
-}
-function pauseAnims(){
-  const sw=document.getElementById('svgwrap');
-  if(sw) sw.querySelectorAll('*').forEach(el=>{if(el.style) el.style.animationPlayState='paused';});
-}
-
-// ── COUNTDOWN ───────────────────────────────
-const CIRC=263;
-let _cdTotal=0,_cdRem=0,_cdOn=false,_cdIv=null;
-
-function fmt(s){const m=Math.floor(s/60),ss=s%60;return m+':'+(ss<10?'0'+ss:ss);}
-
-function cdUpdate(){
-  const el=document.getElementById('cdTime'); if(el) el.textContent=fmt(_cdRem);
-  const lbl=document.getElementById('cdLbl'); if(lbl) lbl.textContent=_cdRem>0?'restante':'¡Listo!';
-  const ring=document.getElementById('cdFill');
-  if(ring){
-    const pct=_cdTotal>0?(_cdTotal-_cdRem)/_cdTotal:0;
-    ring.style.strokeDashoffset=CIRC-(CIRC*pct);
-    ring.style.stroke=_cdRem<=10?'#EF4444':_cdRem<=20?'#F59E0B':'#2563EB';
-  }
-  const pf=document.getElementById('pf');
-  if(pf&&_cdTotal>0) pf.style.width=((_cdTotal-_cdRem)/_cdTotal*100)+'%';
-  const btn=document.getElementById('cdPauseBtn');
-  if(btn){
-    if(_cdRem<=0){btn.className='cdbtn-pause';btn.innerHTML='✓ Completado';}
-    else{
-      btn.className='cdbtn-pause'+(_cdOn?'':' paused');
-      btn.innerHTML=_cdOn
-        ?'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pausar'
-        :'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Reanudar';
-    }
-  }
-  const sp=document.getElementById('sp'); const st=document.getElementById('st');
-  if(sp&&st){sp.className='spill '+(_cdOn?'live':'');st.textContent=_cdOn?'LIVE':'PAUSED';}
-}
-
-function cdStart(totalSeg){
-  if(_cdIv){clearInterval(_cdIv);_cdIv=null;}
-  _cdTotal=totalSeg; _cdRem=totalSeg; _cdOn=true;
-  cdUpdate(); resumeAnims();
-  _cdIv=setInterval(()=>{
-    if(!_cdOn) return;
-    _cdRem--;
-    cdUpdate();
-    if(_cdRem<=0){
-      clearInterval(_cdIv);_cdIv=null;_cdOn=false;
-      pauseAnims();
-      const _hasMore = _rIndices
-        ? (_rPos+1 < _rIndices.length)
-        : (ci+1 < EX_DATA.length);
-      const _nextRealIdx = _rIndices ? _rIndices[_rPos+1] : ci+1;
-      const _nextEx2 = _hasMore ? EX_DATA[_nextRealIdx] : null;
-      const _nextName = _nextEx2 ? (_nextEx2.nm+' '+_nextEx2.sub) : '';
-      const _advFn = _hasMore
-        ? (_rIndices ? ()=>nextExF() : ()=>nextEx())
-        : ()=>finishR();
-      if(_hasMore){ showRest(_advFn, _nextName); } else { finishR(); }
-    }
-  },1000);
-}
-
-function cdPauseResume(){
-  if(_cdRem<=0) return;
-  _cdOn=!_cdOn;
-  if(_cdOn) resumeAnims(); else pauseAnims();
-  cdUpdate();
-}
-
-function cdStop(){
-  _cdOn=false;
-  if(_cdIv){clearInterval(_cdIv);_cdIv=null;}
-  pauseAnims();
-}
-
-function cdSkip(){cdStop();if(window._rIndices)nextExF();else nextEx();}
-
-function cdCardHTML(e,pos,tot,filtered){
-  const ts=e['totalSeg']||45;
-  const hs=e.holdSub?'<div class="msub">'+e.holdSub+'</div>':'<div class="msub">Mantener</div>';
-  const fs=e.freqSub?'<div class="msub">'+e.freqSub+'</div>':'<div class="msub">&nbsp;</div>';
-  const epp=e.epp?'<div class="brow"><span class="bdg bepp">'+e.epp+'</span></div>':'';
-  const pFn=filtered?'prevExF()':'prevEx()';
-  const nFn=filtered?'nextExF()':'nextEx()';
-  return (
     '<div class="aarea">'+
     '<div class="spill live" id="sp"><span class="sdot"></span><span id="st">LIVE</span></div>'+
-    '<div class="lbadge">⏱ Auto</div>'+
-    '<div class="imgwrap"><img src="'+(EX_IMGS[e.id]||EX_IMGS["squat"]||'')+'" alt="'+e.nm+' '+e.sub+'" onerror="this.style.display=\'none\'"/></div>'+
-    '<div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div></div>'+
+    '<img class="ex-img" src="'+img+'" alt="'+e.nm+'"/>'+
+    '<div class="pbar"><div class="pfill" id="pf" style="width:0%"></div></div>'+
+    '</div>'+
     '<div class="xcnt">'+
     '<div class="brow"><span class="bdg bap">✓ Fisioterapeuta</span><span class="bdg bzn">'+e.zone+'</span></div>'+
     epp+
@@ -522,49 +266,73 @@ function cdCardHTML(e,pos,tot,filtered){
     '</div>'+
     '<div class="cdarea">'+
     '<div class="cdring-wrap">'+
-    '<svg viewBox="0 0 96 96"><circle class="cdring-bg" cx="48" cy="48" r="42"/><circle class="cdring-fill" id="cdFill" cx="48" cy="48" r="42"/></svg>'+
-    '<div class="cdtime"><div class="cdtime-num" id="cdTime">'+fmt(ts)+'</div><div class="cdtime-lbl" id="cdLbl">restante</div></div>'+
+    '<svg viewBox="0 0 92 92"><circle class="cdring-bg" cx="46" cy="46" r="40"/><circle class="cdring-fill" id="cdFill" cx="46" cy="46" r="40"/></svg>'+
+    '<div class="cdtime"><div class="cdtime-num" id="cdNum">'+fmt(e.totalSeg||45)+'</div><div class="cdtime-lbl" id="cdLbl">restante</div></div>'+
     '</div>'+
-    '<div class="cdbtns">'+
-    '<button class="cdbtn-pause" id="cdPauseBtn" onclick="cdPauseResume()">'+
+    '<button class="cdbtn" id="cdBtn" onclick="pauseResume()">'+
     '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pausar</button>'+
-    '<button class="cdbtn-skip" onclick="cdSkip()" title="Saltar ejercicio">'+
-    '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>'+
-    '</button></div>'+
-    
     '</div>'+
     '<div class="tip"><div class="tico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>'+
     '<div class="ttx"><strong>Consejo Profesional</strong><p>'+e.tip+'</p></div></div>'+
-    '<div class="navb">'+
-    (pos>0?'<button class="bnv" onclick="'+pFn+'">← Anterior</button>':'')+
-    (pos<tot-1?'<button class="bnv pnv" onclick="'+nFn+'">Siguiente →</button>':'<button class="bnv pnv" onclick="finishR()">Finalizar ✓</button>')+
-    '</div></div>'
-  );
+    '</div>';
 }
 
+function startTimer(secs){
+  if(cdIv){clearInterval(cdIv);cdIv=null;}
+  cdTotal=secs; cdRem=secs; cdOn=true;
+  updTimer();
+  cdIv=setInterval(function(){
+    if(!cdOn)return; cdRem--;updTimer();
+    if(cdRem<=0){clearInterval(cdIv);cdIv=null;cdOn=false;showRest();}
+  },1000);
+}
 
-// ── REST BETWEEN EXERCISES ───────────────────────────────
-let _restIv=null;
+function updTimer(){
+  var el=document.getElementById('cdNum');if(el)el.textContent=fmt(cdRem);
+  var lbl=document.getElementById('cdLbl');if(lbl)lbl.textContent=cdRem>0?'restante':'¡Listo!';
+  var ring=document.getElementById('cdFill');
+  if(ring){var p=cdTotal>0?(cdTotal-cdRem)/cdTotal:0;ring.style.strokeDashoffset=CIRC-(CIRC*p);ring.style.stroke=cdRem<=10?'#EF4444':cdRem<=20?'#F59E0B':'#2563EB';}
+  var pf=document.getElementById('pf');if(pf&&cdTotal>0)pf.style.width=((cdTotal-cdRem)/cdTotal*100)+'%';
+  var sp=document.getElementById('sp'),st=document.getElementById('st');
+  if(sp&&st){sp.className='spill '+(cdOn?'live':'finish');st.textContent=cdOn?'LIVE':'PAUSED';}
+  var btn=document.getElementById('cdBtn');
+  if(btn&&cdRem>0){btn.className='cdbtn'+(cdOn?'':' paused');btn.innerHTML=cdOn?'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg> Pausar':'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg> Reanudar';}
+}
 
-function showRest(nextFn, nextName){
-  cdStop();
-  let secs=5;
-  document.getElementById('restNum').textContent=secs;
-  document.getElementById('restNext').textContent=nextName?'Siguiente: '+nextName:'';
-  document.getElementById('restScreen').classList.add('on');
-  if(_restIv) clearInterval(_restIv);
-  _restIv=setInterval(()=>{
-    secs--;
-    const el=document.getElementById('restNum');
-    if(el) el.textContent=secs;
-    if(secs<=0){
-      clearInterval(_restIv);_restIv=null;
-      document.getElementById('restScreen').classList.remove('on');
-      nextFn();
+function pauseResume(){if(cdRem<=0)return;cdOn=!cdOn;updTimer();}
+function stopTimer(){cdOn=false;if(cdIv){clearInterval(cdIv);cdIv=null;}}
+
+function showRest(){
+  var tot=rIdx?rIdx.length:EX_DATA.length;
+  var nextPos=rIdx?(rPos+1):(ci+1);
+  if(nextPos>=tot){finishR();return;}
+  var nextIdx=rIdx?rIdx[nextPos]:(ci+1);
+  var nxt=EX_DATA[nextIdx];
+  document.getElementById('restN').textContent='5';
+  document.getElementById('restNext').textContent=nxt?'Siguiente: '+nxt.nm+' '+nxt.sub:'';
+  document.getElementById('rest').className='rest on';
+  var s=5;
+  if(restIv){clearInterval(restIv);restIv=null;}
+  restIv=setInterval(function(){
+    s--;var el=document.getElementById('restN');if(el)el.textContent=s;
+    if(s<=0){clearInterval(restIv);restIv=null;document.getElementById('rest').className='rest';
+      if(rIdx){rPos++;loadAndStart(rIdx[rPos]);}else{ci++;loadAndStart(ci);}
     }
   },1000);
 }
 
+function finishR(){
+  stopTimer();
+  var mins=Math.round((Date.now()-startTs)/60000);
+  var tot=rIdx?rIdx.length:EX_DATA.length;
+  document.getElementById('dne').textContent=tot;
+  document.getElementById('dnm').textContent=Math.max(1,mins);
+  var sp=document.getElementById('sp'),st=document.getElementById('st');
+  if(sp)sp.className='spill finish';if(st)st.textContent='FINISH';
+  setTimeout(function(){showScr('done');},800);
+}
+
+window.addEventListener('DOMContentLoaded',function(){showRoutine();});
 </script>
 </body>
 </html>
